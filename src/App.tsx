@@ -1,9 +1,3 @@
-function App() {
-  return (
-    <>
-      <h1>inital settings</h1>
-    </>
-  );
+export default function App() {
+  return <>App</>;
 }
-
-export default App;
