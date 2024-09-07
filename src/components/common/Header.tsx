@@ -1,7 +1,7 @@
 interface IHeader {
   title?: string;
   leftChild?: React.ReactNode;
-  rightChild: React.ReactNode;
+  rightChild?: React.ReactNode;
 }
 
 const Header = ({ title, leftChild, rightChild }: IHeader) => {
