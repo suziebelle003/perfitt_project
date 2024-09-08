@@ -1,10 +1,3 @@
-import SignIn from "./components/SignIn";
-
-const App = () => {
-  return (
-    <>
-      <SignIn/>
-    </>
-  );
+export default function App() {
+  return <>App</>;
 }
-export default App
