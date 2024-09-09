@@ -1,5 +1,5 @@
 import Button from '../../common/Button';
-import { galleryIcon } from '../../../assets/images/images';
+import { galleryIcon, upArrow } from '../../../assets/images/images';
 
 const ChatInput = () => {
   return (
@@ -21,7 +21,7 @@ const ChatInput = () => {
             />
 
             <Button className='flex items-center justify-center rounded-full w-10 h-10 absolute right-1 top-1/2 transform -translate-y-1/2 '>
-              ↑
+              <img src={upArrow} />
             </Button>
           </div>
         </div>
