@@ -3,7 +3,7 @@ import { questionMark } from '../../../../assets/images/images';
 const MeasureFoot = () => {
   return (
     <>
-      <div className='ml-7 mr-[70px] h-auto  border rounded-md'>
+      <div className='ml-7 w-[263px] h-auto border rounded-md'>
         <div className='w-full rounded-t-md bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4'>
           <div className='flex flex-col'>
             <div>
