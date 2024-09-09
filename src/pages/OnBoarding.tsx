@@ -38,6 +38,7 @@ const OnBoarding = () => {
         </div>
       </div>
       <Button onClick={() => setState('end')}>{state === 'start' ? '다음' : '시작하기'}</Button>
+
     </div>
   );
 };
