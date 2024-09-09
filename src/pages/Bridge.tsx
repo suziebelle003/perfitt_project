@@ -2,21 +2,6 @@ import bridge from '../assets/images/bridge.jpg';
 
 const Bridge = () => {
   return (
-    // <div className='h-full flex flex-col'>
-    //   <div className='flex flex-1 justify-center'>
-    //     <div className='flex flex-col h-[342px] w-[213px] items-center'>
-    //       <div className='pt-[188px]'>
-    //         <img
-    //           src={bridge}
-    //           alt='bridge_img'
-    //           width='120px'
-    //           height='120px'
-    //         />
-    //       </div>
-    //       <div className='pt-38px'>df</div>
-    //     </div>
-    //   </div>
-    // </div>
     <div className='h-full flex flex-col'>
       <div className='flex flex-1 justify-center'>
         <div className='flex flex-col h-[342px]  items-center'>
