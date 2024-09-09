@@ -3,14 +3,14 @@ import { perfittLogo } from '../../../../../assets/images/images';
 const AIMessage = () => {
   return (
     <>
-      <div className='px-4 flex text-sm leading-[22px]'>
+      <div className='px-4 flex text-sm leading-[22px] '>
         <div className='w-7 h-7'>
           <img
             src={perfittLogo}
             alt='perfitt-logo'
           />
         </div>
-        <div className='pl-3 py-2 pr-5 w-full'>
+        <div className='pl-3 py-2 max-w-72'>
           <span> OO님, 가입을 환영합니다!</span>
           <br />
           <span>
