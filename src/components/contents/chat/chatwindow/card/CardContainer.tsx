@@ -7,7 +7,7 @@ const dummyData = [1, 2, 3, 4, 5];
 const CardContainer = () => {
   return (
     <>
-      <div>
+      <div className='pl-7 pt-2'>
         <div className='flex gap-2 overflow-x-auto pb-3 '>
           {dummyData.map(() => (
             <BrandCard />
