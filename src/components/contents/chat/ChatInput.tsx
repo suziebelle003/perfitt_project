@@ -4,7 +4,7 @@ import { galleryIcon } from '../../../assets/images/images';
 const ChatInput = () => {
   return (
     <>
-      <div className='bg-[rgb(245,245,245)] w-full h-[104px]'>
+      <div className='bg-[rgb(245,245,245)] w-full pb-9'>
         <div className='flex flex-row items-center pt-4 px-4'>
           <div className=' w-10'>
             <img
@@ -13,7 +13,7 @@ const ChatInput = () => {
             />
           </div>
 
-          <div className='relative flex flex-row w-full pl-3'>
+          <div className='relative flex flex-row w-full pl-3 '>
             <input
               className='w-full h-[48px] text-base rounded-full border border-[#E4E4E7] pl-4 pr-12 placeholder:text-[#71717A] '
               type='text'
