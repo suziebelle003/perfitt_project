@@ -9,6 +9,9 @@ import rightArrowShort from './right-arrow-short.svg';
 import rightArrowLong from './right-arrow-long.svg';
 import exportIcon from './export-icon.svg';
 import thumbsDown from './thumbs-down.svg';
+import perfittLogo from './perfitt-logo.svg';
+import questionMark from './question-mark.svg';
+import hamburgerButton from './hamburger.svg';
 export {
   plusCircleIcon,
   plusIcon,
@@ -21,4 +24,7 @@ export {
   rightArrowLong,
   exportIcon,
   thumbsDown,
+  perfittLogo,
+  questionMark,
+  hamburgerButton,
 };
