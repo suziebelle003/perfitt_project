@@ -10,8 +10,8 @@ const AIMessage = () => {
             alt='perfitt-logo'
           />
         </div>
-        <div className='pl-3 py-2 max-w-72'>
-          <span> OO님, 가입을 환영합니다!</span>
+        <div className='pl-3 py-2 max-w-72 break-words'>
+          <span> OO님, 가입을 환영합니다</span>
           <br />
           <span>
             선택하신 키워드에 따라 OO님께 맞춤형 상품을 <br />
