@@ -24,13 +24,13 @@ function SRShoeRack() {
         </button>
       </div>
       <div className='flex flex-wrap gap-[2px]'>
-        <div className='w-[113px] h-[110px] rounded-md flex justify-center items-center bg-[#E4E4E7]'>
+        <button className='w-[113px] h-[110px] rounded-md flex justify-center items-center bg-[#E4E4E7]'>
           <img
             src={plusIcon}
             alt='Add shoes'
           />
-        </div>
-        <SRShoeBox className='bg-[#F5F5F5]' />
+        </button>
+        <SRShoeBox className='w-[113px] h-[110px]' />
       </div>
     </div>
   );
