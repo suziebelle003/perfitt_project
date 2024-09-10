@@ -17,7 +17,7 @@ const LikeBrand = () => {
           </div>
           <img
             src={pinkHeart}
-            alt='prinkheart'
+            alt='pinkheart'
             className='flex-none pr-1'
           ></img>
         </div>
@@ -33,7 +33,7 @@ const LikeBrand = () => {
           </div>
           <img
             src={pinkHeart}
-            alt='prinkheart'
+            alt='pinkheart'
             className='flex-none pr-1'
           ></img>
         </div>
@@ -49,7 +49,7 @@ const LikeBrand = () => {
           </div>
           <img
             src={pinkHeart}
-            alt='prinkheart'
+            alt='pinkheart'
             className='flex-none pr-1'
           ></img>
         </div>
