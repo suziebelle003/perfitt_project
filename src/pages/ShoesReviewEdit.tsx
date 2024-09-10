@@ -15,6 +15,7 @@ function ShoesReviewEdit() {
     cushion: '',
     weight: '',
     size: '',
+    review: '',
   });
 
   const questions = [
@@ -45,14 +46,14 @@ function ShoesReviewEdit() {
     },
   ];
 
+  const sizeOptions = ['많이 작아요', '약간 작아요', '정사이즈', '약간 커요', '많이 커요'];
+
   const handleOptionSelect = (id: string, value: string) => {
     setShoeData(prevData => ({
       ...prevData,
       [id]: value,
     }));
   };
-
-  const sizeOptions = ['많이 작아요', '약간 작아요', '정사이즈', '약간 커요', '많이 커요'];
 
   return (
     <div className='h-full flex flex-col'>
@@ -156,6 +157,8 @@ function ShoesReviewEdit() {
             <textarea
               className='w-[343px] h-[200px] p-4 border border-[#E4E4E7] resize-none text-[15px] leading-6'
               placeholder='이 신발을 신으면서 느꼈던 장점 및 단점을 솔직하게 알려주세요.'
+              value={shoeData.review}
+              onChange={e => handleOptionSelect('review', e.target.value)}
             />
           </div>
         </div>
