@@ -5,7 +5,7 @@ import SRShoeInfo from '../components/contents/SRShoeInfo';
 import SROptionSelector from '../components/contents/SROptionSelector';
 import { twMerge } from 'tailwind-merge';
 
-function ShoesReviewEditor() {
+function ShoesReviewEdit() {
   const [starHover, setStarHover] = useState(0);
   const [starRating, setStarRating] = useState(0);
   const [shoeData, setShoeData] = useState({
@@ -167,4 +167,4 @@ function ShoesReviewEditor() {
   );
 }
 
-export default ShoesReviewEditor;
+export default ShoesReviewEdit;
