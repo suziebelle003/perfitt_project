@@ -8,15 +8,5 @@ export default {
       },
     },
   },
-  plugins: [
-    function ({ addUtilities }) {
-      addUtilities({
-        '.scrollbar-hide': {
-          '&::-webkit-scrollbar': {
-            display: 'none',
-          },
-        },
-      });
-    },
-  ],
+  plugins: [require('tailwind-scrollbar-hide')],
 };

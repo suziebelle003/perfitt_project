@@ -8,7 +8,7 @@ const CardContainer = () => {
   return (
     <>
       <div className='pl-7 pt-2'>
-        <div className='flex gap-2 overflow-x-auto pb-3 '>
+        <div className='flex gap-2 overflow-x-auto pb-3 scrollbar-hide'>
           {dummyData.map(() => (
             <BrandCard />
           ))}
