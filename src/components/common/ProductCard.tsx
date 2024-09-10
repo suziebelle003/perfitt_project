@@ -1,3 +1,6 @@
+import pinkHeart from '../../assets/images/pinkheart.svg';
+import shoes from '../../assets/images/shoes.svg';
+import abcMart from '../../assets/images/abcmart.svg';
 const ProductCard = () => {
   return (
     <>
@@ -11,15 +14,15 @@ const ProductCard = () => {
               </span>
             </div>
             <img
-              src='pinkheart.svg'
-              alt='like'
+              src={pinkHeart}
+              alt='pinkheart'
             ></img>
           </div>
           {/* 신발이미지 */}
           <div className='mx-[-18px] my-1.5'>
             <img
               className='w-[182px] h-[109px]'
-              src='shoes.svg'
+              src={shoes}
               alt='shoes'
             ></img>
           </div>
@@ -27,8 +30,8 @@ const ProductCard = () => {
           {/* 상점이미지 */}
           <img
             className='absolute bottom-[-12px] right-[6px]'
-            src='abcmart.svg'
-            alt='abc'
+            src={abcMart}
+            alt='abcmart'
           ></img>
         </section>
       </article>

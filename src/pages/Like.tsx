@@ -1,7 +1,7 @@
-import LikeBrand from './Like/LikeBrand';
-import LikeButton from './Like/LikeButton';
-import LikeHeader from './Like/LikeHeader';
-import LikeItems from './Like/LikeItems';
+import LikeBrand from '../components/Like/LikeBrand';
+import LikeButton from '../components/Like/LikeButton';
+import LikeHeader from '../components/Like/LikeHeader';
+import LikeItems from '../components/Like/LikeItems';
 
 const Like = () => {
   return (
