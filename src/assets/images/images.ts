@@ -10,6 +10,8 @@ import questionMark from './question-mark.svg';
 import rightArrowLong from './right-arrow-long.svg';
 import rightArrowShort from './right-arrow-short.svg';
 import shoeSearch from './shoe-search.svg';
+import starIcon from './star-icon.svg';
+import starFillIcon from './star-fill-icon.svg';
 import thumbsDown from './thumbs-down.svg';
 import upArrow from './up-arrow.svg';
 import userIcon from './user-icon.svg';
@@ -27,6 +29,8 @@ export {
   rightArrowLong,
   rightArrowShort,
   shoeSearch,
+  starIcon,
+  starFillIcon,
   thumbsDown,
   upArrow,
   userIcon,
