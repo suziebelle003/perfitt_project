@@ -1,6 +1,5 @@
 import aiRecomend from '../../assets/images/airecomend.svg';
 import ProductCard from '../common/ProductCard';
-import aiRecomend from '../../assets/images/airecomend.svg';
 const LikeItems = () => {
   return (
     <>
