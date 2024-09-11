@@ -1,4 +1,5 @@
 import brand from './brand.svg';
+import downArrowIcon from './down-arrow-icon.svg';
 import exportIcon from './export-icon.svg';
 import galleryIcon from './gallery-Icon.svg';
 import hamburgerButton from './hamburger.svg';
@@ -18,6 +19,7 @@ import userIcon from './user-icon.svg';
 
 export {
   brand,
+  downArrowIcon,
   exportIcon,
   galleryIcon,
   hamburgerButton,
