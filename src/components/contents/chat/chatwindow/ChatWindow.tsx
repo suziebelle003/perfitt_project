@@ -16,7 +16,20 @@ const ChatWindow = ({ chatMessage }: IChatMessage) => {
     <div className=' flex flex-col'>
       <ul>
         {chatMessage.map(item => (
-          <li key={item.id}>{item.target === 'user' ? <MyMessage text={item.message} /> : <AIMessage />}</li>
+          <li key={item.id}>
+            {item.target === 'user' ? (
+              <MyMessage text={item.message} />
+            ) : (
+              <AIMessage
+                text={item.message.split('\n').map((text, index) => (
+                  <span key={index}>
+                    {text}
+                    <br />
+                  </span>
+                ))}
+              />
+            )}
+          </li>
         ))}
       </ul>
       <div ref={messagesRef} />

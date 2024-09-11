@@ -5,20 +5,34 @@ import Header from '../../common/Header';
 import ChatInput from './ChatInput';
 import ChatWindow from './chatwindow/ChatWindow';
 import { IMessage } from '../../../types/chat';
+import { textResponse } from '../../../utils/chat/AIData';
+import KeyWordSelector from './chatwindow/keyword/KeyWordSelector';
 
 const ChatContainer = () => {
   const [chatMessage, setChatMessage] = useState<IMessage[]>([]);
   const [inputText, setInputText] = useState('');
   const idRef = useRef(0);
 
-  const handleMessage = () => {
+  const handleMessage = (text: string) => {
     const newMessage: IMessage = {
       id: idRef.current++,
-      message: inputText,
+      message: text,
       target: 'user',
     };
 
-    setChatMessage([...chatMessage, newMessage]);
+    // 사용자 메시지 추가
+    setChatMessage(message => [...message, newMessage]);
+
+    const newAIMessage: IMessage = {
+      id: idRef.current++,
+      message: textResponse(text),
+      target: 'AI',
+    };
+
+    // AI 메세지 추가 (0.5초 딜레이)
+    setTimeout(() => {
+      setChatMessage(message => [...message, newAIMessage]);
+    }, 500);
   };
 
   return (
@@ -34,6 +48,7 @@ const ChatContainer = () => {
         <div className='flex-1 overflow-y-auto scrollbar-hide'>
           <ChatWindow chatMessage={chatMessage} />
         </div>
+        <KeyWordSelector />
         <ChatInput
           setInputText={setInputText}
           inputText={inputText}
