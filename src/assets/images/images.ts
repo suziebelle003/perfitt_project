@@ -13,6 +13,7 @@ import perfittLogo from './perfitt-logo.svg';
 import questionMark from './question-mark.svg';
 import hamburgerButton from './hamburger.svg';
 import upArrow from './up-arrow.svg';
+import checkIcon from './check-icon.svg';
 export {
   plusCircleIcon,
   plusIcon,
@@ -29,4 +30,5 @@ export {
   questionMark,
   hamburgerButton,
   upArrow,
+  checkIcon,
 };
