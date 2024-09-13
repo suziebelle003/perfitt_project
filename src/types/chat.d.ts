@@ -17,3 +17,7 @@ export interface IInputText {
 export interface IText {
   text: string;
 }
+
+export interface IAIMessage {
+  text: string | JSX.Element[];
+}
