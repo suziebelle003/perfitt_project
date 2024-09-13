@@ -162,7 +162,7 @@ function SUInfo() {
           />
         )}
       </div>
-      <Button onClick={() => setState('end')}>{state === 'start' ? '다음' : '시작하기'}</Button>
+      <Button onClick={() => setState('end')}>{state === 'start' ? '다음' : '가입완료'}</Button>
     </>
   );
 }
