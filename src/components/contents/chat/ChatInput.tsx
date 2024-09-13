@@ -19,8 +19,8 @@ const ChatInput = ({ setInputText, inputText, handleMessage }: IInputText) => {
 
   return (
     <>
-      <div className='bg-[rgb(245,245,245)] w-full pb-9'>
-        <div className='flex flex-row items-center pt-4 px-4'>
+      <div className=' bg-[rgb(245,245,245)] w-full'>
+        <div className='flex flex-row items-center py-4 px-4 '>
           <div className=' w-10'>
             <img
               src={galleryIcon}
@@ -28,7 +28,7 @@ const ChatInput = ({ setInputText, inputText, handleMessage }: IInputText) => {
             />
           </div>
 
-          <div className='relative flex flex-row w-full pl-3 '>
+          <div className='relative flex flex-row w-full pl-3'>
             <input
               onKeyDown={handleEnter}
               value={inputText}
@@ -39,7 +39,7 @@ const ChatInput = ({ setInputText, inputText, handleMessage }: IInputText) => {
             />
 
             <Button
-              className='flex items-center justify-center rounded-full w-10 h-10 absolute right-1 top-1/2 transform -translate-y-1/2 '
+              className='flex items-center justify-center rounded-full w-10 h-10 absolute right-1 top-1/2 transform -translate-y-1/2'
               onClick={handleClick}
             >
               <img src={upArrow} />

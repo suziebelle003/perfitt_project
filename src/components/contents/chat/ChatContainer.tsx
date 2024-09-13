@@ -6,7 +6,6 @@ import ChatInput from './ChatInput';
 import ChatWindow from './chatwindow/ChatWindow';
 import { IMessage } from '../../../types/chat';
 import { textResponse } from '../../../utils/chat/AIData';
-import KeyWordSelector from './chatwindow/keyword/KeyWordSelector';
 
 const ChatContainer = () => {
   const [chatMessage, setChatMessage] = useState<IMessage[]>([]);
@@ -48,7 +47,7 @@ const ChatContainer = () => {
         <div className='flex-1 overflow-y-auto scrollbar-hide'>
           <ChatWindow chatMessage={chatMessage} />
         </div>
-        <KeyWordSelector />
+
         <ChatInput
           setInputText={setInputText}
           inputText={inputText}
