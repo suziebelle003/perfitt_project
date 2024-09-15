@@ -5,12 +5,15 @@ import Header from '../../common/Header';
 import ChatInput from './ChatInput';
 import ChatWindow from './chatwindow/ChatWindow';
 import { IMessage } from '../../../types/chat';
-import { textResponse } from '../../../utils/chat/AIData';
+
+import { useChatResponseMutation } from '../../../hooks/useChatMutation';
 
 const ChatContainer = () => {
   const [chatMessage, setChatMessage] = useState<IMessage[]>([]);
   const [inputText, setInputText] = useState('');
   const idRef = useRef(0);
+
+  const { mutate: AIResponse } = useChatResponseMutation();
 
   const handleMessage = (text: string) => {
     const newMessage: IMessage = {
@@ -22,16 +25,19 @@ const ChatContainer = () => {
     // 사용자 메시지 추가
     setChatMessage(message => [...message, newMessage]);
 
-    const newAIMessage: IMessage = {
-      id: idRef.current++,
-      message: textResponse(text),
-      target: 'AI',
-    };
+    // 성공 시 API 데이터 뿌려주기
+    AIResponse(text, {
+      onSuccess: item => {
+        const newAIMessage: IMessage = {
+          id: idRef.current++,
+          message: item.message,
+          target: 'AI',
+        };
 
-    // AI 메세지 추가 (0.5초 딜레이)
-    setTimeout(() => {
-      setChatMessage(message => [...message, newAIMessage]);
-    }, 500);
+        // AI 메시지 배열에 추가
+        setChatMessage(message => [...message, newAIMessage]);
+      },
+    });
   };
 
   return (
