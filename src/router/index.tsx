@@ -3,7 +3,7 @@ import App from '../App';
 import DefaultLayout from '../layout/DefaultLayout';
 import { getAuth } from 'firebase/auth';
 import SignIn from '../pages/SignIn';
-import AuthProvider from '../components/common/AuthProvider';
+import AuthProvider from '../service/AuthProvider';
 const auth = getAuth();
 console.log(auth);
 

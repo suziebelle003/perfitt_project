@@ -8,7 +8,6 @@ import { FormValues } from '../../../types/sign';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth } from '../../../service/firebase';
 import { useNavigate } from 'react-router-dom';
-import SignIn from '../../../pages/SignIn';
 function SUInfo() {
   const [state, setState] = useState<'start' | 'end'>('start');
   const navigate = useNavigate();

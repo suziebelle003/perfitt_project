@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import { AuthContext } from '../components/common/AuthContext';
+import { AuthContext } from '../service/AuthContext';
+import SignInSocialBtn from '../components/contents/signin/SignInSocialBtn';
 
 const SignIn = () => {
   const userInfo = useContext(AuthContext);
@@ -17,6 +18,7 @@ const SignIn = () => {
           <p>로그인 정보가 없습니다.</p>
         </div>
       )}
+      <SignInSocialBtn />
     </>
   );
 };
