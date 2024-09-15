@@ -17,18 +17,7 @@ const ChatWindow = ({ chatMessage }: IChatMessage) => {
       <ul>
         {chatMessage.map(item => (
           <li key={item.id}>
-            {item.target === 'user' ? (
-              <MyMessage text={item.message} />
-            ) : (
-              <AIMessage
-                text={item.message.split('\n').map((text, index) => (
-                  <span key={index}>
-                    {text}
-                    <br />
-                  </span>
-                ))}
-              />
-            )}
+            {item.target === 'user' ? <MyMessage text={item.message} /> : <AIMessage text={item.message} />}
           </li>
         ))}
       </ul>

@@ -19,5 +19,5 @@ export interface IText {
 }
 
 export interface IAIMessage {
-  text: string | JSX.Element[];
+  text: string;
 }
