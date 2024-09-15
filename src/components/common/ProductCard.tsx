@@ -1,7 +1,11 @@
 import pinkHeart from '../../assets/images/pinkheart.svg';
 import shoes from '../../assets/images/shoes.svg';
-import abcMart from '../../assets/images/abcmart.svg';
-const ProductCard = () => {
+
+type TproductProps = React.ComponentPropsWithoutRef<'span' | 'img'> & { image: string };
+
+const ProductCard = (props: TproductProps) => {
+  const { children, image, ...rest } = props;
+  console.log(image);
   return (
     <>
       <article className='bg-[#F5F5F5] w-[166px] h-[156px] rounded-md px-2.5 pt-2 relative '>
@@ -10,7 +14,7 @@ const ProductCard = () => {
           <div className='flex justify-between'>
             <div className=' bg-gradient-to-r from-[#E8F4FE] to-[#FFECFE] w-[77px] h-[20px] grid place-items-center rounded'>
               <span className=' bg-gradient-to-r from-[#12C2E9] via-[#C471ED] to-[#F64F59] text-transparent bg-clip-text text-xs font-semibold'>
-                240mm 추천
+                {children}
               </span>
             </div>
             <img
@@ -30,7 +34,7 @@ const ProductCard = () => {
           {/* 상점이미지 */}
           <img
             className='absolute bottom-[-12px] right-[6px]'
-            src={abcMart}
+            src={image}
             alt='abcmart'
           ></img>
         </section>
