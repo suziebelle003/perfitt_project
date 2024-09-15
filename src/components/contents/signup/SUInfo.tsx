@@ -1,169 +1,201 @@
 import { useState } from 'react';
 import SUInput from './SUInput';
 import SUSelect from './SUSelect';
-import { TUserHandlers, TUserInfo } from '../../../types/sign';
 import Button from '../../common/Button';
-
-import Header from '../../common/Header';
 import SUIdetails from './SUIdetails';
+import { Controller, useForm, FormProvider } from 'react-hook-form';
+import { FormValues } from '../../../types/sign';
 
 function SUInfo() {
-  const [state, setState] = useState('start');
-  const [userInfo, setUserInfo] = useState<TUserInfo>({
-    email: '',
-    password: '',
-    name: '',
-    gender: '',
-    year: '',
-    month: '',
-    day: '',
-    sizetype: '',
-    usersize: '',
+  const [state, setState] = useState<'start' | 'end'>('start');
+
+  const methods = useForm<FormValues>({
+    defaultValues: {
+      email: '',
+      password: '',
+      name: '',
+      gender: '',
+      year: '',
+      month: '',
+      day: '',
+      usersize: '',
+    },
   });
 
-  const [userInfoSearch, setUserInfoSearch] = useState({
-    gender: '',
-    year: '',
-    month: '',
-    day: '',
-    usersize: '',
-  });
+  const { handleSubmit, control } = methods;
 
-  const yearList = Array.from({ length: 70 }, (_, i) => `${i + 1955}년`);
-  const monthList = Array.from({ length: 12 }, (_, i) => `${i + 1}월`);
-  const dayList = Array.from({ length: 31 }, (_, i) => `${i + 1}일`);
-
-  const [selectOpen, setSelectOpen] = useState('');
-
-  const handleChange = (id: string, value: string) => {
-    setUserInfo(prev => ({
-      ...prev,
-      [id]: value,
-    }));
-  };
-  const handleSelectChange = (id: string, value: string) => {
-    setUserInfoSearch(prev => ({
-      ...prev,
-      [id]: value,
-    }));
+  const onSubmit = (data: FormValues) => {
+    console.log('최종 data:', data);
+    // 제출 후 상태를 'end'로 변경
+    setState('end');
   };
 
-  const userHandlers: TUserHandlers = {
-    userInfoSearch,
-    handleSelectChange,
-    handleChange,
-    selectOpen,
-    setSelectOpen,
+  const yearList = Array.from({ length: 70 }, (_, i) => ({ key: i, value: `${i + 1955}년` }));
+  const monthList = Array.from({ length: 12 }, (_, i) => ({ key: i, value: `${i + 1}월` }));
+  const dayList = Array.from({ length: 31 }, (_, i) => ({ key: i, value: `${i + 1}일` }));
+
+  const handleNextClick = () => {
+    if (state === 'start') {
+      handleSubmit(
+        data => {
+          console.log(data); // data를 사용할 수 있음
+          setState('end'); // 상태를 'end'로 변경
+        },
+        errors => {
+          console.log(errors); // 유효성 검사 오류를 처리
+        }
+      )();
+    } else {
+      handleSubmit(onSubmit)(); // 최종 폼 제출
+    }
   };
+
   return (
-    <>
-      <div className='rounded-t-lg'>
+    <FormProvider {...methods}>
+      <div className='rounded-t-lg p-4'>
         {state === 'start' ? (
-          <form
-            onSubmit={e => {
-              e.preventDefault();
-            }}
-          >
-            <Header title='회원가입'></Header>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* <Header title='회원가입' /> */}
             <div className='flex flex-col gap-4 mb-10'>
-              <SUInput
-                title='아이디'
-                className='px-4 py-3.5'
-                type='text'
-                id='email'
-                value={userInfo.email}
-                placeholder='이메일을 입력해 주세요'
-                onChange={e => handleChange(e.target.id, e.target.value)}
+              <Controller
+                name='email'
+                control={control}
+                rules={{
+                  required: '이메일을 입력해 주세요',
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i,
+                    message: '이메일 형식이 아닙니다.',
+                  },
+                }}
+                render={({ field, fieldState }) => (
+                  <SUInput
+                    label='아이디'
+                    className='px-4 py-3.5'
+                    id='email'
+                    {...field}
+                    placeholder='이메일을 입력해 주세요'
+                    isError={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                  />
+                )}
               />
-              <SUInput
-                title='비밀번호'
-                className='px-4 py-3.5'
-                type='password'
-                id='password'
-                value={userInfo.password}
-                placeholder='비밀번호를 입력해 주세요'
-                onChange={e => handleChange(e.target.id, e.target.value)}
+              <Controller
+                name='password'
+                control={control}
+                rules={{
+                  required: { value: true, message: '비밀번호를 입력해주세요' },
+                  minLength: { value: 6, message: '비밀번호는 최소 6자 이상이어야 합니다' },
+                }}
+                render={({ field, fieldState }) => (
+                  <SUInput
+                    label='비밀번호'
+                    className='px-4 py-3.5'
+                    type='password'
+                    id='password'
+                    {...field}
+                    placeholder='비밀번호를 입력해 주세요'
+                    isError={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                  />
+                )}
               />
-              <SUInput
-                title='이름'
-                className='px-4 py-3.5'
-                type='text'
-                id='name'
-                value={userInfo.name}
-                placeholder='이름을 입력해 주세요'
-                onChange={e => handleChange(e.target.id, e.target.value)}
+              <Controller
+                name='name'
+                control={control}
+                rules={{ required: { value: true, message: '이름을 입력해주세요' } }}
+                render={({ field, fieldState }) => (
+                  <SUInput
+                    label='이름'
+                    className='px-4 py-3.5'
+                    type='text'
+                    id='username'
+                    {...field}
+                    placeholder='이름을 입력해 주세요'
+                    isError={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                  />
+                )}
               />
-              <SUSelect
-                title='성별'
-                className='px-4 py-3.5'
-                type='text'
-                id='gender'
-                value={userInfoSearch.gender}
-                placeholder='성별을 선택해 주세요'
-                onChange={e => handleSelectChange(e.target.id, e.target.value)}
-                handleSelectChange={value => handleSelectChange('gender', value)}
-                handleChange={value => handleChange('gender', value)}
-                options={['여자', '남자']}
-                selectedOption={userInfo.gender}
-                selectOpen={selectOpen}
-                setSelectOpen={setSelectOpen}
+              <Controller
+                name='gender'
+                control={control}
+                rules={{ required: { value: true, message: '성별을 선택해 주세요' } }}
+                defaultValue='' // 기본 값 설정
+                render={({ field, fieldState }) => (
+                  <SUSelect
+                    label='성별'
+                    optionData={[
+                      { key: 'female', value: '여자' },
+                      { key: 'male', value: '남자' },
+                    ]}
+                    className='w-full rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
+                    value={field.value}
+                    onChange={field.onChange}
+                    placeholder='성별을 선택해 주세요'
+                    helperText={fieldState.error?.message || ''}
+                  />
+                )}
               />
-              <div className='flex gap-1'>
-                <SUSelect
-                  title='생년월일'
-                  className='px-2.5 py-[12.5px]'
-                  type='text'
-                  id='year'
-                  value={userInfoSearch.year}
-                  placeholder='년'
-                  onChange={e => handleSelectChange(e.target.id, e.target.value)}
-                  handleSelectChange={value => handleSelectChange('year', value)}
-                  handleChange={value => handleChange('year', value)}
-                  options={yearList}
-                  selectedOption={userInfo.year}
-                  selectOpen={selectOpen}
-                  setSelectOpen={setSelectOpen}
+
+              <div className='flex flex-row gap-1 '>
+                <Controller
+                  name='year'
+                  control={control}
+                  defaultValue=''
+                  rules={{ required: { value: true, message: '연도를 선택해 주세요' } }}
+                  render={({ field, fieldState }) => (
+                    <SUSelect
+                      label='생년월일'
+                      optionData={yearList}
+                      className='rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
+                      placeholder='년'
+                      value={field.value}
+                      onChange={field.onChange}
+                      helperText={fieldState.error?.message || ''}
+                    />
+                  )}
                 />
-                <SUSelect
-                  className='px-2.5 py-[12.5px]'
-                  type='text'
-                  id='month'
-                  value={userInfoSearch.month}
-                  placeholder='월'
-                  onChange={e => handleSelectChange(e.target.id, e.target.value)}
-                  handleSelectChange={value => handleSelectChange('month', value)}
-                  handleChange={value => handleChange('month', value)}
-                  options={monthList}
-                  selectedOption={userInfo.month}
-                  selectOpen={selectOpen}
-                  setSelectOpen={setSelectOpen}
+                <Controller
+                  name='month'
+                  control={control}
+                  defaultValue=''
+                  rules={{ required: { value: true, message: '월을 선택해 주세요' } }}
+                  render={({ field, fieldState }) => (
+                    <SUSelect
+                      optionData={monthList}
+                      className=' rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
+                      value={field.value}
+                      onChange={field.onChange}
+                      placeholder='월'
+                      helperText={fieldState.error?.message || ''}
+                    />
+                  )}
                 />
-                <SUSelect
-                  className='px-2.5 py-[12.5px]'
-                  type='text'
-                  id='day'
-                  value={userInfoSearch.day}
-                  placeholder='일'
-                  onChange={e => handleSelectChange(e.target.id, e.target.value)}
-                  handleSelectChange={value => handleSelectChange('day', value)}
-                  handleChange={value => handleChange('day', value)}
-                  options={dayList}
-                  selectedOption={userInfo.day}
-                  selectOpen={selectOpen}
-                  setSelectOpen={setSelectOpen}
+                <Controller
+                  name='day'
+                  control={control}
+                  defaultValue=''
+                  rules={{ required: { value: true, message: '일을 선택해 주세요' } }}
+                  render={({ field, fieldState }) => (
+                    <SUSelect
+                      optionData={dayList}
+                      className='rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
+                      value={field.value}
+                      onChange={field.onChange}
+                      placeholder='일'
+                      helperText={fieldState.error?.message || ''}
+                    />
+                  )}
                 />
               </div>
             </div>
           </form>
         ) : (
-          <SUIdetails
-            userInfo={userInfo}
-            userHandlers={userHandlers}
-          />
+          <SUIdetails />
         )}
       </div>
-      <Button onClick={() => setState('end')}>{state === 'start' ? '다음' : '가입완료'}</Button>
-    </>
+      <Button onClick={handleNextClick}>{state === 'start' ? '다음' : '가입완료'}</Button>
+    </FormProvider>
   );
 }
 

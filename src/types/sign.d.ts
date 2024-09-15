@@ -1,33 +1,28 @@
-export type TSUInputProps = Omit<React.ComponentPropsWithoutRef<'input'>, 'type'> & {
-  type: 'text' | 'password' | 'email' | 'number' | 'date';
-  title?: string;
-  className: string;
+export type TSUInputProps = Omit<React.ComponentPropsWithRef<'input'>, 'type'> & {
+  className?: string;
+  id?: string;
+  value?: string;
+  placeholder?: string;
+  type?: string;
+  label?: string;
+  helperText?: string;
+  isError?: boolean;
 };
-export type TUserInfo = {
+
+export type TSelectOption = {
+  value: string;
+  label: string;
+  color: string;
+  isFixed?: boolean;
+  isDisabled?: boolean;
+};
+export type FormValues = {
   email: string;
   password: string;
   name: string;
-  gender: string;
-  year: string;
-  month: string;
-  day: string;
+  gender: string | number;
+  year: string | number;
+  month: string | number;
+  day: string | number;
   usersize: string;
-  sizetype: string;
-};
-export type TUserHandlers = {
-  userInfoSearch: {
-    gender: string;
-    year: string;
-    month: string;
-    day: string;
-    usersize: string;
-  };
-  handleSelectChange: (id: string, value: string) => void;
-  handleChange: (id: string, value: string) => void;
-  selectOpen: string;
-  setSelectOpen: React.Dispatch<React.SetStateAction<string>>;
-};
-export type SUIdetailsProps = {
-  userInfo: TUserInfo;
-  userHandlers: TUserHandlers;
 };
