@@ -1,19 +1,27 @@
-import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
-import DefaultLayout from "../layout/DefaultLayout";
-import OnBoarding from "../pages/OnBoarding";
+import { createBrowserRouter } from 'react-router-dom';
+import App from '../App';
+import DefaultLayout from '../layout/DefaultLayout';
+import { getAuth } from 'firebase/auth';
+import SignIn from '../pages/SignIn';
+import AuthProvider from '../components/common/AuthProvider';
+const auth = getAuth();
+console.log(auth);
 
 const router = createBrowserRouter([
   {
     element: <DefaultLayout />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <App />,
       },
       {
-        path: "/onboarding",
-        element: <OnBoarding />,
+        path: '/signin',
+        element: (
+          <AuthProvider>
+            <SignIn />
+          </AuthProvider>
+        ),
       },
     ],
   },

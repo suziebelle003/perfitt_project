@@ -5,10 +5,13 @@ import Button from '../../common/Button';
 import SUIdetails from './SUIdetails';
 import { Controller, useForm, FormProvider } from 'react-hook-form';
 import { FormValues } from '../../../types/sign';
-
+import { createUserWithEmailAndPassword } from '@firebase/auth';
+import { auth } from '../../../service/firebase';
+import { useNavigate } from 'react-router-dom';
+import SignIn from '../../../pages/SignIn';
 function SUInfo() {
   const [state, setState] = useState<'start' | 'end'>('start');
-
+  const navigate = useNavigate();
   const methods = useForm<FormValues>({
     defaultValues: {
       email: '',
@@ -24,12 +27,27 @@ function SUInfo() {
 
   const { handleSubmit, control } = methods;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     console.log('최종 data:', data);
     // 제출 후 상태를 'end'로 변경
     setState('end');
-  };
 
+    try {
+      await createUserWithEmailAndPassword(auth, data.email, data.password);
+      alert('회원가입 성공');
+      navigate('/signin'); // 회원가입 성공 후 로그인 페이지로 이동
+    } catch (e) {
+      if (e instanceof Error) {
+        // e가 Error 타입일 때만 message 속성에 접근 가능
+        console.error('회원가입 실패:', e);
+        alert(`회원가입 실패: ${e.message}`);
+      } else {
+        // Error가 아닌 경우 기본 오류 처리
+        console.error('회원가입 실패:', e);
+        alert('회원가입 실패: 알 수 없는 오류');
+      }
+    }
+  };
   const yearList = Array.from({ length: 70 }, (_, i) => ({ key: i, value: `${i + 1955}년` }));
   const monthList = Array.from({ length: 12 }, (_, i) => ({ key: i, value: `${i + 1}월` }));
   const dayList = Array.from({ length: 31 }, (_, i) => ({ key: i, value: `${i + 1}일` }));
