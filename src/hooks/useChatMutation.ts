@@ -5,13 +5,5 @@ export const useChatResponseMutation = () => {
   return useMutation({
     // 채팅 응답 API에 내가 적은 content 담아줘
     mutationFn: (content: string) => fetchChatResponseApi(content),
-
-    // 성공시
-    onSuccess: res => {
-      console.log('AI res', res);
-    },
-    onError: err => {
-      console.error('err', err);
-    },
   });
 };

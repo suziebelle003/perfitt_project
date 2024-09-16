@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import MyMessage from './message/MyMessage';
 import AIMessage from './message/AIMessage';
 import { IChatMessage } from '../../../../types/chat';
+import AIContainer from './message/AIContainer';
 
 const ChatWindow = ({ chatMessage }: IChatMessage) => {
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -17,7 +18,7 @@ const ChatWindow = ({ chatMessage }: IChatMessage) => {
       <ul>
         {chatMessage.map(item => (
           <li key={item.id}>
-            {item.target === 'user' ? <MyMessage text={item.message} /> : <AIMessage text={item.message} />}
+            {item.target === 'user' ? <MyMessage text={item.message} /> : <AIContainer text={item.message} />}
           </li>
         ))}
       </ul>

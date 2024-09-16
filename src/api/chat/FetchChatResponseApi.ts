@@ -9,16 +9,14 @@ export const fetchChatResponseApi = async (content: string) => {
         message: { content },
       },
       {
-        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
       }
     );
-    console.log('res', res);
+
     return res.data;
   } catch (err) {
-    console.log('err', err);
     throw err;
   }
 };
