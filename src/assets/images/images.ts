@@ -20,9 +20,13 @@ import starFillIcon from './star-fill-icon.svg';
 import thumbsDown from './thumbs-down.svg';
 import upArrow from './up-arrow.svg';
 import userIcon from './user-icon.svg';
+<<<<<<< HEAD
 import verticalMenuIcon from './vertical-menu-icon.svg';
 import xGrayIcon from './x-gray-icon.svg';
 
+=======
+import checkIcon from './check-icon.svg';
+>>>>>>> af99287 (chore: AI 컨테이너 파일 생성, 불필요 파일 삭제 ...)
 export {
   brand,
   cameraIcon,
@@ -46,6 +50,10 @@ export {
   thumbsDown,
   upArrow,
   userIcon,
+<<<<<<< HEAD
   verticalMenuIcon,
   xGrayIcon
+=======
+  checkIcon,
+>>>>>>> af99287 (chore: AI 컨테이너 파일 생성, 불필요 파일 삭제 ...)
 };
