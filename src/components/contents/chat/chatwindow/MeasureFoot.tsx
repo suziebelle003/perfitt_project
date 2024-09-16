@@ -4,7 +4,7 @@ const MeasureFoot = () => {
   return (
     <>
       <div className='ml-7 w-[263px] h-auto border rounded-md'>
-        <div className='w-full rounded-t-md bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4'>
+        <div className='w-full rounded-t-md bg-gradient-to-r from-[#12C2E9] via-[#C471ED] to-[#F64F59] p-4'>
           <div className='flex flex-col'>
             <div>
               <span className='text-white text-base font-semibold'>내 발 측정하기</span>
