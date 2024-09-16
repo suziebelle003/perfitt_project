@@ -21,3 +21,18 @@ export interface IText {
 export interface IAIMessage {
   text: string;
 }
+
+export interface IBrandCard {
+  brand: string;
+  thumbnail: string;
+  link: string;
+}
+
+export interface IProductCard {
+  productId: string;
+  image: string;
+  link: string;
+  modelName: string;
+  brand: string;
+  modelNo: string;
+}
