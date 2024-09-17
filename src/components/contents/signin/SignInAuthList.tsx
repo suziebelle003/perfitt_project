@@ -1,4 +1,4 @@
-import moreViewIcon from '../../assets/images/right-arrow.svg';
+import moreViewIcon from '../../../assets/images/right-arrow-short.svg';
 
 const SignInAuthList = () => {
   const apiPosting = [

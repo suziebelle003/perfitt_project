@@ -1,24 +1,31 @@
 import { useContext } from 'react';
 import { AuthContext } from '../service/AuthContext';
 import SignInSocialBtn from '../components/contents/signin/SignInSocialBtn';
+import SignInAuthList from '../components/contents/signin/SignInAuthList';
+import SignInAutoKeyword from '../components/contents/signin/SignInAutoKeyword';
 
 const SignIn = () => {
   const userInfo = useContext(AuthContext);
-  console.log(userInfo);
-
+  console.log('userInfo: ', userInfo);
+  //chatwindow component와 , header component 부분
   return (
     <>
-      <div className='App'>React - Typescript - Login</div>
       {userInfo ? (
         <div>
-          <p>로그인한 사용자: {userInfo.email}</p>
+          <p>반갑습니다{userInfo.displayName == null ? userInfo.email?.split('@')[0] : userInfo.displayName}님!</p>
+          <p>
+            {userInfo.displayName == null ? userInfo.email?.split('@')[0] : userInfo.displayName}님을 위한 맞춤 상품을
+            추천해 드릴께요
+          </p>
+          <SignInAuthList />
+          <SignInAutoKeyword />
         </div>
       ) : (
         <div>
-          <p>로그인 정보가 없습니다.</p>
+          <p>안녕하세요 펄핏AI 입니다! 맞춤 추천을 위해 먼저 로그인을 해주세요.</p>
+          <SignInSocialBtn />
         </div>
       )}
-      <SignInSocialBtn />
     </>
   );
 };
