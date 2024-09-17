@@ -16,7 +16,7 @@ const SignInSocialBtn = () => {
       const result = await signInWithPopup(auth, provider);
       setUserData(result.user); // 로그인 후 사용자 데이터를 상태에 설정
       console.log(result);
-      navigate('/login');
+      navigate('/signin');
     } catch (error) {
       console.error('구글 로그인 실패:', error);
     }
