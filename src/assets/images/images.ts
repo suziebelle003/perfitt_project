@@ -2,9 +2,11 @@ import brand from './brand.svg';
 import cameraIcon from './camera-icon.svg';
 import downArrowIcon from './down-arrow-icon.svg';
 import exportIcon from './export-icon.svg';
+import footPrint from './footprint.svg';
 import galleryIcon from './gallery-Icon.svg';
 import menuIcon from './menu-icon.svg';
 import leftArrowIcon from './left-arrow.icon.svg';
+import perfittCircleLogo from './perfitt-circle-logo.svg';
 import perfittLogo from './perfitt-logo.svg';
 import plusCircleIcon from './plus-circle-icon.svg';
 import plusIcon from './plus-icon.svg';
@@ -28,9 +30,11 @@ export {
   cameraIcon,
   downArrowIcon,
   exportIcon,
+  footPrint,
   galleryIcon,
   leftArrowIcon,
   menuIcon,
+  perfittCircleLogo,
   perfittLogo,
   plusCircleIcon,
   plusIcon,
