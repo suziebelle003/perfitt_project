@@ -1,5 +1,5 @@
 import Header from '../components/common/Header';
-import myfoot from '../assets/images/myfoot.jpg';
+import myfoot from '../assets/images/foot-loading.gif';
 import Button from '../components/common/Button';
 const MyFootInfo = () => {
   return (

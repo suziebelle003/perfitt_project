@@ -1,7 +1,7 @@
 import Button from '../../../../common/Button';
 import KeyWordButton from './KeyWordButton';
 import { useQuery } from '@tanstack/react-query';
-import { getKeywordListApi } from '../../../../../api/keyword/getKeywordListApi';
+import { getKeywordListApi } from '../../../../../api/keyword/GetKeywordListApi';
 import { useState } from 'react';
 
 const KeyWordSelector = () => {
@@ -13,7 +13,6 @@ const KeyWordSelector = () => {
     queryFn: getKeywordListApi,
   });
 
-  // 키워드 배열에 하나씩 쌓는데 클릭하여 3개까지 쌓을 수 있음
   const clickKeyword = (keyword: string) => {
     if (selected.includes(keyword)) {
       // 키워드 토글 (선택했으면 선택 해제)
