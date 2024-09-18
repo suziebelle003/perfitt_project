@@ -1,5 +1,5 @@
-import Button from '../common/Button';
-import FilterButton from '../common/FilterButton';
+import Button from '../../common/Button';
+import FilterButton from '../../common/FilterButton';
 
 const FilterDetail = () => {
   const filters = ['ALL', 'WOMEN', 'MEN', 'KIDS'];
