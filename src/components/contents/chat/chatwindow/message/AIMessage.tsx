@@ -1,8 +1,8 @@
 import ReactMarkdown from 'react-markdown';
 import { perfittCircleLogo } from '../../../../../assets/images/images';
-import { IAIMessage } from '../../../../../types/chat';
+import { IText } from '../../../../../types/chat';
 
-const AIMessage = ({ text }: IAIMessage) => {
+const AIMessage = ({ text }: IText) => {
   return (
     <>
       <div className='flex text-sm leading-[22px] '>

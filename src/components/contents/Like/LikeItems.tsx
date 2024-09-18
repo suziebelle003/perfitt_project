@@ -1,6 +1,6 @@
-import aiRecomend from '../../assets/images/airecomend.svg';
-import ProductCard from '../common/ProductCard';
-import abcMart from '../../assets/images/abcmart.svg';
+import aiRecomend from '../../../assets/images/airecomend.svg';
+import ProductCard from '../../common/ProductCard';
+import abcMart from '../../../assets/images/abcmart.svg';
 type TItemProps = React.ComponentPropsWithoutRef<'p' | 'img'> & { brand: string; shoesImage: string };
 
 const LikeItems = (props: TItemProps) => {
@@ -24,7 +24,9 @@ const LikeItems = (props: TItemProps) => {
               >
                 {brand}
               </p>
-              <p className='mb-[10px] font-semibold'>{children}</p>
+              <p className='mb-[10px] overflow-hidden font-semibold text-ellipsis whitespace-nowrap break-words'>
+                {children}
+              </p>
               <p className='m-0 font-semibold'>100,000원</p>
             </div>
             {/* 이 신발 더 알아보기 버튼 */}

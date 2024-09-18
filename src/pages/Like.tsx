@@ -1,11 +1,11 @@
-import FilterButton from '../components/common/FilterButton';
-import LikeBrand from '../components/like/LikeBrand';
-import LikeItems from '../components/like/LikeItems';
 import nike from '../assets/images/nike.svg';
-import LikeHeader from '../components/like/LikeHeader';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import shoes from '../assets/images/shoes.svg';
+import LikeHeader from '../components/contents/Like/LikeHeader';
+import FilterButton from '../components/common/FilterButton';
+import LikeItems from '../components/contents/Like/LikeItems';
+import LikeBrand from '../components/contents/Like/LikeBrand';
 
 const Like = () => {
   const [data, setData] = useState([]);
@@ -32,42 +32,43 @@ const Like = () => {
         {/* 뒤로가기 */}
         {/* header 좋아요 / 최근본 s */}
         <LikeHeader />
-        {/* 좋아요 / 브랜드  */}
-        <FilterButton
-          arr={['상품', '브랜드']}
-          getValue={getValue}
-        />
-        {/* 갯수표시 */}
-        <p className='font-extrabold text-sm/[22px] my-[15px]'>총 {data.length}개</p>
+        <div className='px-4 py-[19px] '>
+          {/* 좋아요 / 브랜드  */}
+          <FilterButton
+            arr={['상품', '브랜드']}
+            getValue={getValue}
+          />
+          {/* 갯수표시 */}
+          <p className='font-extrabold text-sm/[22px] my-[15px]'>총 {data.length}개</p>
 
-        {filter !== '상품' ? (
-          <div className='flex justify-between flex-wrap max-h-full overflow-y-scroll scrollbar-hide'>
-            {test.map(item => (
-              <LikeItems
-                key={item}
-                brand={'ddd'}
-                shoesImage={shoes}
-              >
-                dfhdufhdjfsklfjds
-              </LikeItems>
+          {filter === '브랜드' && (
+            <div className='flex justify-between flex-wrap h-max overflow-y-scroll scrollbar-hide'>
+              {test.map(item => (
+                <LikeItems
+                  key={item}
+                  brand={'ddd'}
+                  shoesImage={shoes}
+                >
+                  dfhdufhdjfsklfjdssadfasdffasdffsaffasdfasdfasdfaf
+                </LikeItems>
 
-              // <LikeItems
-              //   key={item}
-              //   brand={item.brand}
-              //   shoesImage={item.image}
-              // >
-              //   {item.modelName}
-              // </LikeItems>
-            ))}
-          </div>
-        ) : (
+                // <LikeItems
+                //   key={item}
+                //   brand={item.brand}
+                //   shoesImage={item.image}
+                // >
+                //   {item.modelName}
+                // </LikeItems>
+              ))}
+            </div>
+          )}
           <LikeBrand
             image={nike}
             brand='NIKE'
           >
             나이키
           </LikeBrand>
-        )}
+        </div>
       </div>
     </>
   );

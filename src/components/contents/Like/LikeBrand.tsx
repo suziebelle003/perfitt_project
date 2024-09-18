@@ -1,10 +1,10 @@
-import pinkHeart from '../../assets/images/pinkheart.svg';
+import pinkHeart from '../../../assets/images/pinkheart.svg';
 type TBrandProps = React.ComponentPropsWithoutRef<'p' | 'img'> & { image: string; brand: string };
 const LikeBrand = (props: TBrandProps) => {
   const { image, children, brand, ...rest } = props;
   return (
     <>
-      <div className='flex flex-col justify-between w-[343px] h-[245px]'>
+      <div className='flex flex-col justify-between'>
         <div className='flex flex-row w-full h-[75px] gap-x-5'>
           <img
             src={image}

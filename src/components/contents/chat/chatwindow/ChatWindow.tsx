@@ -1,10 +1,9 @@
 import { useEffect, useRef } from 'react';
+import { IChatWindow, IMessage } from '../../../../types/chat';
 import MyMessage from './message/MyMessage';
-import AIMessage from './message/AIMessage';
-import { IChatMessage } from '../../../../types/chat';
 import AIContainer from './message/AIContainer';
 
-const ChatWindow = ({ chatMessage }: IChatMessage) => {
+const ChatWindow = ({ chatMessage }: IChatWindow) => {
   const messagesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -14,11 +13,19 @@ const ChatWindow = ({ chatMessage }: IChatMessage) => {
   }, [chatMessage]);
 
   return (
-    <div className=' flex flex-col px-4'>
+    <div className='flex flex-col px-4'>
       <ul>
-        {chatMessage.map(item => (
+        {chatMessage.map((item: IMessage) => (
           <li key={item.id}>
-            {item.target === 'user' ? <MyMessage text={item.message} /> : <AIContainer text={item.message} />}
+            {item.target === 'user' ? (
+              <MyMessage text={item.message} />
+            ) : (
+              <AIContainer
+                message={item.message}
+                products={item.products}
+                brands={item.brands}
+              />
+            )}
           </li>
         ))}
       </ul>
