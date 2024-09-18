@@ -6,9 +6,11 @@ import SUIdetails from './SUIdetails';
 import { Controller, useForm, FormProvider } from 'react-hook-form';
 import { FormValues } from '../../../types/sign';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
-import { auth } from '../../../service/firebase';
+import { auth, db } from '../../../service/firebase';
 import { useNavigate } from 'react-router-dom';
-import { getDatabase, ref, set } from 'firebase/database';
+import { customStyles_birth } from './SUISelectCss';
+import { addDoc, collection } from 'firebase/firestore';
+import { getDatabase } from 'firebase/database';
 
 function SUInfo() {
   const [state, setState] = useState<'start' | 'end'>('start');
@@ -37,9 +39,10 @@ function SUInfo() {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const userId = userCredential.user.uid;
 
-      // Firestore에 사용자 데이터 저장
-      const db = getDatabase();
-      await set(ref(db, 'users/' + userId), {
+      // Realtime Database에 사용자 데이터 저장
+
+      await addDoc(collection(db, 'users'), {
+        userId: userId,
         username: data.name,
         email: data.email,
         gender: data.gender,
@@ -83,7 +86,7 @@ function SUInfo() {
 
   return (
     <FormProvider {...methods}>
-      <div className='rounded-t-lg p-4'>
+      <div className='p-4'>
         {state === 'start' ? (
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* <Header title='회원가입' /> */}
@@ -178,11 +181,12 @@ function SUInfo() {
                     <SUSelect
                       label='생년월일'
                       optionData={yearList}
-                      className='rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
+                      className='w-full rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
                       placeholder='년'
                       value={field.value}
                       onChange={field.onChange}
                       helperText={fieldState.error?.message || ''}
+                      styles={customStyles_birth}
                     />
                   )}
                 />
@@ -194,11 +198,12 @@ function SUInfo() {
                   render={({ field, fieldState }) => (
                     <SUSelect
                       optionData={monthList}
-                      className=' rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
+                      className='w-full rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
                       value={field.value}
                       onChange={field.onChange}
                       placeholder='월'
                       helperText={fieldState.error?.message || ''}
+                      styles={customStyles_birth}
                     />
                   )}
                 />
@@ -210,11 +215,12 @@ function SUInfo() {
                   render={({ field, fieldState }) => (
                     <SUSelect
                       optionData={dayList}
-                      className='rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
+                      className='w-full rounded text-[16px] leading-5 font-semibold placeholder-[#A1A1AA]'
                       value={field.value}
                       onChange={field.onChange}
                       placeholder='일'
                       helperText={fieldState.error?.message || ''}
+                      styles={customStyles_birth}
                     />
                   )}
                 />
@@ -224,8 +230,8 @@ function SUInfo() {
         ) : (
           <SUIdetails />
         )}
+        <Button onClick={handleNextClick}>{state === 'start' ? '다음' : '가입완료'}</Button>
       </div>
-      <Button onClick={handleNextClick}>{state === 'start' ? '다음' : '가입완료'}</Button>
     </FormProvider>
   );
 }
