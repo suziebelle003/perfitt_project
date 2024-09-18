@@ -1,71 +1,76 @@
-import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+// src/components/SignInAutoKeyword.tsx
+import { useState, useEffect, useRef } from 'react';
+import { fetchData } from '../../../api/signin/getRecommendApi'; // 파일 경로를 적절히 조정
 
 const SignInAutoKeyword = () => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-  const [apiKeyWords, setApiKeyWords] = useState<string[] | null>(null); // 초기값을 null로 설정
+  const [apiKeyWords, setApiKeyWords] = useState<string[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/question/recommend`, {
-        headers: {
-          Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
-        },
-      });
-      console.log(`url:`, import.meta.env.VITE_BASE_URL);
-      // 응답 데이터의 형식이 배열인지 확인
-      if (Array.isArray(response.data)) {
-        // 배열인 경우 map을 사용하여 처리
-        setApiKeyWords(response.data.map(item => item.question));
-        setError(null); // 성공 시 에러 상태 초기화
-      } else {
-        // 배열이 아닌 경우 에러 처리
-        setError('예상과 다른 형식의 데이터 응답');
-      }
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        if (error.response?.status === 429) {
-          setError('요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.');
-        } else {
-          setError('API 호출 오류: ' + error.message);
-        }
-      } else {
-        setError('알 수 없는 오류 발생');
-      }
-    }
-  };
-
   useEffect(() => {
-    fetchData(); // 컴포넌트가 마운트될 때 fetchData 호출
+    const getData = async () => {
+      const result = await fetchData();
+      setApiKeyWords(result.data);
+      setError(result.error);
+    };
+
+    getData();
+
+    const scrollContainer = scrollContainerRef.current;
+
+    const onWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (scrollContainer) {
+        scrollContainer.scrollLeft += e.deltaY;
+      }
+    };
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener('wheel', onWheel);
+    }
+
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener('wheel', onWheel);
+      }
+    };
   }, []);
 
   const splitKeyword = (keyword: string) => {
-    const maxLength = 10;
-    if (keyword.length <= maxLength) {
-      return keyword;
+    const middleLen = Math.floor(keyword.length / 2);
+
+    if (keyword.length <= 10) {
+      return <>{keyword}</>;
     }
 
-    const middleIndex = Math.floor(keyword.length / 2);
-    const splitIndex = keyword.lastIndexOf(' ', middleIndex);
+    for (let i = middleLen; i < keyword.length; i++) {
+      if (keyword[i] === ' ') {
+        return (
+          <>
+            {keyword.slice(0, i)}
+            <br />
+            {keyword.slice(i + 1)}
+          </>
+        );
+      }
+    }
 
     return (
       <>
-        {keyword.slice(0, splitIndex)}
+        {keyword.slice(0, middleLen)}
         <br />
-        {keyword.slice(splitIndex + 1)}
+        {keyword.slice(middleLen)}
       </>
     );
   };
 
   const onClickKeyWord = (keyword: string) => {
-    // 키워드 클릭 시 처리할 로직
     console.log(`키워드 클릭됨: ${keyword}`);
   };
 
   return (
     <div>
-      {error && <div className='text-red-600'>{error}</div>}
+      {error && <div className='error-message'>{error}</div>}
       <div
         ref={scrollContainerRef}
         className='flex gap-2 py-[10px] overflow-x-auto scrollbar-hide'
@@ -73,10 +78,10 @@ const SignInAutoKeyword = () => {
         {apiKeyWords ? (
           apiKeyWords.map((keyword, index) => (
             <div
+              key={index}
               onClick={() => onClickKeyWord(keyword)}
-              key={index} // 고유한 값 사용을 권장
               className='h-[55px] px-[14px] py-[10px] flex-shrink-0
-              bg-white rounded-[10px] shadow-md
+              bg-white rounded-[10px] drop-shadow-md
               leading-[18px] text-[12px] text-[#808080] text-center'
             >
               {splitKeyword(keyword)}
