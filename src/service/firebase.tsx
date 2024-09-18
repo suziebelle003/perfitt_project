@@ -17,6 +17,7 @@ const firebaseConfig = {
   messagingSenderId: '105583072489',
   appId: '1:105583072489:web:da3e813bd0ef7be9c8cc78',
   measurementId: 'G-19D2PLYCBE',
+  databaseURL: 'https://perfit-footprint-default-rtdb.asia-southeast1.firebasedatabase.app/',
 };
 
 // Initialize Firebase

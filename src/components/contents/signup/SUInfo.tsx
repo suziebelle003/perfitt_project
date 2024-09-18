@@ -8,6 +8,8 @@ import { FormValues } from '../../../types/sign';
 import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth } from '../../../service/firebase';
 import { useNavigate } from 'react-router-dom';
+import { getDatabase, ref, set } from 'firebase/database';
+
 function SUInfo() {
   const [state, setState] = useState<'start' | 'end'>('start');
   const navigate = useNavigate();
@@ -32,9 +34,21 @@ function SUInfo() {
     setState('end');
 
     try {
-      await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+      const userId = userCredential.user.uid;
+
+      // Firestore에 사용자 데이터 저장
+      const db = getDatabase();
+      await set(ref(db, 'users/' + userId), {
+        username: data.name,
+        email: data.email,
+        gender: data.gender,
+        birth: `${data.year}${data.month}${data.day}`,
+        usersize: data.usersize,
+      });
+
       alert('회원가입 성공');
-      navigate('/signin'); // 회원가입 성공 후 로그인 페이지로 이동
+      navigate('/signin');
     } catch (e) {
       if (e instanceof Error) {
         // e가 Error 타입일 때만 message 속성에 접근 가능

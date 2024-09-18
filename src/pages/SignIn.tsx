@@ -11,8 +11,8 @@ const SignIn = () => {
   return (
     <>
       {userInfo ? (
-        <div>
-          <p>반갑습니다{userInfo.displayName == null ? userInfo.email?.split('@')[0] : userInfo.displayName}님!</p>
+        <div className='p-4'>
+          <p>반갑습니다 {userInfo.displayName == null ? userInfo.email?.split('@')[0] : userInfo.displayName}님!</p>
           <p>
             {userInfo.displayName == null ? userInfo.email?.split('@')[0] : userInfo.displayName}님을 위한 맞춤 상품을
             추천해 드릴께요
@@ -21,9 +21,9 @@ const SignIn = () => {
           <SignInAutoKeyword />
         </div>
       ) : (
-        <div>
+        <div className='p-4'>
           <p>안녕하세요 펄핏AI 입니다! </p>
-          <p>맞춤 추천을 위해 먼저 로그인을 해주세요.</p>
+          <p className='mb-4'>맞춤 추천을 위해 먼저 로그인을 해주세요.</p>
           <SignInSocialBtn />
         </div>
       )}

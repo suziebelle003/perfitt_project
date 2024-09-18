@@ -25,6 +25,7 @@ import upArrow from './up-arrow.svg';
 import userIcon from './user-icon.svg';
 import verticalMenuIcon from './vertical-menu-icon.svg';
 import xGrayIcon from './x-gray-icon.svg';
+
 export {
   brand,
   cameraIcon,
