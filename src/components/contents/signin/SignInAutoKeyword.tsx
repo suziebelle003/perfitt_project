@@ -1,6 +1,5 @@
-// src/components/SignInAutoKeyword.tsx
 import { useState, useEffect, useRef } from 'react';
-import { fetchData } from '../../../api/signin/getRecommendApi'; // 파일 경로를 적절히 조정
+import { getRecomendAPi } from '../../../api/signin/getRecommendApi'; // 파일 경로를 적절히 조정
 
 const SignInAutoKeyword = () => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
@@ -9,7 +8,7 @@ const SignInAutoKeyword = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const result = await fetchData();
+      const result = await getRecomendAPi();
       setApiKeyWords(result.data);
       setError(result.error);
     };
@@ -36,30 +35,19 @@ const SignInAutoKeyword = () => {
     };
   }, []);
 
+  // 키워드를 공백 기준으로 나누고 없으면 중간에서 자르는 함수
   const splitKeyword = (keyword: string) => {
-    const middleLen = Math.floor(keyword.length / 2);
+    const middleIndex = Math.floor(keyword.length / 2) + 1;
+    let splitIndex = keyword.lastIndexOf(' ', middleIndex);
+    if (splitIndex === -1) splitIndex = middleIndex;
 
-    if (keyword.length <= 10) {
-      return <>{keyword}</>;
-    }
-
-    for (let i = middleLen; i < keyword.length; i++) {
-      if (keyword[i] === ' ') {
-        return (
-          <>
-            {keyword.slice(0, i)}
-            <br />
-            {keyword.slice(i + 1)}
-          </>
-        );
-      }
-    }
-
+    const firstLine = keyword.slice(0, splitIndex);
+    const secondLine = keyword.slice(splitIndex + 1);
     return (
       <>
-        {keyword.slice(0, middleLen)}
+        {firstLine}
         <br />
-        {keyword.slice(middleLen)}
+        {secondLine}
       </>
     );
   };

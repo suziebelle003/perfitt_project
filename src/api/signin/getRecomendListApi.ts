@@ -1,19 +1,28 @@
 import axios from 'axios';
 
-export const getRecomendAPi = async () => {
+export const getRecomendListApi = async () => {
   try {
-    const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/question/recommend`, {
+    const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/api/shoes/recommend`, {
       headers: {
         Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
       },
     });
+    console.log(response.data);
 
-    // 응답 데이터의 형식이 배열인지 확인
+    // 응답 데이터의 형식을 확인하고 맞게 처리
     if (Array.isArray(response.data)) {
-      // 배열인 경우 map을 사용하여 처리
-      return { data: response.data.map((item: { question: string }) => item.question), error: null };
+      return {
+        data: response.data as {
+          image: string;
+          link: string;
+          modelName: string;
+          brand: string;
+          modelNo: string;
+          productId: string;
+        }[],
+        error: null,
+      };
     } else {
-      // 배열이 아닌 경우 에러 처리
       return { data: [], error: '예상과 다른 형식의 데이터 응답' };
     }
   } catch (error) {
