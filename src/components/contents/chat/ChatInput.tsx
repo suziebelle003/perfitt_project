@@ -1,12 +1,14 @@
 import Button from '../../common/Button';
 import { galleryIcon, upArrow } from '../../../assets/images/images';
-import { IInputText } from '../../../types/chat';
+import { IChatInput } from '../../../types/chat';
+import { useState } from 'react';
 
-const ChatInput = ({ setInputText, inputText, handleMessage }: IInputText) => {
+const ChatInput = ({ handleMessage }: IChatInput) => {
+  const [inputText, setInputText] = useState('');
+
   const handleClick = () => {
-    if (inputText === '') return;
-
-    handleMessage(inputText);
+    if (inputText.trim() === '') return;
+    handleMessage(inputText.trim());
     setInputText('');
   };
 
