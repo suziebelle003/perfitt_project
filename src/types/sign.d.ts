@@ -26,3 +26,9 @@ export type FormValues = {
   day: string | number;
   usersize: string;
 };
+
+// select Option 타입 정의
+export type OptionType = {
+  value: string | number;
+  label: string;
+};
