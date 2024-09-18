@@ -5,7 +5,6 @@ type TproductProps = React.ComponentPropsWithoutRef<'span' | 'img'> & { image: s
 
 const ProductCard = (props: TproductProps) => {
   const { children, image, ...rest } = props;
-  console.log(image);
   return (
     <>
       <article className='bg-[#F5F5F5] w-[166px] h-[156px] rounded-md px-2.5 pt-2 relative '>

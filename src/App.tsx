@@ -3,6 +3,7 @@ import ChatWindow from './components/contents/chat/chatwindow/ChatWindow';
 import SignIn from './pages/SignIn';
 import Signup from './pages/SignUp';
 import { auth } from './service/firebase';
+import Like from './pages/Like';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,5 +17,9 @@ export default function App() {
   useEffect(() => {
     init();
   }, []);
-  return <></>;
+  return (
+    <>
+      <Like />
+    </>
+  );
 }

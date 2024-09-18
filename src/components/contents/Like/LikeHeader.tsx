@@ -4,12 +4,12 @@ const LikeHeader = () => {
   const headers = ['Like', 'RecentView'];
   const [select, setSelect] = useState('Like');
 
-  const leftStyle = 'ml-[-1rem] border-black border-b-2 text-base text-center font-extrabold px-4 py-2 h-10 w-full';
-  const rightStyle = 'text-base text-center px-4 py-2 h-10 w-full ml-[-1rem]';
+  const leftStyle = 'border-black border-b-2 text-base text-center font-extrabold px-4 py-2 h-10 w-full';
+  const rightStyle = 'text-base text-center px-4 py-2 h-10 w-full ';
 
   return (
     <>
-      <div className='flex justify-around items-center mb-[19px]'>
+      <div className='flex justify-around items-center '>
         <ul className={`${select === 'Like' ? `animate-fadeIn ${leftStyle} ` : `${rightStyle}`}`}>
           <li>
             <a onClick={() => setSelect('Like')}>좋아요</a>
