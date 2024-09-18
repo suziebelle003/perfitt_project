@@ -1,14 +1,15 @@
-import { plusIcon, polygonIcon } from '../../assets/images/images';
 import SRShoeBox from './SRShoeBox';
+import { TShoeInfo } from '../../../types/shoerack';
+import { plusIcon, polygonIcon } from '../../../assets/images/images';
 
-function SRShoeRack() {
+function SRShoeRack({ shoesList }: { shoesList: TShoeInfo[] }) {
   const sortShoes = () => {};
 
   return (
-    <div className='flex flex-col gap-[5px]'>
+    <div className='flex flex-col gap-[5px] my-6'>
       <div className='flex justify-between items-center'>
         <span className='text-[14px] leading-[17px]'>
-          총 <span className='font-semibold'>00</span>개
+          총 <span className='font-semibold'>{shoesList.length}</span>개
         </span>
         <button
           className='flex gap-[6px] items-center'
@@ -30,7 +31,13 @@ function SRShoeRack() {
             alt='Add shoes'
           />
         </button>
-        <SRShoeBox className='w-[113px] h-[110px]' />
+        {shoesList.map(shoes => (
+          <SRShoeBox
+            key={shoes.productId}
+            className='w-[113px] h-[110px]'
+            imgSrc={shoes.image}
+          />
+        ))}
       </div>
     </div>
   );

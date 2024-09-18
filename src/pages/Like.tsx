@@ -9,6 +9,11 @@ import shoes from '../assets/images/shoes.svg';
 
 const Like = () => {
   const [data, setData] = useState([]);
+  const [filter, setFilter] = useState('상품');
+
+  const getValue = (text: string) => {
+    setFilter(text);
+  };
 
   // useEffect(() => {
   //   console.log('로드');
@@ -28,35 +33,41 @@ const Like = () => {
         {/* header 좋아요 / 최근본 s */}
         <LikeHeader />
         {/* 좋아요 / 브랜드  */}
-        <FilterButton arr={['상품', '브랜드']} />
+        <FilterButton
+          arr={['상품', '브랜드']}
+          getValue={getValue}
+        />
         {/* 갯수표시 */}
         <p className='font-extrabold text-sm/[22px] my-[15px]'>총 {data.length}개</p>
 
-        <div className='flex justify-between flex-wrap max-h-full overflow-y-scroll scrollbar-hide'>
-          {test.map(item => (
-            <LikeItems
-              key={item}
-              brand={'ddd'}
-              shoesImage={shoes}
-            >
-              dfhdufhdjfsklfjdsklf
-            </LikeItems>
+        {filter !== '상품' ? (
+          <div className='flex justify-between flex-wrap max-h-full overflow-y-scroll scrollbar-hide'>
+            {test.map(item => (
+              <LikeItems
+                key={item}
+                brand={'ddd'}
+                shoesImage={shoes}
+              >
+                dfhdufhdjfsklfjds
+              </LikeItems>
 
-            // <LikeItems
-            //   key={item}
-            //   brand={item.brand}
-            //   shoesImage={item.image}
-            // >
-            //   {item.modelName}
-            // </LikeItems>
-          ))}
-        </div>
-        {/* <LikeBrand
-          image={nike}
-          brand='NIKE'
-        >
-          나이키
-        </LikeBrand> */}
+              // <LikeItems
+              //   key={item}
+              //   brand={item.brand}
+              //   shoesImage={item.image}
+              // >
+              //   {item.modelName}
+              // </LikeItems>
+            ))}
+          </div>
+        ) : (
+          <LikeBrand
+            image={nike}
+            brand='NIKE'
+          >
+            나이키
+          </LikeBrand>
+        )}
       </div>
     </>
   );
