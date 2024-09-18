@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { rightArrowShort } from '../../../../../assets/images/images';
-import { IBrandCard } from '../../../../../types/chat';
+import { IBrandCardProps } from '../../../../../types/chat';
 
-const BrandCard = ({ brand }: { brand: IBrandCard }) => {
+const BrandCard = ({ brand }: IBrandCardProps) => {
   return (
     <div className='border border-[#E4E4E7] rounded-md flex flex-col items-center w-fit cursor-pointer'>
       <div className='flex items-center justify-center w-[110px] h-[103px] rounded-t-md'>
@@ -10,7 +10,7 @@ const BrandCard = ({ brand }: { brand: IBrandCard }) => {
           <img
             className='w-22 h-12'
             src={brand.thumbnail}
-            alt='brand'
+            alt={brand.brand}
           />
         </Link>
       </div>
@@ -27,4 +27,5 @@ const BrandCard = ({ brand }: { brand: IBrandCard }) => {
     </div>
   );
 };
+
 export default BrandCard;

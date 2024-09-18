@@ -25,6 +25,8 @@ import upArrow from './up-arrow.svg';
 import userIcon from './user-icon.svg';
 import verticalMenuIcon from './vertical-menu-icon.svg';
 import xGrayIcon from './x-gray-icon.svg';
+import pinkHeart from './pinkheart.svg';
+import abcMart from './abcmart.svg';
 
 export {
   brand,
@@ -53,5 +55,7 @@ export {
   upArrow,
   userIcon,
   verticalMenuIcon,
-  xGrayIcon
+  xGrayIcon,
+  pinkHeart,
+  abcMart,
 };
