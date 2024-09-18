@@ -1,16 +1,11 @@
 import { useRef, useState } from 'react';
-import { hamburgerButton } from '../../../assets/images/images';
-import Button from '../../common/Button';
-import Header from '../../common/Header';
-import ChatInput from './ChatInput';
-import ChatWindow from './chatwindow/ChatWindow';
 import { IMessage } from '../../../types/chat';
-
 import { useChatResponseMutation } from '../../../hooks/useChatMutation';
+import ChatWindow from './chatwindow/ChatWindow';
+import ChatInput from './ChatInput';
 
 const ChatContainer = () => {
   const [chatMessage, setChatMessage] = useState<IMessage[]>([]);
-  const [inputText, setInputText] = useState('');
   const idRef = useRef(0);
 
   const { mutate: AIResponse } = useChatResponseMutation();
@@ -32,10 +27,15 @@ const ChatContainer = () => {
           id: idRef.current++,
           message: item.message,
           target: 'AI',
+          products: item.products,
+          brands: item.brands,
         };
 
         // AI 메시지 배열에 추가
-        setChatMessage(message => [...message, newAIMessage]);
+        setChatMessage(AIMessage => [...AIMessage, newAIMessage]);
+      },
+      onError: error => {
+        console.error('err', error);
       },
     });
   };
@@ -43,24 +43,13 @@ const ChatContainer = () => {
   return (
     <>
       <div className='h-screen flex flex-col '>
-        <Header
-          leftChild={
-            <Button className='bg-inherit'>
-              <img src={hamburgerButton} />
-            </Button>
-          }
-        />
         <div className='flex-1 overflow-y-auto scrollbar-hide'>
           <ChatWindow chatMessage={chatMessage} />
         </div>
-
-        <ChatInput
-          setInputText={setInputText}
-          inputText={inputText}
-          handleMessage={handleMessage}
-        />
+        <ChatInput handleMessage={handleMessage} />
       </div>
     </>
   );
 };
+
 export default ChatContainer;
