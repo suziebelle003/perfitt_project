@@ -5,7 +5,6 @@ import downArrowIcon from './down-arrow-icon.svg';
 import exportIcon from './export-icon.svg';
 import footPrint from './footprint.svg';
 import galleryIcon from './gallery-Icon.svg';
-import menuIcon from './menu-icon.svg';
 import leftArrowIcon from './left-arrow.icon.svg';
 import perfittCircleLogo from './perfitt-circle-logo.svg';
 import perfittLogo from './perfitt-logo.svg';
@@ -37,7 +36,6 @@ export {
   footPrint,
   galleryIcon,
   leftArrowIcon,
-  menuIcon,
   perfittCircleLogo,
   perfittLogo,
   plusCircleIcon,
