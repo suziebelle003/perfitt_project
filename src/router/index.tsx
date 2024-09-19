@@ -11,6 +11,9 @@ import Chat from '../pages/Chat';
 import Like from '../pages/Like';
 import MyFootInfo from '../pages/MyFootInfo';
 import MyPage from '../pages/MyPage';
+import SignIn from '../pages/SignIn';
+import AuthProvider from '../service/AuthProvider';
+import SignUp from '../pages/SignUp';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +22,18 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <SplashScreen />,
+      },
+      {
+        path: '/signin',
+        element: (
+          <AuthProvider>
+            <SignIn />
+          </AuthProvider>
+        ),
+      },
+      {
+        path: '/signup',
+        element: <SignUp />,
       },
       {
         path: '/onboarding',
