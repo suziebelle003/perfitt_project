@@ -9,8 +9,7 @@ import { createUserWithEmailAndPassword } from '@firebase/auth';
 import { auth, db } from '../../../service/firebase';
 import { useNavigate } from 'react-router-dom';
 import { customStyles_birth } from './SUISelectCss';
-import { addDoc, collection } from 'firebase/firestore';
-import { getDatabase } from 'firebase/database';
+import { doc, setDoc } from 'firebase/firestore';
 
 function SUInfo() {
   const [state, setState] = useState<'start' | 'end'>('start');
@@ -32,33 +31,28 @@ function SUInfo() {
 
   const onSubmit = async (data: FormValues) => {
     console.log('최종 data:', data);
-    // 제출 후 상태를 'end'로 변경
     setState('end');
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const userId = userCredential.user.uid;
 
-      // Realtime Database에 사용자 데이터 저장
-
-      await addDoc(collection(db, 'users'), {
-        userId: userId,
-        username: data.name,
+      // Firestore에 사용자 데이터 저장
+      await setDoc(doc(db, 'user', userId), {
+        name: data.name,
         email: data.email,
         gender: data.gender,
-        birth: `${data.year}${data.month}${data.day}`,
-        usersize: data.usersize,
+        birth: `${data.year}-${data.month}-${data.day}`,
+        size: data.usersize.split('/')[0],
       });
 
       alert('회원가입 성공');
       navigate('/signin');
     } catch (e) {
       if (e instanceof Error) {
-        // e가 Error 타입일 때만 message 속성에 접근 가능
         console.error('회원가입 실패:', e);
         alert(`회원가입 실패: ${e.message}`);
       } else {
-        // Error가 아닌 경우 기본 오류 처리
         console.error('회원가입 실패:', e);
         alert('회원가입 실패: 알 수 없는 오류');
       }
@@ -72,15 +66,15 @@ function SUInfo() {
     if (state === 'start') {
       handleSubmit(
         data => {
-          console.log(data); // data를 사용할 수 있음
-          setState('end'); // 상태를 'end'로 변경
+          console.log(data);
+          setState('end');
         },
         errors => {
-          console.log(errors); // 유효성 검사 오류를 처리
+          console.log(errors);
         }
       )();
     } else {
-      handleSubmit(onSubmit)(); // 최종 폼 제출
+      handleSubmit(onSubmit)();
     }
   };
 
