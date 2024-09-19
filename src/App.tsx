@@ -17,9 +17,5 @@ export default function App() {
   useEffect(() => {
     init();
   }, []);
-  return (
-    <>
-      <Like />
-    </>
-  );
+  return <></>;
 }
