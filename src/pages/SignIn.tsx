@@ -8,7 +8,6 @@ const SignIn = () => {
 
   return (
     <>
-      <div className='App'>React - Typescript - Login</div>
       {userInfo ? (
         <div>
           <p>로그인한 사용자: {userInfo.email}</p>

@@ -103,9 +103,9 @@ function ShoesReviewEdit() {
     <>
       <Header
         title='신발 등록'
-        leftBtn='back'
+        back
       />
-      <div className='h-full p-4 pt-14 flex flex-col'>
+      <div className='h-full p-4 pt-0 flex flex-col'>
         <div className='flex-1 mb-6 overflow-y-scroll scrollbar-hide'>
           {/* 신발 선택 */}
           <div className='mt-[5px] py-[1px]'>

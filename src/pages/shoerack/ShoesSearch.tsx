@@ -51,9 +51,9 @@ function ShoesSearch() {
     <div className='flex flex-col h-full'>
       <Header
         title='신발 검색'
-        leftBtn='back'
+        back
       />
-      <div className='p-4 pt-14 mt-[5px]'>
+      <div className='p-4 pt-0 mt-[5px]'>
         {/* 검색창 */}
         <div
           className='flex justify-between items-center w-full h-10 pl-4 pr-5
@@ -65,7 +65,7 @@ function ShoesSearch() {
             className='w-[15px] h-[15px]'
           />
           <input
-            className='flex-1 m-[11px] h-10 text-[15px] placeholder-[#D4D4D8] focus:outline-none'
+            className='flex-1 m-[11px] h-9 text-[15px] placeholder-[#D4D4D8] focus:outline-none'
             type='text'
             value={search}
             onChange={e => setSearch(e.target.value)}
