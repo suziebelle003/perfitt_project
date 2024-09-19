@@ -53,10 +53,10 @@ function ShoeRack() {
     <>
       <Header
         title='신발장'
-        leftBtn='back'
+        back
       />
 
-      <div className='h-full p-4 pt-14 flex flex-col'>
+      <div className='h-full p-4 pt-0 flex flex-col'>
         {/* USER 기본 정보 */}
         <div className='flex gap-5 items-center py-[5px] px-3'>
           <div className='relative w-[50px] h-[50px]'>

@@ -1,10 +1,12 @@
 import { useRef, useState } from 'react';
-import { IMessage } from '../../../types/chat';
-import { useChatResponseMutation } from '../../../hooks/useChatMutation';
-import ChatWindow from './chatwindow/ChatWindow';
-import ChatInput from './ChatInput';
+import { IMessage } from '../types/chat';
+import { useChatResponseMutation } from '../hooks/useChatMutation';
+import ChatWindow from '../components/contents/chat/chatwindow/ChatWindow';
+import ChatInput from '../components/contents/chat/ChatInput';
+import ChatHeader from '../components/contents/chat/ChatHeader';
 
-const ChatContainer = () => {
+// 'chat/:id': '/chat/sign' | '/chat/new'
+const Chat = () => {
   const [chatMessage, setChatMessage] = useState<IMessage[]>([]);
   const idRef = useRef(0);
 
@@ -41,15 +43,15 @@ const ChatContainer = () => {
   };
 
   return (
-    <>
-      <div className='h-screen flex flex-col '>
-        <div className='flex-1 overflow-y-auto scrollbar-hide'>
-          <ChatWindow chatMessage={chatMessage} />
-        </div>
-        <ChatInput handleMessage={handleMessage} />
+    <div className='relative w-full h-full flex flex-col'>
+      <ChatHeader />
+      <div className='flex-1 flex flex-col overflow-y-auto scrollbar-hide'>
+        <div className='h-14'></div>
+        <ChatWindow chatMessage={chatMessage} />
       </div>
-    </>
+      <ChatInput handleMessage={handleMessage} />
+    </div>
   );
 };
 
-export default ChatContainer;
+export default Chat;

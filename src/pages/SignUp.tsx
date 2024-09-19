@@ -1,10 +1,10 @@
 import SUInfo from '../components/contents/signup/SUInfo';
 
-const Signup = () => {
+const SignUp = () => {
   return (
     <>
       <SUInfo />
     </>
   );
 };
-export default Signup;
+export default SignUp;

@@ -8,7 +8,7 @@ import LikeAndShoes from '../components/contents/mypage/LikeAndShoes';
 const MyPage = () => {
   return (
     <div className='flex flex-col flex-1'>
-      <Header></Header>
+      <Header back />
 
       <UserProfile />
 
