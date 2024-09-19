@@ -1,30 +1,34 @@
 import { useState } from 'react';
-type TButtonProps = React.ComponentPropsWithoutRef<'button'> & { arr: string[]; getValue: any };
+type TButtonProps = React.ComponentPropsWithoutRef<'button'> & { getValue: any };
 
 const FilterButton = (props: TButtonProps) => {
-  const { className, getValue, children, arr, ...rest } = props;
-  const [select, setSelect] = useState(arr[0]);
+  const { className, getValue, children, ...rest } = props;
+  const [select, setSelect] = useState(true);
 
   const buttonStyle = 'w-full h-full border text-base text-center px-3 py-1 rounded-[99px]';
-  const sendState = () => {
-    props.getValue(select);
-  };
-  console.log(select);
   return (
     <>
       <div className='flex w-[343px] h-[32px] gap-[5px]'>
-        {arr.map(i => (
-          <button
-            className={`${(select === i && `' border-black bg-black text-white font-extrabold '${buttonStyle} `) || `' border-[#E4E4E7] font-normal text-[#6B7280]'${buttonStyle} *:`}`}
-            onClick={() => {
-              setSelect(i);
-              sendState();
-            }}
-            {...rest}
-          >
-            {i}
-          </button>
-        ))}
+        <button
+          className={`${select === true ? `' border-black bg-black text-white font-extrabold '${buttonStyle} ` : `' border-[#E4E4E7] font-normal text-[#6B7280]'${buttonStyle} *:`}`}
+          onClick={() => {
+            props.getValue(select);
+            setSelect(true);
+          }}
+          {...rest}
+        >
+          상품
+        </button>
+        <button
+          className={`${select === false ? `' border-black bg-black text-white font-extrabold '${buttonStyle} ` : `' border-[#E4E4E7] font-normal text-[#6B7280]'${buttonStyle} *:`}`}
+          onClick={() => {
+            props.getValue(select);
+            setSelect(false);
+          }}
+          {...rest}
+        >
+          브랜드
+        </button>
       </div>
     </>
   );
