@@ -9,7 +9,7 @@ import LikeBrand from '../components/contents/Like/LikeBrand';
 import ProductCard from '../components/common/ProductCard';
 import { IProductCard } from '../types/like';
 
-const Like = (products: IProductCard) => {
+const Like = () => {
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(true);
 
