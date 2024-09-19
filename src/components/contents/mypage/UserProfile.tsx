@@ -1,4 +1,4 @@
-import userprofile from '../../../assets/images/mypage-profile.svg';
+import userprofile from '../../../assets/icons/user-border-icon.svg';
 import camera from '../../../assets/images/mypage-camera.svg';
 const UserProfile = () => {
   const editUserImg = () => {};

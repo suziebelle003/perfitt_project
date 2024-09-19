@@ -52,9 +52,9 @@ function ShoesReviewDetail() {
     <>
       <Header
         title='신발 등록'
-        leftBtn='back'
+        back
       />
-      <div className='p-4 pt-14'>
+      <div className='p-4 pt-0'>
         {/* 기본 정보 */}
         <SRShoeBox
           className='w-full h-[343px] mt-1.5 mb-5'

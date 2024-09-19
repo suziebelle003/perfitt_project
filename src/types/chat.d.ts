@@ -6,8 +6,11 @@ export interface IMessage {
   brands?: IBrandCard[];
 }
 
-export interface IChatWindow {
-  chatMessage: IMessage[];
+export interface IChat {
+  id?: string; // ? 삭제
+  title?: string; // ? 삭제
+  chatMessage?: IMessage[];
+  date?: string;
 }
 
 export interface IChatInput {

@@ -6,9 +6,9 @@ const MyFootInfo = () => {
     <>
       <Header
         title='내 발 정보'
-        leftBtn='back'
+        back
       />
-      <div className='h-full flex flex-col p-4'>
+      <div className='h-full flex flex-col p-4 pt-0'>
         <div className='flex-1 flex flex-col justify-center items-center'>
           <img
             src={myfoot}
