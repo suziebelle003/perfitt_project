@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react';
-import { IChatWindow, IMessage } from '../../../../types/chat';
+import { IChat, IMessage } from '../../../../types/chat';
 import MyMessage from './message/MyMessage';
 import AIContainer from './message/AIContainer';
 
-const ChatWindow = ({ chatMessage }: IChatWindow) => {
+const ChatWindow = ({ chatMessage }: IChat) => {
   const messagesRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
