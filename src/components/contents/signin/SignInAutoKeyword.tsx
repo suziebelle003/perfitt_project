@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { getRecomendAPi } from '../../../api/signin/getRecommendApi';
+import { getRecomendAPi } from '../../../api/signin/getRecommendApi'; // 파일 경로를 적절히 조정
 
 const SignInAutoKeyword = () => {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);

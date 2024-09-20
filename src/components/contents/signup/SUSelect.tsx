@@ -1,11 +1,7 @@
 import { forwardRef } from 'react';
 import Select, { ActionMeta, SingleValue, StylesConfig, GroupBase } from 'react-select';
-
-// Option 타입 정의
-type OptionType = {
-  value: string | number;
-  label: string;
-};
+import { OptionType } from '../../../types/sign';
+import { customStyles_base } from './SUISelectCss';
 
 // SUSelect 프롭스 타입 정의
 type TSelectProps = {
@@ -16,43 +12,12 @@ type TSelectProps = {
   placeholder?: string;
   label?: string;
   helperText?: string;
-};
-
-// customStyles 정의
-const customStyles: StylesConfig<OptionType, false, GroupBase<OptionType>> = {
-  control: (provided, state) => ({
-    ...provided,
-    borderColor: state.isFocused ? '#4A90E2' : '#E4E4E7',
-    boxShadow: state.isFocused ? '0 0 0 1px #4A90E2' : 'none',
-    height: '3rem',
-    paddingLeft: '0.4rem',
-  }),
-  placeholder: provided => ({
-    ...provided,
-    color: '#A1A1AA',
-    fontSize: '1rem',
-  }),
-  menu: provided => ({
-    ...provided,
-    borderColor: '#E4E4E7',
-  }),
-  menuList: provided => ({
-    ...provided,
-    padding: 0,
-  }),
-  dropdownIndicator: provided => ({
-    ...provided,
-    padding: 4,
-  }),
-  indicatorSeparator: provided => ({
-    ...provided,
-    display: 'none',
-  }),
+  styles?: StylesConfig<OptionType, false, GroupBase<OptionType>>;
 };
 
 // forwardRef로 SUSelect 컴포넌트 정의
 const SUSelect = forwardRef<HTMLDivElement, TSelectProps>(
-  ({ optionData, className, value, onChange, placeholder, label, helperText }, ref) => {
+  ({ optionData, className, value, onChange, placeholder, label, helperText, styles }, ref) => {
     // react-select에서 사용하는 형식으로 optionData 변환
     const options: OptionType[] = optionData.map(option => ({
       value: option.value,
@@ -77,30 +42,25 @@ const SUSelect = forwardRef<HTMLDivElement, TSelectProps>(
     // 에러 상태에 따른 className 설정
 
     return (
-      <div className={`flex flex-col w-full ${!label ? 'mt-4' : ''}`}>
-        {label && (
-          <label
-            htmlFor={label}
-            className='text-sm font-medium mb-1'
-          >
-            {label}
-          </label>
-        )}
+      <div className='flex-1 flex flex-col gap-1'>
+        <label
+          htmlFor={label}
+          className='h-[17px] text-[14px] leading-[17px] font-semibold'
+        >
+          {label}
+        </label>
         <Select
           value={selectedOption} // 선택된 옵션을 react-select의 value로 설정
           onChange={handleChange}
           options={options}
           placeholder={placeholder}
-          className={`${className} ${!label ? 'mt-2' : ''}`}
-          isClearable
-          styles={customStyles} // styles 속성 직접 전달
+          className={className}
+          styles={styles || customStyles_base} // styles 속성 직접 전달
         />
         {helperText && <span className='text-red-500 text-sm'>{helperText}</span>}
       </div>
     );
   }
 );
-
-SUSelect.displayName = 'SUSelect'; // 디버깅용
 
 export default SUSelect;

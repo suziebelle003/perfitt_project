@@ -11,9 +11,10 @@ import Chat from '../pages/Chat';
 import Like from '../pages/Like';
 import MyFootInfo from '../pages/MyFootInfo';
 import MyPage from '../pages/MyPage';
-import SignIn from '../pages/SignIn';
-import AuthProvider from '../service/AuthProvider';
 import SignUp from '../pages/SignUp';
+import SignIn from '../pages/SignIn';
+import Login from '../pages/Login';
+import AuthProvider from '../service/AuthProvider';
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,14 @@ const router = createBrowserRouter([
       {
         path: '*',
         element: <NotFound />,
+      },
+      {
+        path: '/sign-up',
+        element: <SignUp />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
       },
     ],
   },

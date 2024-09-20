@@ -1,9 +1,5 @@
 import { useEffect, useState } from 'react';
-import ChatWindow from './components/contents/chat/chatwindow/ChatWindow';
-import SignIn from './pages/SignIn';
-import Signup from './pages/SignUp';
 import { auth } from './service/firebase';
-import Like from './pages/Like';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
