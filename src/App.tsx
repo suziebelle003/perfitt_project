@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { auth } from './service/firebase';
-import Like from './pages/Like';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
