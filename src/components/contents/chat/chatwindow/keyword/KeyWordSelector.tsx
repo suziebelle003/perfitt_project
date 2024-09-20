@@ -1,7 +1,8 @@
+import { getKeywordListApi } from '../../../../../api/keyword/getKeywordListApi';
 import Button from '../../../../common/Button';
 import KeyWordButton from './KeyWordButton';
 import { useQuery } from '@tanstack/react-query';
-import { getKeywordListApi } from '../../../../../api/keyword/GetKeywordListApi';
+
 import { useState } from 'react';
 
 const KeyWordSelector = () => {

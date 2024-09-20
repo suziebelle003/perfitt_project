@@ -25,6 +25,18 @@ const router = createBrowserRouter([
         element: <SplashScreen />,
       },
       {
+        path: '/signin',
+        element: (
+          <AuthProvider>
+            <SignIn />
+          </AuthProvider>
+        ),
+      },
+      {
+        path: '/signup',
+        element: <SignUp />,
+      },
+      {
         path: '/onboarding',
         element: <OnBoarding />,
       },
