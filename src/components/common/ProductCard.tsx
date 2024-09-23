@@ -1,15 +1,28 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import pinkHeart from '../../assets/images/pinkheart.svg';
 import heart from '../../assets/images/heart.svg';
 import aiRecomend from '../../assets/images/airecomend.svg';
-import abcMart from '../../assets/images/abcmart.svg';
-import crocss from '../../assets/images/crocss.svg';
 import { IProductCardProps } from '../../types/like';
-import { perfittCircleLogo } from '../../assets/images/images';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getPartnerBrand } from '../../hooks/getPartnerBrand';
+
+type TPartner = {
+  name: string;
+  image: string;
+};
 
 const ProductCard = ({ product }: IProductCardProps) => {
+  const navigate = useNavigate();
   const [isLike, setIsLike] = useState(true);
+  const [partner, setPartner] = useState<TPartner>();
+
+  useEffect(() => {
+    setPartner(getPartnerBrand(product.link));
+  }, []);
+
+  const handleNavigation = () => {
+    navigate('/bridge', { state: { product, partner } });
+  };
 
   return (
     <>
@@ -39,7 +52,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
               )}
             </div>
             {/* 신발이미지 */}
-            <Link to={product.link}>
+            <button onClick={handleNavigation}>
               <div>
                 <img
                   className='w-full h-[109px] '
@@ -47,35 +60,14 @@ const ProductCard = ({ product }: IProductCardProps) => {
                   alt='shoes'
                 ></img>
               </div>
-            </Link>
-
-            {/* 상점이미지 */}
-            {(function () {
-              if (product.link.indexOf('a-rt') !== -1)
-                return (
-                  <img
-                    className='absolute bottom-[-12px] right-[6px]'
-                    src={abcMart}
-                    alt='abcmart'
-                  ></img>
-                );
-              if (product.link.indexOf('perfittdemo') !== -1)
-                return (
-                  <img
-                    className='absolute bottom-[-12px] right-[6px]'
-                    src={perfittCircleLogo}
-                    alt='abcmart'
-                  ></img>
-                );
-              if (product.link.indexOf('example') !== -1)
-                return (
-                  <img
-                    className='absolute bottom-[-12px] right-[6px]'
-                    src={crocss}
-                    alt='abcmart'
-                  ></img>
-                );
-            })()}
+            </button>
+            <img
+              className='absolute bottom-[-12px] right-[6px]'
+              src={partner?.image}
+              alt={partner?.name}
+              width='24px'
+              height='24px'
+            ></img>
           </section>
         </article>
         <article className=' w-[166px] text-sm'>
