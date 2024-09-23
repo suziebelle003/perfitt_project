@@ -57,7 +57,7 @@ const SignInAutoKeyword = () => {
   };
 
   return (
-    <div>
+    <div className='pl-4'>
       {error && <div className='error-message'>{error}</div>}
       <div
         ref={scrollContainerRef}
