@@ -1,14 +1,30 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { abcMart } from '../../assets/images/images';
 import { perfittCircleLogo } from '../../assets/images/images';
-import aiRecomend from '../../assets/images/airecomend.svg';
 import { TProductCardProps } from '../../types/like';
-import { useState } from 'react';
 import pinkHeart from '../../assets/images/pinkheart.svg';
 import heart from '../../assets/images/heart.svg';
+import aiRecomend from '../../assets/images/airecomend.svg';
+import { useEffect, useState } from 'react';
+import { getPartnerBrand } from '../../hooks/getPartnerBrand';
+
+type TPartner = {
+  name: string;
+  image: string;
+};
 
 const ProductCard = ({ product }: TProductCardProps) => {
+  const navigate = useNavigate();
   const [isLike, setIsLike] = useState(true);
+  const [partner, setPartner] = useState<TPartner>();
+
+  useEffect(() => {
+    setPartner(getPartnerBrand(product.link));
+  }, []);
+
+  const handleNavigation = () => {
+    navigate('/bridge', { state: { product, partner } });
+  };
 
   const getStoreImage = (link: string) => {
     if (link.includes('a-rt')) return abcMart;
@@ -37,7 +53,7 @@ const ProductCard = ({ product }: TProductCardProps) => {
         </div>
 
         {/* 신발 이미지 */}
-        <Link to={product.link}>
+        <button onClick={handleNavigation}>
           <div className='w-full h-[109px] overflow-hidden'>
             <img
               className='object-cover'
@@ -45,7 +61,7 @@ const ProductCard = ({ product }: TProductCardProps) => {
               alt={product.modelName}
             />
           </div>
-        </Link>
+        </button>
 
         {/* 상점 이미지 */}
         {storeImage && (

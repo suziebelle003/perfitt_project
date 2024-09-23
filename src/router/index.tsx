@@ -15,6 +15,7 @@ import SignIn from '../pages/SignIn';
 import Login from '../pages/Login';
 import AuthProvider from '../service/AuthProvider';
 import Item from '../pages/Item';
+import Bridge from '../pages/Bridge';
 
 const router = createBrowserRouter([
   {
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/bridge',
+        element: <Bridge />,
       },
     ],
   },
