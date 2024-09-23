@@ -42,8 +42,8 @@ const SignUp = () => {
         gender: data.gender,
         birth: {
           year: parseInt(data.year.slice(0, -1)),
-          month: parseInt(data.year.slice(0, -1)),
-          day: parseInt(data.year.slice(0, -1)),
+          month: parseInt(data.month.slice(0, -1)),
+          day: parseInt(data.day.slice(0, -1)),
         },
         size: data.size.split('/')[0],
       });
