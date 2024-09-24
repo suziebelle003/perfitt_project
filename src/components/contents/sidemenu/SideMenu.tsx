@@ -15,6 +15,7 @@ import { IChat } from '../../../types/chat';
 import menuIcon from '../../../assets/icons/menu-icon.svg';
 import plusIcon from '../../../assets/icons/plus-mini-icon.svg';
 import userIcon from '../../../assets/icons/user-border-icon.svg';
+import { createNewChat } from '../../../service/CreateNewChat';
 
 type TSideMenuProps = {
   isMenuOpen: boolean;
@@ -63,6 +64,11 @@ const SideMenu = ({ toggleMenu, isMenuOpen }: TSideMenuProps) => {
     toggleMenu();
     navigate(`${link}`);
   };
+  const handleCreateChat = async () => {
+    const newRoom = await createNewChat();
+    navigate(`/chat/${newRoom}`);
+    toggleMenu();
+  };
 
   return (
     <nav
@@ -84,7 +90,7 @@ const SideMenu = ({ toggleMenu, isMenuOpen }: TSideMenuProps) => {
       <button
         className='flex justify-center items-center w-fit h-[36px] mt-[34px]
         pl-[7px] pr-2.5 rounded-[99px] bg-[rgb(245,245,245)]'
-        onClick={() => handleLink('/chat/new')}
+        onClick={handleCreateChat}
       >
         <img
           src={plusIcon}
