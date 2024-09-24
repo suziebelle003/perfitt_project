@@ -72,14 +72,15 @@ const SignUp = () => {
   });
 
   return (
-    <FormProvider {...methods}>
-      <Header title='회원가입' />
-      <div className='p-4'>
+    <>
+      <FormProvider {...methods}>
+        <Header title='회원가입' />
         {state === 'start' ? <SUInfo /> : <SUIdetails />}
-
-        <Button onClick={handleNextClick}>{state === 'start' ? '다음' : '가입 완료'}</Button>
-      </div>
-    </FormProvider>
+        <div className='px-4 mb-[34px]'>
+          <Button onClick={handleNextClick}>{state === 'start' ? '다음' : '가입 완료'}</Button>
+        </div>
+      </FormProvider>
+    </>
   );
 };
 
