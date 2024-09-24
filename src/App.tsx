@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { auth } from './service/firebase';
 import SUIBar from './components/common/ModalBar';
 import SignUp from './pages/SignUp';
+import BottomSheet from './components/common/ModalBar';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,8 +17,8 @@ export default function App() {
     init();
   }, []);
 
-  const closeBar = () => {
-    setIsBarOpen(false);
+  const toggleOpenBar = () => {
+    setIsBarOpen(prev => !prev);
   };
 
   if (isLoading) {
@@ -25,15 +26,13 @@ export default function App() {
   }
 
   return (
-    <div className='relative'>
-      <button onClick={() => setIsBarOpen(true)}>회원가입</button> {/* 예시 버튼 */}
-      {isBarOpen && (
-        <SUIBar
-          isBarOpen={isBarOpen}
-          closeBar={closeBar}
-          children={<SignUp />}
-        />
-      )}
+    <div className='relative h-full'>
+      <button onClick={toggleOpenBar}>회원가입</button> {/* 예시 버튼 */}
+      <BottomSheet
+        isBarOpen={isBarOpen}
+        toggleOpenBar={toggleOpenBar}
+        children={<SignUp />}
+      />
     </div>
   );
 }
