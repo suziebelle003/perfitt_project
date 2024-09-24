@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { auth } from './service/firebase';
+import SUIBar from './components/common/ModalBar';
+import SignUp from './pages/SignUp';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isBarOpen, setIsBarOpen] = useState(false);
+
   const init = async () => {
-    // 최초 인증 상태가 완료될 때 실행되는 Promise를 return
-    // Firebase가 쿠키와 토큰을 읽고 백엔드와 소통해서 로그인 여부를 확인하는 동안 기다림
     await auth.authStateReady();
     setIsLoading(false);
   };
@@ -13,5 +15,25 @@ export default function App() {
   useEffect(() => {
     init();
   }, []);
-  return <></>;
+
+  const closeBar = () => {
+    setIsBarOpen(false);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div className='relative'>
+      <button onClick={() => setIsBarOpen(true)}>회원가입</button> {/* 예시 버튼 */}
+      {isBarOpen && (
+        <SUIBar
+          isBarOpen={isBarOpen}
+          closeBar={closeBar}
+          children={<SignUp />}
+        />
+      )}
+    </div>
+  );
 }

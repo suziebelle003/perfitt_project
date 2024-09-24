@@ -32,3 +32,7 @@ export type OptionType = {
   value: string | number;
   label: string;
 };
+export type TSideBarProps = {
+  isBarOpen: boolean;
+  toggleBar: () => void;
+};

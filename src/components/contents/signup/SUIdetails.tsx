@@ -4,7 +4,6 @@ import SUIbtn from './SUIbtn';
 import infoicon from '../../../assets/images/icon_info_blue400.png';
 import { Controller, useFormContext } from 'react-hook-form';
 import { FormValues } from '../../../types/sign';
-
 const SUIdetails = () => {
   const [selectedSizeType, setSelectedSizeType] = useState<string>('');
   const { control, setValue, getValues } = useFormContext<FormValues>();
@@ -56,7 +55,7 @@ const SUIdetails = () => {
 
   return (
     <>
-      <div>
+      <div className='p-4'>
         <label className='h-[17px] text-[14px] leading-[17px] font-semibold'>
           사이즈 타입
           <div className='mb-6 flex flex-row gap-2 w-full'>
