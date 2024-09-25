@@ -23,21 +23,12 @@ const LikeBrandList = ({ brands }: TLikeBrandProps) => {
 
         {/* 좋아요 버튼 */}
         <div>
-          {!isLike ? (
-            <img
-              className='w-[15px] h-[14px] cursor-pointer'
-              src={heart}
-              alt='heart'
-              onClick={() => setIsLike(true)}
-            />
-          ) : (
-            <img
-              className='w-[15px] h-[14px] cursor-pointer animate-dropIn'
-              src={pinkHeart}
-              alt='pinkheart'
-              onClick={() => setIsLike(false)}
-            />
-          )}
+          <img
+            className={`w-[15px] h-[14px]  ${isLike ? 'animate-dropIn' : ''}`}
+            src={isLike ? pinkHeart : heart}
+            alt={isLike ? 'pinkHeart' : 'heart'}
+            onClick={() => setIsLike(!isLike)}
+          />
         </div>
       </div>
     </>
