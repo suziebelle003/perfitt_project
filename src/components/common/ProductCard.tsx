@@ -1,13 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { abcMart } from '../../assets/images/images';
 import { perfittCircleLogo } from '../../assets/images/images';
-import aiRecomend from '../../assets/images/airecomend.svg';
 import { TProductCardProps } from '../../types/like';
-import { useState } from 'react';
 import pinkHeart from '../../assets/images/pinkheart.svg';
 import heart from '../../assets/images/heart.svg';
 import aiRecomend from '../../assets/images/airecomend.svg';
-import { IProductCardProps } from '../../types/like';
 import { useEffect, useState } from 'react';
 import { getPartnerBrand } from '../../hooks/getPartnerBrand';
 
@@ -56,7 +53,7 @@ const ProductCard = ({ product }: TProductCardProps) => {
         </div>
 
         {/* 신발 이미지 */}
-        <Link to={product.link}>
+        <button onClick={handleNavigation}>
           <div className='w-full h-[109px] overflow-hidden'>
             <img
               className='object-cover'
@@ -64,7 +61,7 @@ const ProductCard = ({ product }: TProductCardProps) => {
               alt={product.modelName}
             />
           </div>
-        </Link>
+        </button>
 
         {/* 상점 이미지 */}
         {storeImage && (
