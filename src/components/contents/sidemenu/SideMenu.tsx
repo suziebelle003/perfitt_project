@@ -16,6 +16,7 @@ import menuIcon from '../../../assets/icons/menu-icon.svg';
 import plusIcon from '../../../assets/icons/plus-mini-icon.svg';
 import userIcon from '../../../assets/icons/user-border-icon.svg';
 import { createNewChat } from '../../../service/CreateNewChat';
+import Logout from '../signin/Logout';
 
 type TSideMenuProps = {
   isMenuOpen: boolean;
@@ -163,7 +164,7 @@ const SideMenu = ({ toggleMenu, isMenuOpen }: TSideMenuProps) => {
           </div>
           <div className='max-w-[150px] text-[16px] leading-5 font-semibold truncate text-left'>{user?.name}</div>
         </button>
-        <button className='text-[14px] text-[#AAAAAA] underline hover:text-[#F87171]'>로그아웃</button>
+        <Logout />
       </div>
     </nav>
   );
