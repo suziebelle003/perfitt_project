@@ -20,7 +20,7 @@ const ProductCard = ({ product }: TProductCardProps) => {
   const storeImage = getStoreImage(product.link);
 
   return (
-    <article className='h-full w-full bg-[#F5F5F5] rounded-[6.27px] relative'>
+    <article className=' w-full bg-[#F5F5F5] rounded-[6.27px] relative'>
       <section className='relative'>
         <div className='flex justify-between'>
           <div className='mt-2 ml-[10px] bg-gradient-to-r from-[#E8F4FE] to-[#FFECFE] p-[5px] grid place-items-center rounded'>

@@ -21,6 +21,22 @@ const exampleProducts: TProductCard[] = [
     brand: 'Brand B',
     modelNo: '',
   },
+  {
+    productId: '3',
+    image: 'https://via.placeholder.com/200',
+    link: 'https://m.abcmart.a-rt.com/product/new?prdtNo=1010087307',
+    modelName: 'Model C',
+    brand: 'Brand C',
+    modelNo: '',
+  },
+  {
+    productId: '4',
+    image: 'https://via.placeholder.com/200',
+    link: 'https://m.abcmart.a-rt.com/product/new?prdtNo=1010087307',
+    modelName: 'Model D',
+    brand: 'Brand D',
+    modelNo: '',
+  },
 ];
 
 function LikeProduct() {
@@ -36,10 +52,10 @@ function LikeProduct() {
   return (
     <>
       <div className='text-sm/[22px] font-extrabold mb-[15px]'>총 {products.length}개</div>
-      <div className='flex-1 flex flex-wrap gap-[11px] overflow-scroll scrollbar-hide'>
+      <div className='flex flex-wrap gap-[11px] overflow-scroll scrollbar-hide'>
         {products.map(product => (
           <div
-            className='w-[166px] h-[277px '
+            className='w-[166px] h-auto'
             key={product.productId}
           >
             <ProductCard product={product} />
