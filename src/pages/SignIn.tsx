@@ -13,7 +13,7 @@ const SignIn = () => {
     <>
       {userInfo ? (
         <div className='flex mt-[25px]'>
-          <div className='w-20 h-20'>
+          <div className='w-7 h-7'>
             <img
               src={perfittCircleLogo}
               alt='perfitt-logo'
@@ -28,7 +28,6 @@ const SignIn = () => {
             </p>
 
             <SignInAuthList />
-            <SignInAutoKeyword />
           </div>
         </div>
       ) : (
