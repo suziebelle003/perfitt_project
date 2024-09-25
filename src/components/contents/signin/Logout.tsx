@@ -5,7 +5,7 @@ const Logout = () => {
   const navigate = useNavigate();
   const onLogOutClick = () => {
     auth.signOut();
-    navigate('/');
+    navigate('/Login');
   };
   return (
     <>
