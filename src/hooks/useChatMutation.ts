@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
-import { fetchChatResponseApi } from '../api/chat/FetchChatResponseApi';
+
 import { IText } from '../types/chat';
+import { fetchChatResponseApi } from '../api/chat/fetchChatResponseApi';
 
 export const useChatResponseMutation = () => {
   return useMutation({
