@@ -106,6 +106,10 @@ const Chat = () => {
     }
   };
 
+  const handleKeywordSelect = (keyword: string) => {
+    handleMessage({ text: keyword });
+  };
+
   return (
     <div className='relative w-full h-full flex flex-col'>
       <ChatHeader />
@@ -113,7 +117,7 @@ const Chat = () => {
         <div className='h-14'></div>
         <ChatWindow chatMessage={chatMessage} />
       </div>
-      {userInfo ? <SignInAutoKeyword /> : null}
+      {userInfo ? <SignInAutoKeyword onKeywordSelect={handleKeywordSelect} /> : null}
       <ChatInput handleMessage={handleMessage} />
     </div>
   );
