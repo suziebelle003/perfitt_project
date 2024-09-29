@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { TProduct } from '../../../types/db';
 import ProductCard from '../../common/ProductCard';
 
-function MILikeProduct() {
+const MILikeProduct = () => {
   const [products, setProducts] = useState<TProduct[]>();
 
   useEffect(() => {
@@ -135,6 +135,6 @@ function MILikeProduct() {
       </div>
     </>
   );
-}
+};
 
 export default MILikeProduct;
