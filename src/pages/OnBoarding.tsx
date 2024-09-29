@@ -1,18 +1,16 @@
+// 온보딩 페이지
+
+// 다시 보지 않기
+
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import OBContainer from '../components/contents/onboarding/OBContainer';
 import OBChat from '../components/contents/onboarding/OBChat';
-import footScanning from '../assets/images/foot-scanning.png';
-import { createNewChat } from '../service/CreateNewChat';
+import { footScanning } from '../assets/images/images';
 
-const OnBoarding = () => {
+function OnBoarding() {
   const navigate = useNavigate();
   const [view, setView] = useState<'AIChat' | 'FootSize'>('AIChat');
-
-  const handleCreateChat = async () => {
-    const newRoom = await createNewChat();
-    navigate(`/chat/${newRoom}`);
-  };
 
   return (
     <div className='h-full p-4 flex flex-col items-center'>
@@ -35,11 +33,11 @@ const OnBoarding = () => {
             />
           }
           btnText='시작하기'
-          handleClick={handleCreateChat}
+          handleClick={() => navigate('/chat/sign')}
         />
       )}
     </div>
   );
-};
+}
 
 export default OnBoarding;

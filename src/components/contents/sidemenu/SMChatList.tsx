@@ -1,9 +1,9 @@
-import { IChat } from '../../../types/chat';
-import chatIcon from '../../../assets/icons/chat-icon.svg';
+import { TChat } from '../../../types/db';
+import { chatIcon } from '../../../assets/icons/icons';
 
 type TSMChatListProps = {
   date: string;
-  chatlist: IChat[];
+  chatlist: TChat[];
   handleLink: (link: string) => void;
 };
 
@@ -13,9 +13,9 @@ function SMChatList({ date, chatlist, handleLink }: TSMChatListProps) {
       <div className='mb-2 text-[14px] leading-6 font-semibold text-[#A1A1AA]'>{date}</div>
       {chatlist.map(chat => (
         <button
-          key={chat.id}
+          key={chat.chatId}
           className='h-[34px] flex items-center gap-2'
-          onClick={() => handleLink(`/chat/${chat.id}`)}
+          onClick={() => handleLink(`/chat/${chat.chatId}`)}
         >
           <img
             src={chatIcon}
