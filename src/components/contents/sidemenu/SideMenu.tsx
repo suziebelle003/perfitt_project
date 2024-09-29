@@ -2,7 +2,6 @@
 
 // 리스트 날짜별 분류
 // 데이터 가져올 때 지난 7일까지만 가져오기
-// user id 값 읽어서 name, profile 가져오기
 // 로그안 안되어있을 때 로그인 페이지 link
 // 채팅 리스트 드래그 / 공유하기, 삭제하기
 // 로그아웃
@@ -10,14 +9,11 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SMChatList from './SMChatList';
-import { TUser } from '../../../types/db';
-import { IChat } from '../../../types/chat';
-import menuIcon from '../../../assets/icons/menu-icon.svg';
-import plusIcon from '../../../assets/icons/plus-mini-icon.svg';
-import userIcon from '../../../assets/icons/user-border-icon.svg';
 import { auth } from '../../../service/firebase';
-import { createNewChat } from '../../../service/CreateNewChat';
+import { TChat } from '../../../types/db';
+import { useUserStore } from '../../../stores/user.store';
+import SMChatList from './SMChatList';
+import { menuIcon, plusIcon, userIcon } from '../../../assets/icons/icons';
 
 type TSideMenuProps = {
   isMenuOpen: boolean;
@@ -26,40 +22,40 @@ type TSideMenuProps = {
 
 const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
   const navigate = useNavigate();
-  const [chatData, setChatData] = useState<IChat[]>();
-  const [user, setUser] = useState<TUser>();
+  const { user, fetchUserInfo } = useUserStore();
+  const [chatData, setChatData] = useState<TChat[]>();
 
   useEffect(() => {
+    const uid = 'qKnJXMMf4xd8KAn9UtGqegZFyjv2'; // uid 가져오기
+    fetchUserInfo(uid);
+
     setChatData([
       {
-        id: '00',
+        chatId: '00',
         title: '최근 가장 인기있는 여성 운동화',
-        date: '2024-09-10',
+        datetime: new Date('2024-09-10'),
       },
       {
-        id: '01',
+        chatId: '01',
         title: '비 오는 날 신기 좋은 레인부츠 추천',
-        date: '2024-09-19',
+        datetime: new Date('2024-09-19'),
       },
       {
-        id: '02',
+        chatId: '02',
         title: '여름 슬리퍼 추천',
-        date: '2024-09-19',
+        datetime: new Date('2024-09-17'),
       },
       {
-        id: '03',
+        chatId: '03',
         title: '가벼운 러닝화',
-        date: '2024-09-18',
+        datetime: new Date('2024-09-18'),
       },
       {
-        id: '04',
+        chatId: '04',
         title: '20대 여성이 많이 찾는 브랜드',
-        date: '2024-09-18',
+        datetime: new Date('2024-09-21'),
       },
     ]);
-    setUser({
-      name: '김펄핏',
-    });
   }, []);
 
   const handleLink = (link: string) => {
@@ -67,15 +63,9 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
     navigate(`${link}`);
   };
 
-  const handleCreateChat = async () => {
-    const newRoom = await createNewChat();
-    navigate(`/chat/${newRoom}`);
-    toggleMenu();
-  };
-
   const logout = () => {
     auth.signOut();
-    handleCreateChat();
+    handleLink('/chat/sign');
   };
 
   return (
@@ -103,7 +93,7 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
         <button
           className='flex justify-center items-center w-fit h-[36px] mt-[34px]
         pl-[7px] pr-2.5 rounded-[99px] bg-[rgb(245,245,245)]'
-          onClick={handleCreateChat}
+          onClick={() => handleLink('/chat/new')}
         >
           <img
             src={plusIcon}
@@ -134,7 +124,7 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
           </button>
           <button
             className='py-[7px] text-left hover:text-[#A1A1AA]'
-            onClick={() => handleLink('/shoe-rack/main')}
+            onClick={() => handleLink('/shoerack/main')}
           >
             신발장
           </button>
