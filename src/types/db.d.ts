@@ -2,7 +2,11 @@ export type TUser = {
   name?: string;
   email?: string;
   gender?: string;
-  birth?: string;
+  birth?: {
+    year: number;
+    month: number;
+    day: number;
+  }
   size?: string;
   profile?: string;
 }
