@@ -65,7 +65,7 @@ function MyPage() {
           <div className='flex border-y-[6px] border-y-[#F5F5F5]'>
             <button
               className='flex-1 flex justify-center items-center gap-2.5 h-[60px] hover:bg-[#F5F5F5]'
-              onClick={() => navigate('/mypage/item/like')}
+              onClick={() => navigate('/mypage/item?mode=like')}
             >
               <img
                 src={heartLineIcon}
