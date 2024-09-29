@@ -46,7 +46,7 @@ function SRShoeRack({ shoesList }: { shoesList: TShoeRackItem[] }) {
       <div className='flex flex-wrap gap-[2px]'>
         <button
           className='w-[113px] h-[110px] rounded-md flex justify-center items-center bg-[#E4E4E7]'
-          onClick={() => navigate('/shoe-rack/review/add')}
+          onClick={() => navigate('/shoerack/review/add')}
         >
           <img
             src={plusIcon}
@@ -56,7 +56,7 @@ function SRShoeRack({ shoesList }: { shoesList: TShoeRackItem[] }) {
         {sortedShoesList.map(shoes => (
           <button
             key={shoes.productId}
-            onClick={() => navigate(`/shoe-rack/review?id=${shoes.productId}`)}
+            onClick={() => navigate(`/shoerack/review?id=${shoes.productId}`)}
           >
             <SRShoeBox
               className='w-[113px] h-[110px]'

@@ -2,6 +2,7 @@
 
 // 뒤로가기
 // 로그인 안 했을 때 로그인 link
+// 프로필 사진 변경
 // 무한 스크롤?
 
 import { useEffect } from 'react';

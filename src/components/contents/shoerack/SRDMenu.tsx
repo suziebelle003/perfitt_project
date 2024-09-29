@@ -19,7 +19,7 @@ function SRDMenu({ uid, productId, isOpen }: TSRDMenu) {
       const result = await deleteProductById(uid, productId);
       if (result === 'success') {
         alert('삭제가 완료되었습니다.');
-        navigate('/shoe-rack/main');
+        navigate('/shoerack/main');
       } else alert('삭제에 실패하였습니다.');
     }
   };
@@ -41,7 +41,7 @@ function SRDMenu({ uid, productId, isOpen }: TSRDMenu) {
           text='수정하기'
           image={pencilIcon}
           hoverImage={pencilRedIcon}
-          handleClick={() => navigate(`/shoe-rack/review/edit?id=${productId}`)}
+          handleClick={() => navigate(`/shoerack/review/edit?id=${productId}`)}
         />
       </div>
     );

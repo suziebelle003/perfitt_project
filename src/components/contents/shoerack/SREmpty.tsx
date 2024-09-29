@@ -27,7 +27,7 @@ function SREmpty() {
           </div>
         </div>
       </div>
-      <Button onClick={() => navigate('/shoe-rack/review/add')}>신발 등록하기</Button>
+      <Button onClick={() => navigate('/shoerack/review/add')}>신발 등록하기</Button>
     </>
   );
 }

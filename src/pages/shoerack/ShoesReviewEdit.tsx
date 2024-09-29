@@ -40,7 +40,7 @@ function ShoesReviewEdit() {
   });
 
   useEffect(() => {
-    if (mode !== 'add' && mode !== 'edit') navigate('/shoe-rack/main');
+    if (mode !== 'add' && mode !== 'edit') navigate('/shoerack/main');
 
     if (productId !== null) {
       const fetchAndSetShoeInfo = async () => {
@@ -54,7 +54,7 @@ function ShoesReviewEdit() {
     }
 
     if (mode === 'edit') {
-      if (productId === null) navigate('/shoe-rack/review/add');
+      if (productId === null) navigate('/shoerack/review/add');
       else {
         const fetchData = async () => {
           const data = await getProductById(uid, productId);
@@ -118,7 +118,7 @@ function ShoesReviewEdit() {
     const result = await upsertProductById(uid, productId, shoeData);
     if (result === 'success') {
       alert(`${mode === 'add' ? '등록' : '수정'}되었습니다.`);
-      navigate(`/shoe-rack/review?id=${productId}`);
+      navigate(`/shoerack/review?id=${productId}`);
     } else alert(`${mode === 'add' ? '등록' : '수정'}에 실패하였습니다.`);
   };
 
@@ -139,7 +139,7 @@ function ShoesReviewEdit() {
                   <div className='text-[15px] leading-[18px] font-semibold text-[#27272A]'>신발을 선택해 주세요</div>
                   <button
                     className='h-12 bg-[#F5F5F5] rounded-md flex justify-center items-center'
-                    onClick={() => navigate('/shoe-rack/search')}
+                    onClick={() => navigate('/shoerack/search')}
                   >
                     <img
                       src={plusIcon}
