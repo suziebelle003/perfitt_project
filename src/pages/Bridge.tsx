@@ -1,9 +1,9 @@
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 
-const Bridge = () => {
+function Bridge() {
   const location = useLocation();
-  const { product, partner } = location.state || {};
+  const { product, partner } = location.state;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -14,33 +14,32 @@ const Bridge = () => {
   }, []);
 
   return (
-    <div className='h-full flex flex-col justify-center'>
-      <div className='flex flex-1 flex-col justify-center items-center'>
-        <div className='w-[120px] h-[120px] overflow-hidden rounded-full'>
-          <img
-            src={partner.image}
-            alt={partner.name}
-            className='w-full h-full object-contain'
-          />
-        </div>
+    <div className='h-full flex flex-col justify-center items-center'>
+      <div className='w-[120px] h-[120px] rounded-full overflow-hidden'>
+        <img
+          src={partner.image}
+          alt={partner.name}
+          className='w-full h-full object-contain'
+        />
+      </div>
 
-        <div className='pt-[38px] text-center'>
-          <div className='text-[18px] font-normal leading-7'>
-            [{product.brand}] {product.modelName}
-          </div>
-          <div className='text-[18px] font-semibold leading-6 py-[16px]'>
-            {partner.name !== 'Perfitt' && (
-              <>
-                {partner.name}(으)로
-                <br />
-              </>
-            )}
-            이동 중입니다.
-          </div>
-          <div className='text-[16px] font-normal text-[#808080] leading-6'>잠시만 기다려 주세요.</div>
+      <div className='mt-[38px] flex flex-col gap-4 text-center'>
+        <div className='text-[18px] leading-7 tracking-[-0.015em]'>
+          [{product.brand}] {product.modelName}
         </div>
+        <div className='text-[18px] leading-6 font-semibold tracking-[-0.015em]'>
+          {partner.name !== 'Perfitt' && (
+            <>
+              {partner.name}(으)로
+              <br />
+            </>
+          )}
+          이동 중입니다.
+        </div>
+        <div className='text-[16px] leading-6 text-[#808080]'>잠시만 기다려 주세요.</div>
       </div>
     </div>
   );
-};
+}
+
 export default Bridge;
