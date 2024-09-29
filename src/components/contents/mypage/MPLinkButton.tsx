@@ -7,7 +7,7 @@ type TMPBottomButtonProps = {
   link: string;
 };
 
-function MPLinkButton({ title, imgAlt, link }: TMPBottomButtonProps) {
+const MPLinkButton = ({ title, imgAlt, link }: TMPBottomButtonProps) => {
   const navigate = useNavigate();
 
   return (
@@ -22,6 +22,6 @@ function MPLinkButton({ title, imgAlt, link }: TMPBottomButtonProps) {
       />
     </button>
   );
-}
+};
 
 export default MPLinkButton;

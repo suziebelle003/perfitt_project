@@ -3,9 +3,13 @@ import brand from './brand.svg';
 import checkIcon from './check-icon.svg';
 import downArrowIcon from './down-arrow-icon.svg';
 import exportIcon from './export-icon.svg';
-import footPrint from './footprint.svg';
+import footLoading from './foot-loading.gif';
+import footScanning from './foot-scanning.png';
+import footprint404 from './footprint-404.svg';
 import galleryIcon from './gallery-Icon.svg';
 import kolonLogo from './kolon-logo.png';
+import obList1 from './ob-list1.png';
+import obList2 from './ob-list2.png';
 import perfittCircleLogo from './perfitt-circle-logo.svg';
 import perfittLogo from './perfitt-logo.svg';
 import questionMark from './question-mark.svg';
@@ -24,9 +28,13 @@ export {
   checkIcon,
   downArrowIcon,
   exportIcon,
-  footPrint,
+  footLoading,
+  footScanning,
+  footprint404,
   galleryIcon,
   kolonLogo,
+  obList1,
+  obList2,
   perfittCircleLogo,
   perfittLogo,
   questionMark,

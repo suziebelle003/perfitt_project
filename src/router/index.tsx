@@ -10,8 +10,6 @@ import NotFound from '../pages/NotFound';
 import Chat from '../pages/Chat';
 import MyFootInfo from '../pages/mypage/MyFootInfo';
 import MyPage from '../pages/mypage/MyPage';
-import SignUp from '../pages/SignUp';
-import Login from '../pages/Login';
 import MyItem from '../pages/mypage/MyItem';
 import Bridge from '../pages/Bridge';
 
@@ -28,14 +26,6 @@ const router = createBrowserRouter([
         element: <OnBoarding />,
       },
       {
-        path: '/sign-up',
-        element: <SignUp />,
-      },
-      {
-        path: '/login',
-        element: <Login />,
-      },
-      {
         path: '/chat/:id',
         element: <Chat />,
       },
@@ -47,7 +37,7 @@ const router = createBrowserRouter([
             element: <MyPage />,
           },
           {
-            path: 'item/:mode',
+            path: 'item',
             element: <MyItem />,
           },
           {

@@ -2,8 +2,7 @@ import { useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import OBMyMessage from './OBMyMessage';
 import OBAIMessage from './OBAIMessage';
-import img1 from '../../../assets/images/ob-list1.png';
-import img2 from '../../../assets/images/ob-list2.png';
+import { obList1, obList2 } from '../../../assets/images/images';
 
 function OBChat() {
   const [step, setStep] = useState(0);
@@ -41,7 +40,7 @@ function OBChat() {
               cursor={false}
             />
           }
-          imgSrc={img1}
+          imgSrc={obList1}
         />
       )}
       {step >= 2 && (
@@ -71,7 +70,7 @@ function OBChat() {
               cursor={false}
             />
           }
-          imgSrc={img2}
+          imgSrc={obList2}
         />
       )}
     </div>

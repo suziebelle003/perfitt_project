@@ -6,25 +6,21 @@
 // 무한 스크롤
 
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import Header from '../../components/common/Header';
 import MIToggleMenu from '../../components/contents/mypage/MIToggleMenu';
 import MILike from '../../components/contents/mypage/MILike';
 import MILatestItem from '../../components/contents/mypage/MILatestItem';
 
 function MyItem() {
-  const navigate = useNavigate();
-  const { mode } = useParams();
+  const [searchParams] = useSearchParams();
+  const mode = searchParams.get('mode');
   const [toggleMenu, setToggleMenu] = useState<string>();
 
   useEffect(() => {
-    setToggleMenu(mode);
+    if (mode === 'latest') setToggleMenu(mode);
+    else setToggleMenu('like');
   }, []);
-
-  const handleToggleMenu = (menu: string) => {
-    setToggleMenu(menu);
-    navigate(`/mypage/item/${menu}`);
-  };
 
   return (
     <div className='flex flex-col h-screen'>
@@ -35,7 +31,7 @@ function MyItem() {
         <div className='h-full flex flex-col z-99'>
           <MIToggleMenu
             mode={toggleMenu}
-            setMode={handleToggleMenu}
+            setMode={setToggleMenu}
           />
           <div className='flex-1 flex flex-col p-4 pb-0 overflow-auto'>
             {toggleMenu === 'like' ? <MILike /> : <MILatestItem />}

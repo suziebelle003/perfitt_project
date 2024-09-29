@@ -14,10 +14,10 @@ const Header = (props: THeaderProps) => {
       try {
         const previousPageDomain = new URL(previousPage).origin;
         if (currentPageDomain === previousPageDomain) navigate(-1);
-        else navigate('/chat');
+        else navigate('/chat/sign');
       } catch (error) {
         console.error(error);
-        navigate('/chat');
+        navigate('/chat/sign');
       }
     } else alert('이전 페이지가 없습니다.');
   };

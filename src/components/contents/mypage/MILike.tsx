@@ -2,7 +2,7 @@ import { useState } from 'react';
 import MILikeProduct from './MILikeProduct';
 import MILikeBrand from './MILikeBrand';
 
-function MILike() {
+const MILike = () => {
   const [toggleMenu, setToggleMenu] = useState<'product' | 'brand'>('product');
 
   return (
@@ -28,6 +28,6 @@ function MILike() {
       </div>
     </div>
   );
-}
+};
 
 export default MILike;

@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import footPrint404 from '../assets/images/footprint-404.svg';
+import { footprint404 } from '../assets/images/images';
 
 function NotFound() {
   const navigate = useNavigate();
@@ -7,7 +7,7 @@ function NotFound() {
   return (
     <div className='w-full h-full flex flex-col items-center pt-[20%]'>
       <img
-        src={footPrint404}
+        src={footprint404}
         alt='404 Not found'
         className='w-[252px] h-[123px] opacity-40'
       />
@@ -21,7 +21,7 @@ function NotFound() {
           <br />
           <button
             className='mt-8 text-xl text-[#CCCCCC] hover:text-[#333333]'
-            onClick={() => navigate('/chat')}
+            onClick={() => navigate('/chat/sign')}
           >
             Go To Home
           </button>
