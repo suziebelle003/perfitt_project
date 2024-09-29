@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import LikeProduct from './LikeProduct';
-import LikeBrand from './LikeBrand';
+import MILikeProduct from './MILikeProduct';
+import MILikeBrand from './MILikeBrand';
 
-function LikeItem() {
+function MILike() {
   const [toggleMenu, setToggleMenu] = useState<'product' | 'brand'>('product');
 
   return (
@@ -24,10 +24,10 @@ function LikeItem() {
         </button>
       </div>
       <div className='flex-1 overflow-auto'>
-        <div className='h-full flex flex-col'>{toggleMenu === 'product' ? <LikeProduct /> : <LikeBrand />}</div>
+        <div className='h-full flex flex-col'>{toggleMenu === 'product' ? <MILikeProduct /> : <MILikeBrand />}</div>
       </div>
     </div>
   );
 }
 
-export default LikeItem;
+export default MILike;
