@@ -59,7 +59,7 @@ function ShoesSearch() {
     try {
       if (selected !== '' && data !== undefined) {
         const result = await upsertProduct(data);
-        if (result === 'success') navigate(`/shoe-rack/review/add?id=${selected}`);
+        if (result === 'success') navigate(`/shoerack/review/add?id=${selected}`);
         else alert('오류가 발생하였습니다. 다시 시도해주세요.');
       }
     } catch (error) {

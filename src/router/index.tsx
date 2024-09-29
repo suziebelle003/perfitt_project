@@ -11,9 +11,7 @@ import Chat from '../pages/Chat';
 import MyFootInfo from '../pages/mypage/MyFootInfo';
 import MyPage from '../pages/mypage/MyPage';
 import SignUp from '../pages/SignUp';
-import SignIn from '../pages/SignIn';
 import Login from '../pages/Login';
-import AuthProvider from '../service/AuthProvider';
 import MyItem from '../pages/mypage/MyItem';
 import Bridge from '../pages/Bridge';
 
@@ -26,20 +24,16 @@ const router = createBrowserRouter([
         element: <SplashScreen />,
       },
       {
-        path: '/signin',
-        element: (
-          <AuthProvider>
-            <SignIn />
-          </AuthProvider>
-        ),
+        path: '/onboarding',
+        element: <OnBoarding />,
       },
       {
-        path: '/signup',
+        path: '/sign-up',
         element: <SignUp />,
       },
       {
-        path: '/onboarding',
-        element: <OnBoarding />,
+        path: '/login',
+        element: <Login />,
       },
       {
         path: '/chat/:id',
@@ -63,7 +57,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: '/shoe-rack',
+        path: '/shoerack',
         children: [
           {
             path: 'main',
@@ -84,20 +78,12 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: '*',
-        element: <NotFound />,
-      },
-      {
-        path: '/sign-up',
-        element: <SignUp />,
-      },
-      {
-        path: '/login',
-        element: <Login />,
-      },
-      {
         path: '/bridge',
         element: <Bridge />,
+      },
+      {
+        path: '*',
+        element: <NotFound />,
       },
     ],
   },
