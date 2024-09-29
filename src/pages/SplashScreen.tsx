@@ -1,6 +1,9 @@
+// Splash Screen
+
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { footPrint, perfittLogo } from '../assets/images/images';
+import { footprintIcon } from '../assets/icons/icons';
+import { perfittLogo } from '../assets/images/images';
 
 function SplashScreen() {
   const navigate = useNavigate();
@@ -16,32 +19,32 @@ function SplashScreen() {
     <div className='relative w-full h-full flex justify-center items-center bg-black'>
       <div className='relative w-full min-h-[140px] blur-[2px]'>
         <img
-          src={footPrint}
+          src={footprintIcon}
           alt='footprint'
           className='absolute top-2.5 left-7 w-[35px] h-20 rotate-[100deg] opacity-0 animate-footprint1'
         />
         <img
-          src={footPrint}
+          src={footprintIcon}
           alt='footprint'
           className='absolute top-[60px] left-[80px] w-[35px] h-20 scale-x-[-1] rotate-[90deg] opacity-0 animate-footprint2'
         />
         <img
-          src={footPrint}
+          src={footprintIcon}
           alt='footprint'
           className='absolute top-2.5 left-[135px] w-[35px] h-20 rotate-[85deg] opacity-0 animate-footprint3'
         />
         <img
-          src={footPrint}
+          src={footprintIcon}
           alt='footprint'
           className='absolute top-12 left-[210px] w-[35px] h-20 scale-x-[-1] rotate-[75deg] opacity-0 animate-footprint4'
         />
         <img
-          src={footPrint}
+          src={footprintIcon}
           alt='footprint'
           className='absolute -top-4 left-[255px] w-[35px] h-20 rotate-[67deg] opacity-0 animate-footprint5'
         />
         <img
-          src={footPrint}
+          src={footprintIcon}
           alt='footprint'
           className='absolute top-2 left-80 w-[35px] h-20 scale-x-[-1] rotate-[54deg] opacity-0 animate-footprint6'
         />

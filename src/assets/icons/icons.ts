@@ -2,6 +2,7 @@ import aiBalloonIcon from './ai-balloon-icon.svg';
 import cameraIcon from './camera-icon.svg';
 import cameraMiniIcon from './camera-mini-icon.svg';
 import chatIcon from './chat-icon.svg';
+import footprintIcon from './footprint-icon.svg';
 import heartFilledIcon from './heart-filled-icon.svg';
 import heartIcon from './heart-icon.svg';
 import heartLineIcon from './heart-line-icon.svg';
@@ -30,6 +31,7 @@ export {
   cameraIcon,
   cameraMiniIcon,
   chatIcon,
+  footprintIcon,
   heartFilledIcon,
   heartIcon,
   heartLineIcon,
