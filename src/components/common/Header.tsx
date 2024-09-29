@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { THeaderProps } from '../../types/header';
-import { leftArrowIcon, verticalMenuIcon } from '../../assets/images/images';
+import { leftArrowIcon, verticalMenuIcon } from '../../assets/icons/icons';
 
 const Header = (props: THeaderProps) => {
   const { title, back, rightChild, handleRightBtnClick } = props;

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { abcMart, pinkHeart } from '../../../../../assets/images/images';
+import { abcMart } from '../../../../../assets/images/images';
 import { IProductItemProps } from '../../../../../types/chat';
+import { heartFilledIcon } from '../../../../../assets/icons/icons';
 
 const ProductItem = ({ product }: IProductItemProps) => {
   return (
@@ -9,7 +10,7 @@ const ProductItem = ({ product }: IProductItemProps) => {
         {/* 사이즈 추천,  하트 이미지*/}
         <div className='flex justify-between'>
           <img
-            src={pinkHeart}
+            src={heartFilledIcon}
             alt='pinkheart'
             className='w-4 h-4 absolute top-2 right-2'
           />
