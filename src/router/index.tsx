@@ -8,13 +8,13 @@ import ShoesReviewDetail from '../pages/shoerack/ShoesReviewDetail';
 import ShoesSearch from '../pages/shoerack/ShoesSearch';
 import NotFound from '../pages/NotFound';
 import Chat from '../pages/Chat';
-import MyFootInfo from '../pages/MyFootInfo';
-import MyPage from '../pages/MyPage';
+import MyFootInfo from '../pages/mypage/MyFootInfo';
+import MyPage from '../pages/mypage/MyPage';
 import SignUp from '../pages/SignUp';
 import SignIn from '../pages/SignIn';
 import Login from '../pages/Login';
 import AuthProvider from '../service/AuthProvider';
-import Item from '../pages/Item';
+import MyItem from '../pages/mypage/MyItem';
 import Bridge from '../pages/Bridge';
 
 const router = createBrowserRouter([
@@ -47,15 +47,20 @@ const router = createBrowserRouter([
       },
       {
         path: '/mypage',
-        element: <MyPage />,
-      },
-      {
-        path: '/mypage/item/:mode',
-        element: <Item />,
-      },
-      {
-        path: '/mypage/foot',
-        element: <MyFootInfo />,
+        children: [
+          {
+            path: 'main',
+            element: <MyPage />,
+          },
+          {
+            path: 'item/:mode',
+            element: <MyItem />,
+          },
+          {
+            path: 'foot',
+            element: <MyFootInfo />,
+          },
+        ],
       },
       {
         path: '/shoe-rack',

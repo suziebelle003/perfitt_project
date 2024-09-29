@@ -4,12 +4,12 @@
 // 좋아요 기능 추가
 
 import { useEffect, useState } from 'react';
-import ItemToggle from '../components/contents/item/ItemToggle';
+import ItemToggle from '../../components/contents/myitem/ItemToggle';
 import { useParams } from 'react-router-dom';
-import LikeItem from '../components/contents/item/LikeItem';
-import LatestItem from '../components/contents/item/LatestItem';
+import LikeItem from '../../components/contents/myitem/LikeItem';
+import LatestItem from '../../components/contents/myitem/LatestItem';
 
-function Item() {
+function MyItem() {
   const { mode } = useParams();
   const [toggleMenu, setToggleMenu] = useState<string>();
 
@@ -31,4 +31,4 @@ function Item() {
   );
 }
 
-export default Item;
+export default MyItem;
