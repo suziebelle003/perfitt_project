@@ -4,9 +4,12 @@ import googleLogo from '../../../assets/images/google-logo.png';
 import { useState } from 'react';
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../../../service/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const SignInSocialBtn = () => {
-  const [userData, setUserData] = useState<any>(null); // userData 상태 타입 지정
+  const [userData, setUserData] = useState<any>(null);
+
+  const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
@@ -14,18 +17,18 @@ const SignInSocialBtn = () => {
       const result = await signInWithPopup(auth, provider);
       setUserData(result.user); // 로그인 후 사용자 데이터를 상태에 설정
       console.log(result);
+      navigate('/chat/signin ');
     } catch (error) {
       console.error('구글 로그인 실패:', error);
     }
   };
 
   const handleEmailLogin = () => {
-    // 이메일 로그인 핸들러 구현
+    navigate('/login');
     console.log('이메일 로그인 클릭됨');
   };
 
   const handleSignUp = () => {
-    // 회원가입 핸들러 구현
     console.log('회원가입 클릭됨');
   };
 

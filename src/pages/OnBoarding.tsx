@@ -3,10 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import OBContainer from '../components/contents/onboarding/OBContainer';
 import OBChat from '../components/contents/onboarding/OBChat';
 import footScanning from '../assets/images/foot-scanning.png';
+import { createNewChat } from '../service/CreateNewChat';
 
 const OnBoarding = () => {
   const navigate = useNavigate();
   const [view, setView] = useState<'AIChat' | 'FootSize'>('AIChat');
+
+  const handleCreateChat = async () => {
+    const newRoom = await createNewChat();
+    navigate(`/chat/${newRoom}`);
+  };
 
   return (
     <div className='h-full p-4 flex flex-col items-center'>
@@ -29,7 +35,7 @@ const OnBoarding = () => {
             />
           }
           btnText='시작하기'
-          handleClick={() => navigate('/chat/sign')}
+          handleClick={handleCreateChat}
         />
       )}
     </div>

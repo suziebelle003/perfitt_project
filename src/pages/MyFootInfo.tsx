@@ -1,7 +1,15 @@
 import Header from '../components/common/Header';
 import myfoot from '../assets/images/foot-loading.gif';
 import Button from '../components/common/Button';
+import { useEffect } from 'react';
+
+const win = window as any;
+
 const MyFootInfo = () => {
+  useEffect(() => {
+    win.initializePerfittSize();
+  }, []);
+
   return (
     <>
       <Header
@@ -22,7 +30,9 @@ const MyFootInfo = () => {
             </div>
           </div>
         </div>
-        <Button>내 발 측정하기</Button>
+        <div id='perfitt-block-2'>
+          <Button>내 발 측정하기</Button>
+        </div>
       </div>
     </>
   );

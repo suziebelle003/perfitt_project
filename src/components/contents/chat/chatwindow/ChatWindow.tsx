@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { IChat, IMessage } from '../../../../types/chat';
 import MyMessage from './message/MyMessage';
 import AIContainer from './message/AIContainer';
+import SignIn from '../../../../pages/SignIn';
 
 const ChatWindow = ({ chatMessage }: IChat) => {
   const messagesRef = useRef<HTMLDivElement>(null);
@@ -14,11 +15,15 @@ const ChatWindow = ({ chatMessage }: IChat) => {
 
   return (
     <div className='flex flex-col px-4'>
+      <SignIn />
       <ul>
-        {chatMessage.map((item: IMessage) => (
+        {chatMessage?.map((item: IMessage) => (
           <li key={item.id}>
             {item.target === 'user' ? (
-              <MyMessage text={item.message} />
+              <MyMessage
+                text={item.message}
+                image={item.image}
+              />
             ) : (
               <AIContainer
                 message={item.message}

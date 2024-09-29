@@ -11,17 +11,20 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SMChatList from './SMChatList';
+import { TUser } from '../../../types/db';
 import { IChat } from '../../../types/chat';
 import menuIcon from '../../../assets/icons/menu-icon.svg';
 import plusIcon from '../../../assets/icons/plus-mini-icon.svg';
 import userIcon from '../../../assets/icons/user-border-icon.svg';
+import { auth } from '../../../service/firebase';
+import { createNewChat } from '../../../service/CreateNewChat';
 
 type TSideMenuProps = {
   isMenuOpen: boolean;
   toggleMenu: () => void;
 };
 
-const SideMenu = ({ toggleMenu, isMenuOpen }: TSideMenuProps) => {
+const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
   const navigate = useNavigate();
   const [chatData, setChatData] = useState<IChat[]>();
   const [user, setUser] = useState<TUser>();
@@ -64,6 +67,17 @@ const SideMenu = ({ toggleMenu, isMenuOpen }: TSideMenuProps) => {
     navigate(`${link}`);
   };
 
+  const handleCreateChat = async () => {
+    const newRoom = await createNewChat();
+    navigate(`/chat/${newRoom}`);
+    toggleMenu();
+  };
+
+  const logout = () => {
+    auth.signOut();
+    handleCreateChat();
+  };
+
   return (
     <>
       <div
@@ -89,7 +103,7 @@ const SideMenu = ({ toggleMenu, isMenuOpen }: TSideMenuProps) => {
         <button
           className='flex justify-center items-center w-fit h-[36px] mt-[34px]
         pl-[7px] pr-2.5 rounded-[99px] bg-[rgb(245,245,245)]'
-          onClick={() => handleLink('/chat/new')}
+          onClick={handleCreateChat}
         >
           <img
             src={plusIcon}
@@ -162,7 +176,12 @@ const SideMenu = ({ toggleMenu, isMenuOpen }: TSideMenuProps) => {
             </div>
             <div className='max-w-[150px] text-[16px] leading-5 font-semibold truncate text-left'>{user?.name}</div>
           </button>
-          <button className='text-[14px] text-[#AAAAAA] underline hover:text-[#F87171]'>로그아웃</button>
+          <button
+            className='text-[14px] text-[#AAAAAA] underline hover:text-[#F87171]'
+            onClick={logout}
+          >
+            로그아웃
+          </button>
         </div>
       </nav>
     </>
