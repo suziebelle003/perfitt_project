@@ -1,9 +1,9 @@
 type TItemToggleProps = {
   mode: string | undefined;
-  setMode: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setMode: (menu: string) => void;
 };
 
-function ItemToggle({ mode, setMode }: TItemToggleProps) {
+function MIToggleMenu({ mode, setMode }: TItemToggleProps) {
   return (
     <div className='w-full text-base flex flex-row items-center mb-[3px]'>
       <button
@@ -22,4 +22,4 @@ function ItemToggle({ mode, setMode }: TItemToggleProps) {
   );
 }
 
-export default ItemToggle;
+export default MIToggleMenu;

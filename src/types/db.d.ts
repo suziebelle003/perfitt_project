@@ -20,6 +20,13 @@ export type TProduct = {
   image?: string;
 };
 
+export type TBrand = {
+  brandId: string;
+  nameKor: string;
+  nameEn: string;
+  image: string;
+}
+
 export type TShoeRackReview = {
   star: number;
   datetime?: Date | firebase.firestore.Timestamp;

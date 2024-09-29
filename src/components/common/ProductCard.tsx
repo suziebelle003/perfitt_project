@@ -1,96 +1,91 @@
-import { useNavigate } from 'react-router-dom';
-import { abcMart } from '../../assets/images/images';
-import { perfittCircleLogo } from '../../assets/images/images';
-import { TProductCardProps } from '../../types/like';
-import pinkHeart from '../../assets/images/pinkheart.svg';
-import heart from '../../assets/images/heart.svg';
-import aiRecomend from '../../assets/images/airecomend.svg';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { TLikeProduct, TPartner } from '../../types/like';
 import { getPartnerBrand } from '../../hooks/getPartnerBrand';
+import { aiBalloonIcon, heartFilledIcon, heartIcon } from '../../assets/icons/icons';
 
-type TPartner = {
-  name: string;
-  image: string;
-};
-
-const ProductCard = ({ product }: TProductCardProps) => {
+const ProductCard = ({ product }: { product: TLikeProduct }) => {
   const navigate = useNavigate();
-  const [isLike, setIsLike] = useState(true);
   const [partner, setPartner] = useState<TPartner>();
 
   useEffect(() => {
-    setPartner(getPartnerBrand(product.link));
+    if (product.link) setPartner(getPartnerBrand(product.link));
   }, []);
 
-  const handleNavigation = () => {
-    navigate('/bridge', { state: { product, partner } });
+  const handleLike = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    event.stopPropagation();
   };
 
-  const getStoreImage = (link: string) => {
-    if (link.includes('a-rt')) return abcMart;
-    if (link.includes('perfittdemo')) return perfittCircleLogo;
-    if (link.includes('example')) return 'https://via.placeholder.com/200';
-    return null;
-  };
-
-  const storeImage = getStoreImage(product.link);
+  const moreShoesAI = () => {};
 
   return (
-    <article className=' w-full bg-[#F5F5F5] rounded-[6.27px] relative'>
-      <section className='relative'>
-        <div className='flex justify-between'>
-          <div className='mt-2 ml-[10px] bg-gradient-to-r from-[#E8F4FE] to-[#FFECFE] p-[5px] grid place-items-center rounded'>
-            <span className='bg-gradient-to-r from-[#12C2E9] via-[#C471ED] to-[#F64F59] text-transparent bg-clip-text text-xs font-semibold'>
-              240mm 추천
-            </span>
-          </div>
+    <article className='w-[166px] bg-white'>
+      <div
+        className='cursor-pointer'
+        onClick={() => navigate('/bridge', { state: { product, partner } })}
+      >
+        {/* image */}
+        <div className='relative w-[166px] h-[156px] rounded-md bg-[#F5F5F5] overflow-hidden'>
           <img
-            className={`w-[15px] h-[14px] mt-[11px] mr-[10px] ${isLike ? 'animate-dropIn' : ''}`}
-            src={isLike ? pinkHeart : heart}
-            alt={isLike ? 'pinkHeart' : 'heart'}
-            onClick={() => setIsLike(!isLike)}
+            src={product.image}
+            alt={product.modelName}
+            className='w-full h-full object-cover'
           />
+          <div
+            className='absolute top-2 left-2.5 py-0.5 px-[5px] rounded
+            bg-gradient-to-r from-[#E8F4FE] to-[#FFECFE]'
+          >
+            <div
+              className='text-xs font-semibold text-transparent bg-clip-text
+              bg-gradient-to-r from-[#12C2E9] via-[#C471ED] to-[#F64F59]'
+            >
+              240mm 추천
+            </div>
+          </div>
+          <button
+            className='absolute top-[11px] right-2.5 w-[15px] h-[14px]'
+            onClick={handleLike}
+          >
+            <img
+              src={product.like ? heartFilledIcon : heartIcon}
+              alt='like'
+              className='w-full h-full object-fill'
+            />
+          </button>
         </div>
 
-        {/* 신발 이미지 */}
-        <button onClick={handleNavigation}>
-          <div className='w-full h-[109px] overflow-hidden'>
+        {/* info */}
+        <div className='relative py-2.5 px-1.5'>
+          <div className='flex flex-col gap-[3px]'>
+            <div className='text-sm/[22px] truncate'>{product.brand}</div>
+            <div className='text-sm/[17px] font-semibold truncate'>{product.modelName}</div>
+          </div>
+          {/* <div className='mt-2.5 text-sm/[17px] font-semibold'>{product.price}</div> */}
+          <div
+            className='absolute top-[-12px] right-1.5 w-5 h-5
+              rounded-full overflow-hidden bg-white'
+          >
             <img
-              className='object-cover'
-              src={product.image}
-              alt={product.modelName}
+              src={partner?.image}
+              alt='like'
+              className='w-full h-full object-cover'
             />
           </div>
-        </button>
+        </div>
+      </div>
 
-        {/* 상점 이미지 */}
-        {storeImage && (
-          <img
-            className=' absolute bottom-[-12px] right-[6px]'
-            src={storeImage}
-            alt='store'
-          />
-        )}
-      </section>
-
-      <article className='w-full h-full text-sm bg-white'>
-        <section className=' flex flex-col'>
-          <div className='px-1.5 py-[10px] gap-2.5'>
-            <p className='mb-[3px]'>{product.brand}</p>
-            <p className='font-semibold text-ellipsis whitespace-nowrap overflow-hidden'>{product.modelName}</p>
-          </div>
-          <div>
-            <button className='flex w-full gap-1.5 px-[10px] py-2 border rounded-md font-semibold text-[10px] leading-4'>
-              <img
-                className='ml-[22.5px] w-4 h-4'
-                src={aiRecomend}
-                alt='airecomend'
-              />
-              이 신발 더 알아보기
-            </button>
-          </div>
-        </section>
-      </article>
+      {/* ai btn */}
+      <button
+        className='w-full h-[32px] flex justify-center items-center gap-1.5
+          rounded-md border-[0.6px] border-[#E4E4E7]'
+        onClick={moreShoesAI}
+      >
+        <img
+          src={aiBalloonIcon}
+          alt='AI learn more'
+        />
+        <div className='text-[10px] font-semibold'>이 신발 더 알아보기</div>
+      </button>
     </article>
   );
 };

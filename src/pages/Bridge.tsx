@@ -29,7 +29,13 @@ const Bridge = () => {
             [{product.brand}] {product.modelName}
           </div>
           <div className='text-[18px] font-semibold leading-6 py-[16px]'>
-            {partner.name}(으)로 <br /> 이동 중입니다.
+            {partner.name !== 'Perfitt' && (
+              <>
+                {partner.name}(으)로
+                <br />
+              </>
+            )}
+            이동 중입니다.
           </div>
           <div className='text-[16px] font-normal text-[#808080] leading-6'>잠시만 기다려 주세요.</div>
         </div>
