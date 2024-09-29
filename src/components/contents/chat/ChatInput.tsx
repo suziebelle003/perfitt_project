@@ -1,7 +1,8 @@
 import Button from '../../common/Button';
-import { galleryIcon, leftArrowIcon, upArrow } from '../../../assets/images/images';
+import { galleryIcon, upArrow } from '../../../assets/images/images';
 import { IChatInput } from '../../../types/chat';
 import { useState } from 'react';
+import { leftArrowIcon } from '../../../assets/icons/icons';
 
 const dummyList = [
   'https://cdn.pixabay.com/photo/2023/05/17/13/38/lofoten-islands-8000196_960_720.jpg',
