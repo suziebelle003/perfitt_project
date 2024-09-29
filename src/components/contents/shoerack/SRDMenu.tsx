@@ -1,10 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import SRDMenuDetail from './SRDMenuDetail';
 import { useShoeRackStore } from '../../../stores/shoerack.store';
-import trashIcon from '../../../assets/icons/trash-icon.svg';
-import trashRedIcon from '../../../assets/icons/trash-red-icon.svg';
-import pencilIcon from '../../../assets/icons/pencil-icon.svg';
-import pencilRedIcon from '../../../assets/icons/pencil-red-icon.svg';
+import SRDMenuDetail from './SRDMenuDetail';
+import { pencilIcon, pencilRedIcon, trashIcon, trashRedIcon } from '../../../assets/icons/icons';
 
 type TSRDMenu = {
   uid: string;

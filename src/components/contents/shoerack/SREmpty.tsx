@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { shoeSearch } from '../../../assets/images/images';
 import Button from '../../common/Button';
+import { shoeSearch } from '../../../assets/images/images';
 
 function SREmpty() {
   const navigate = useNavigate();

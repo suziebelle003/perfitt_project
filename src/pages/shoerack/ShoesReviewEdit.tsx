@@ -7,14 +7,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { twMerge } from 'tailwind-merge';
+import { TProduct } from '../../types/db';
+import { useShoeRackStore } from '../../stores/shoerack.store';
+import { getProduct } from '../../api/getProduct';
+import HeaderLayout from '../../layout/HeaderLayout';
 import SRShoeInfo from '../../components/contents/shoerack/SRShoeInfo';
 import SROptionSelector from '../../components/contents/shoerack/SROptionSelector';
 import Button from '../../components/common/Button';
-import { plusIcon, starFillIcon, starIcon } from '../../assets/images/images';
-import HeaderLayout from '../../layout/HeaderLayout';
-import { getProduct } from '../../api/getProduct';
-import { TProduct } from '../../types/db';
-import { useShoeRackStore } from '../../stores/shoerack.store';
+import { plusIcon, starFillIcon, starIcon } from '../../assets/icons/icons';
 
 function ShoesReviewEdit() {
   const uid = 'qKnJXMMf4xd8KAn9UtGqegZFyjv2'; // uid 가져오기

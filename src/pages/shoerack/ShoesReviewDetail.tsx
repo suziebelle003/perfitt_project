@@ -5,12 +5,12 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import HeaderLayout from '../../layout/HeaderLayout';
-import SRShoeBox from '../../components/contents/shoerack/SRShoeBox';
-import { useShoeRackStore } from '../../stores/shoerack.store';
 import { TShoeRackItem } from '../../types/shoerack';
-import { starFillIcon } from '../../assets/images/images';
+import { useShoeRackStore } from '../../stores/shoerack.store';
+import HeaderLayout from '../../layout/HeaderLayout';
 import SRDMenu from '../../components/contents/shoerack/SRDMenu';
+import SRShoeBox from '../../components/contents/shoerack/SRShoeBox';
+import { starFillIcon } from '../../assets/icons/icons';
 
 function ShoesReviewDetail() {
   const uid = 'qKnJXMMf4xd8KAn9UtGqegZFyjv2'; // uid 가져오기
