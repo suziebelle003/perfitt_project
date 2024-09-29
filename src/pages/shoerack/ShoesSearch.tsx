@@ -9,13 +9,13 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TProduct } from '../../types/db';
+import { upsertProduct } from '../../api/upsertProduct';
+import HeaderLayout from '../../layout/HeaderLayout';
 import SRSearchHistory from '../../components/contents/shoerack/SRSearchHistory';
 import SRShoeInfo from '../../components/contents/shoerack/SRShoeInfo';
 import Button from '../../components/common/Button';
-import { cameraIcon, searchIcon } from '../../assets/images/images';
-import HeaderLayout from '../../layout/HeaderLayout';
-import { TProduct } from '../../types/db';
-import { upsertProduct } from '../../api/upsertProduct';
+import { cameraIcon, searchIcon } from '../../assets/icons/icons';
 
 function ShoesSearch() {
   const navigate = useNavigate();

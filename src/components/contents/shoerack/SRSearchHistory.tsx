@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { xGrayIcon } from '../../../assets/images/images';
+import { xGrayIcon } from '../../../assets/icons/icons';
 
 function SRSearchHistory({ handleSearch }: { handleSearch: () => void }) {
   const [searchData, setSearchData] = useState<string[]>();

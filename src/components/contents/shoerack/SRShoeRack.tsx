@@ -1,8 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import SRShoeBox from './SRShoeBox';
-import { plusIcon, polygonIcon } from '../../../assets/images/images';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { TShoeRackItem } from '../../../types/shoerack';
+import SRShoeBox from './SRShoeBox';
+import { plusIcon, polygonIcon } from '../../../assets/icons/icons';
 
 function SRShoeRack({ shoesList }: { shoesList: TShoeRackItem[] }) {
   const navigate = useNavigate();

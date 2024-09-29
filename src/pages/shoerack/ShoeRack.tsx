@@ -5,12 +5,12 @@
 // 무한 스크롤?
 
 import { useEffect } from 'react';
+import { useUserStore } from '../../stores/user.store';
+import { useShoeRackStore } from '../../stores/shoerack.store';
 import HeaderLayout from '../../layout/HeaderLayout';
 import SREmpty from '../../components/contents/shoerack/SREmpty';
 import SRShoeRack from '../../components/contents/shoerack/SRShoeRack';
-import { useUserStore } from '../../stores/user.store';
-import { useShoeRackStore } from '../../stores/shoerack.store';
-import { plusCircleIcon, userIcon } from '../../assets/images/images';
+import { plusCircleIcon, userIcon } from '../../assets/icons/icons';
 
 function ShoeRack() {
   const { user, fetchUserInfo } = useUserStore();
