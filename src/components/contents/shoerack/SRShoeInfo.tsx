@@ -10,7 +10,7 @@ function SRShoeInfo({ image, brand, modelName }: TProduct) {
         imgAlt={modelName}
       />
       <div className='flex flex-col gap-1.5 max-w-64'>
-        <div className='text-[14px] leading-[17px]'>{brand}</div>
+        <div className='text-[14px] leading-[17px] truncate'>{brand}</div>
         <div className='max-h-[30px] text-[15px] leading-[15px] font-medium truncate'>{modelName}</div>
         {/* <div className='text-[14px] leading-[15px] font-medium'>{price}</div> */}
       </div>

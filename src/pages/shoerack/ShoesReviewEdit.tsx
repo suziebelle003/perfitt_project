@@ -6,7 +6,6 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { twMerge } from 'tailwind-merge';
 import { TProduct } from '../../types/db';
 import { useShoeRackStore } from '../../stores/shoerack.store';
 import { getProduct } from '../../api/getProduct';
@@ -210,7 +209,7 @@ function ShoesReviewEdit() {
                           {shoeData.size === option && (
                             <button
                               className='absolute top-[4px] left-[-7px] w-[26px] h-[18px]
-                          border-[3px] border-[#3F3F46] rounded-[99px] bg-black'
+                                border-[3px] border-[#3F3F46] rounded-[99px] bg-black'
                             />
                           )}
                         </div>
@@ -222,11 +221,9 @@ function ShoesReviewEdit() {
                       <button
                         key={index}
                         onClick={() => handleOptionSelect('size', option)}
-                        className={twMerge(
-                          'flex-1 mt-[-24px] pt-6 text-[12px] leading-4 font-semibold z-10',
-                          `${shoeData.size === option ? 'text-black' : 'text-[#A1A1AA]'}`,
-                          index === 0 ? 'text-left' : index === sizeOptions.length - 1 ? 'text-right' : 'text-center'
-                        )}
+                        className={`flex-1 mt-[-24px] pt-6 text-[12px] leading-4 font-semibold z-10
+                          ${shoeData.size === option ? 'text-black' : 'text-[#A1A1AA]'}
+                          ${index === 0 ? 'text-left' : index === sizeOptions.length - 1 ? 'text-right' : 'text-center'}`}
                       >
                         {option}
                       </button>
