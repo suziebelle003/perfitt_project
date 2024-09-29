@@ -165,7 +165,7 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
         <div className='flex justify-between items-center h-[62px]'>
           <button
             className='flex items-center gap-2 pr-5'
-            onClick={() => handleLink('/mypage')}
+            onClick={() => handleLink('/mypage/main')}
           >
             <div className='w-[30px] h-[30px] rounded-full overflow-hidden'>
               <img
