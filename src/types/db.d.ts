@@ -38,3 +38,16 @@ export type TShoeRackReview = {
   size: string;
   review: string;
 };
+
+export type TChat = {
+  chatId: string;
+  title?: string;
+  message?: {
+    sender: 'user' | 'AI';
+    message: string;
+    image?: string;
+    products?: TProduct[];
+    dislike?: boolean;
+  }
+  datetime: Date | firebase.firestore.Timestamp;
+}
