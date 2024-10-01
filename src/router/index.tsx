@@ -27,57 +27,46 @@ const router = createBrowserRouter([
         element: <OnBoarding />,
       },
       {
-        path: '/chat/:id',
+        path: '/chat',
         element: <Chat />,
+      },
+      {
+        path: '/myfoot',
+        element: <MyFootInfo />,
       },
       {
         path: '/bridge',
         element: <Bridge />,
       },
       {
-        path: '/mypage',
-        children: [
-          {
-            path: 'main',
-            element: <MyPage />,
-          },
-          {
-            path: 'item',
-            element: <MyItem />,
-          },
-          {
-            path: 'foot',
-            element: <MyFootInfo />,
-          },
-        ],
-      },
-      {
         element: <ProtectedLayout />,
         children: [
           {
+            path: '/mypage',
+            element: <MyPage />,
+          },
+          {
+            path: '/mypage/item',
+            element: <MyItem />,
+          },
+          {
             path: '/shoerack',
-            children: [
-              {
-                path: 'main',
-                element: <ShoeRack />,
-              },
-              {
-                path: 'review/:mode',
-                element: <ShoesReviewEdit />,
-              },
-              {
-                path: 'review',
-                element: <ShoesReviewDetail />,
-              },
-              {
-                path: 'search',
-                element: <ShoesSearch />,
-              },
-            ],
+            element: <ShoeRack />,
+          },
+          {
+            path: '/shoerack/review/:mode',
+            element: <ShoesReviewEdit />,
+          },
+          {
+            path: '/shoerack/review',
+            element: <ShoesReviewDetail />,
+          },
+          {
+            path: '/shoerack/search',
+            element: <ShoesSearch />,
           },
         ],
       },
-
       {
         path: '*',
         element: <NotFound />,

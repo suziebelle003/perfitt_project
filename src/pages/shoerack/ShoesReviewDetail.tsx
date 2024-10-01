@@ -22,7 +22,7 @@ function ShoesReviewDetail() {
   const [shoeData, setShoeData] = useState<TShoeRackItem>();
 
   useEffect(() => {
-    if (productId === null || '') navigate('/shoerack/main');
+    if (productId === null || '') navigate('/shoerack');
     else {
       const fetchData = async () => {
         const data = await getProductById(uid, productId);
