@@ -12,6 +12,6 @@ export const useUserStore = create<TUserStore>((set) => ({
 
   fetchUserInfo: async (uid: string) => {
     const data = await getUserInfo(uid);
-    set({user: data});
+    set({ user: data });
   }
 }))

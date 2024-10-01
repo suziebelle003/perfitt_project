@@ -3,24 +3,8 @@ import { THeaderProps } from '../../types/header';
 import { leftArrowIcon, verticalMenuIcon } from '../../assets/icons/icons';
 
 const Header = (props: THeaderProps) => {
-  const { title, back, rightChild, handleRightBtnClick } = props;
-
   const navigate = useNavigate();
-  const currentPageDomain = window.location.origin;
-  const previousPage = document.referrer;
-
-  const handleBack = () => {
-    if (previousPage) {
-      try {
-        const previousPageDomain = new URL(previousPage).origin;
-        if (currentPageDomain === previousPageDomain) navigate(-1);
-        else navigate('/chat/sign');
-      } catch (error) {
-        console.error(error);
-        navigate('/chat/sign');
-      }
-    } else alert('이전 페이지가 없습니다.');
-  };
+  const { title, back, rightChild, handleRightBtnClick } = props;
 
   return (
     <header
@@ -35,7 +19,7 @@ const Header = (props: THeaderProps) => {
         {back && (
           <button
             className='w-6 h-6'
-            onClick={handleBack}
+            onClick={() => navigate(-1)}
           >
             <img
               src={leftArrowIcon}
