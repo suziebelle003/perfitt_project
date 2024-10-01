@@ -1,3 +1,5 @@
+import firebase from "firebase/compat/app";
+
 export type TUser = {
   name?: string;
   email?: string;
@@ -38,6 +40,11 @@ export type TShoeRackReview = {
   size: string;
   review: string;
 };
+
+export type TSearchHistory = {
+  value: string;
+  datetime: Date | firebase.firestore.Timestamp;
+}
 
 export type TChat = {
   chatId: string;
