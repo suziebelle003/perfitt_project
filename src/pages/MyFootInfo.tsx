@@ -3,9 +3,9 @@
 // 내 발 측정 SDK 연동
 
 import { useEffect } from 'react';
-import HeaderLayout from '../../layout/HeaderLayout';
-import Button from '../../components/common/Button';
-import { footLoading } from '../../assets/images/images';
+import HeaderLayout from '../layout/HeaderLayout';
+import Button from '../components/common/Button';
+import { footLoading } from '../assets/images/images';
 
 function MyFootInfo() {
   useEffect(() => {
