@@ -33,7 +33,7 @@ function OnBoarding() {
             />
           }
           btnText='시작하기'
-          handleClick={() => navigate('/chat/sign')}
+          handleClick={() => navigate('/chat?context=sign')}
         />
       )}
     </div>

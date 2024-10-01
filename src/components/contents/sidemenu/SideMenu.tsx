@@ -65,7 +65,7 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
 
   const logout = () => {
     auth.signOut();
-    handleLink('/chat/sign');
+    handleLink('/chat');
   };
 
   return (
@@ -93,7 +93,7 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
         <button
           className='flex justify-center items-center w-fit h-[36px] mt-[34px]
         pl-[7px] pr-2.5 rounded-[99px] bg-[rgb(245,245,245)]'
-          onClick={() => handleLink('/chat/new')}
+          onClick={() => handleLink('/chat?mode=new')}
         >
           <img
             src={plusIcon}
@@ -124,38 +124,32 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
           </button>
           <button
             className='py-[7px] text-left hover:text-[#A1A1AA]'
-            onClick={() => handleLink('/shoerack/main')}
+            onClick={() => handleLink('/shoerack')}
           >
             신발장
           </button>
           <button
             className='py-[7px] text-left hover:text-[#A1A1AA]'
-            onClick={() => handleLink('/mypage/foot')}
+            onClick={() => handleLink('/myfoot')}
           >
             내 발 정보
           </button>
         </div>
 
         {/* 로그인/회원가입 OR 마이페이지/로그아웃 */}
-        {/* <div className='h-[62px] flex items-center text-[16px] leading-5 font-medium'>
         <button
-          className='hover:text-[#A1A1AA]'
-          onClick={() => handleLink('/chat/sign')}
+          className='h-[62px] flex items-center
+          text-[16px] leading-5 font-medium hover:text-[#A1A1AA]'
+          onClick={() => handleLink('/chat?context=sign')}
         >
           로그인
-        </button>
-        <span className='mx-1.5'>/</span>
-        <button
-          className='hover:text-[#A1A1AA]'
-          onClick={() => handleLink('/chat/sign')}
-        >
+          <span className='mx-1.5'>/</span>
           회원가입
         </button>
-      </div> */}
         <div className='flex justify-between items-center h-[62px]'>
           <button
             className='flex items-center gap-2 pr-5'
-            onClick={() => handleLink('/mypage/main')}
+            onClick={() => handleLink('/mypage')}
           >
             <div className='w-[30px] h-[30px] rounded-full overflow-hidden'>
               <img

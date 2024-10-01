@@ -15,7 +15,7 @@ function SMChatList({ date, chatlist, handleLink }: TSMChatListProps) {
         <button
           key={chat.chatId}
           className='h-[34px] flex items-center gap-2'
-          onClick={() => handleLink(`/chat/${chat.chatId}`)}
+          onClick={() => handleLink(`/chat?id=${chat.chatId}`)}
         >
           <img
             src={chatIcon}

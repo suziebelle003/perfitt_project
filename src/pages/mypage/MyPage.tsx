@@ -77,7 +77,7 @@ function MyPage() {
             <button
               className='flex-1 flex justify-center items-center gap-2.5 h-[60px]
             border-l border-[#F5F5F5] hover:bg-[#F5F5F5]'
-              onClick={() => navigate('/shoerack/main')}
+              onClick={() => navigate('/shoerack')}
             >
               <img
                 src={smileIcon}

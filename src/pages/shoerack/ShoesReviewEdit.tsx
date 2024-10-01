@@ -40,7 +40,7 @@ function ShoesReviewEdit() {
   });
 
   useEffect(() => {
-    if (mode !== 'add' && mode !== 'edit') navigate('/shoerack/main');
+    if (mode !== 'add' && mode !== 'edit') navigate('/shoerack');
 
     if (productId !== null) {
       const fetchAndSetShoeInfo = async () => {

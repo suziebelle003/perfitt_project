@@ -19,7 +19,7 @@ function SRDMenu({ uid, productId, isOpen }: TSRDMenu) {
       const result = await deleteProductById(uid, productId);
       if (result === 'success') {
         alert('삭제가 완료되었습니다.');
-        navigate('/shoerack/main');
+        navigate('/shoerack');
       } else alert('삭제에 실패하였습니다.');
     }
   };
