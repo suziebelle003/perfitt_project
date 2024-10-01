@@ -19,11 +19,11 @@ export const useShoeRackStore = create<TShoeRackStore>((set, get) => ({
 
   fetchShoeRack: async (uid: string) => {
     const data = await getShoeRack(uid);
-    set({shoeRack: data});
+    set({ shoeRack: data });
   },
 
   getProductById: async (uid: string, productId: string) => {
-    const {shoeRack} = get();
+    const { shoeRack } = get();
     const shoeData = shoeRack?.find(shoe => shoe.id === productId);
     if (!shoeData) return await getShoeReview(uid, productId);
     else return shoeData;
