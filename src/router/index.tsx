@@ -7,7 +7,7 @@ import Chat from '../pages/Chat';
 import Bridge from '../pages/Bridge';
 import MyPage from '../pages/mypage/MyPage';
 import MyItem from '../pages/mypage/MyItem';
-import MyFootInfo from '../pages/mypage/MyFootInfo';
+import MyFootInfo from '../pages/MyFootInfo';
 import ShoeRack from '../pages/shoerack/ShoeRack';
 import ShoesReviewEdit from '../pages/shoerack/ShoesReviewEdit';
 import ShoesReviewDetail from '../pages/shoerack/ShoesReviewDetail';
