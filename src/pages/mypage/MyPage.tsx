@@ -9,15 +9,15 @@
 
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuthStore } from '../../stores/auth.store';
 import { useUserStore } from '../../stores/user.store';
 import HeaderLayout from '../../layout/HeaderLayout';
 import MPLinkButton from '../../components/contents/mypage/MPLinkButton';
 import { cameraMiniIcon, heartLineIcon, smileIcon, userBorderIcon } from '../../assets/icons/icons';
 
 function MyPage() {
-  const uid = 'qKnJXMMf4xd8KAn9UtGqegZFyjv2'; // uid 가져오기
-
   const navigate = useNavigate();
+  const { uid } = useAuthStore();
   const { user, fetchUserInfo } = useUserStore();
 
   const editUserImg = () => {};

@@ -1,15 +1,18 @@
 import { useEffect } from 'react';
-import { useAuthStore } from '../../../stores/auth.store';
 import { useSearchStore } from '../../../stores/search.store';
 import { xGrayIcon } from '../../../assets/icons/icons';
 
-function SRSearchHistory({ handleSearch }: { handleSearch: (text: string) => void }) {
-  const { uid } = useAuthStore();
+type TSRSearchHistory = {
+  uid: string;
+  handleSearch: (text: string) => void;
+};
+
+function SRSearchHistory({ uid, handleSearch }: TSRSearchHistory) {
   const { searchHistory, fetchHistory, deleteHistory, deleteAllHistory } = useSearchStore();
 
   useEffect(() => {
     fetchHistory(uid);
-  }, []);
+  }, [uid]);
 
   const deleteAll = () => {
     deleteAllHistory(uid);

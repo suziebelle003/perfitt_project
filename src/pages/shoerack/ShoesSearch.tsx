@@ -10,6 +10,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TProduct } from '../../types/db';
+import { useAuthStore } from '../../stores/auth.store';
 import { useSearchStore } from '../../stores/search.store';
 import { upsertProduct } from '../../api/upsertProduct';
 import { postShoesFind } from '../../api/perfitt/postShoesFind';
@@ -20,8 +21,8 @@ import Button from '../../components/common/Button';
 import { cameraIcon, searchIcon } from '../../assets/icons/icons';
 
 function ShoesSearch() {
-  const uid = 'qKnJXMMf4xd8KAn9UtGqegZFyjv2'; // uid 가져오기
   const navigate = useNavigate();
+  const { uid } = useAuthStore();
   const { updateHistory } = useSearchStore();
   const [search, setSearch] = useState('');
   const [shoeData, setShoeData] = useState<TProduct[]>();
@@ -97,7 +98,10 @@ function ShoesSearch() {
 
         {/* 최근 검색어 / 검색 리스트 */}
         {shoeData === undefined || shoeData.length === 0 ? (
-          <SRSearchHistory handleSearch={handleSearch} />
+          <SRSearchHistory
+            uid={uid}
+            handleSearch={handleSearch}
+          />
         ) : (
           <div className='p-4 pt-5 flex-1 flex flex-col'>
             <div className='flex-1 mb-4 flex flex-col gap-2.5'>

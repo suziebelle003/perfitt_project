@@ -7,6 +7,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { TProduct } from '../../types/db';
+import { useAuthStore } from '../../stores/auth.store';
 import { useShoeRackStore } from '../../stores/shoerack.store';
 import { getProduct } from '../../api/getProduct';
 import HeaderLayout from '../../layout/HeaderLayout';
@@ -16,12 +17,12 @@ import Button from '../../components/common/Button';
 import { plusIcon, starFillIcon, starIcon } from '../../assets/icons/icons';
 
 function ShoesReviewEdit() {
-  const uid = 'qKnJXMMf4xd8KAn9UtGqegZFyjv2'; // uid 가져오기
   const navigate = useNavigate();
   const { mode } = useParams();
   const [searchParams] = useSearchParams();
   const productId = searchParams.get('id');
 
+  const { uid } = useAuthStore();
   const { getProductById } = useShoeRackStore();
   const upsertProductById = useShoeRackStore(state => state.upsertProductById);
 
@@ -62,7 +63,7 @@ function ShoesReviewEdit() {
         fetchData();
       }
     }
-  }, []);
+  }, [uid]);
 
   const questions = [
     {
