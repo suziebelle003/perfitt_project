@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import DefaultLayout from '../layout/DefaultLayout';
+import ProtectedLayout from '../layout/ProtectedLayout';
 import SplashScreen from '../pages/SplashScreen';
 import OnBoarding from '../pages/OnBoarding';
 import Chat from '../pages/Chat';
@@ -51,26 +52,32 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: '/shoerack',
+        element: <ProtectedLayout />,
         children: [
           {
-            path: 'main',
-            element: <ShoeRack />,
-          },
-          {
-            path: 'review/:mode',
-            element: <ShoesReviewEdit />,
-          },
-          {
-            path: 'review',
-            element: <ShoesReviewDetail />,
-          },
-          {
-            path: 'search',
-            element: <ShoesSearch />,
+            path: '/shoerack',
+            children: [
+              {
+                path: 'main',
+                element: <ShoeRack />,
+              },
+              {
+                path: 'review/:mode',
+                element: <ShoesReviewEdit />,
+              },
+              {
+                path: 'review',
+                element: <ShoesReviewDetail />,
+              },
+              {
+                path: 'search',
+                element: <ShoesSearch />,
+              },
+            ],
           },
         ],
       },
+
       {
         path: '*',
         element: <NotFound />,

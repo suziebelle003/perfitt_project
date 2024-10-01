@@ -1,11 +1,11 @@
 // 신발 상세 페이지
 
-// 더보기 메뉴 추가
 // 로그인 안 했을 때 로그인 link
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { TShoeRackItem } from '../../types/shoerack';
+import { useAuthStore } from '../../stores/auth.store';
 import { useShoeRackStore } from '../../stores/shoerack.store';
 import HeaderLayout from '../../layout/HeaderLayout';
 import SRDMenu from '../../components/contents/shoerack/SRDMenu';
@@ -13,11 +13,11 @@ import SRShoeBox from '../../components/contents/shoerack/SRShoeBox';
 import { starFillIcon } from '../../assets/icons/icons';
 
 function ShoesReviewDetail() {
-  const uid = 'qKnJXMMf4xd8KAn9UtGqegZFyjv2'; // uid 가져오기
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const productId = searchParams.get('id');
 
+  const { uid } = useAuthStore();
   const { getProductById } = useShoeRackStore();
   const [shoeData, setShoeData] = useState<TShoeRackItem>();
 
@@ -30,7 +30,7 @@ function ShoesReviewDetail() {
       };
       fetchData();
     }
-  }, []);
+  }, [uid]);
 
   const shoeDataList = [
     { label: '신발 길이', value: shoeData?.length },

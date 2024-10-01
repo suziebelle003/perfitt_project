@@ -1,24 +1,21 @@
-import { User } from '@firebase/auth';
-import { useEffect, useState, ReactNode } from 'react';
-import { AuthContext } from './AuthContext';
+import { useEffect, ReactNode } from 'react';
 import { auth } from './firebase';
+import { AuthContext } from './AuthContext';
+import { useAuthStore } from '../stores/auth.store';
 
-interface AuthProviderProps {
-  children: ReactNode;
-}
-//Firebase 인증과 React Context를 이용한 상태 관리
-const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const { fetchAuth, fetchLoading } = useAuthStore();
 
   useEffect(() => {
-    const subscribe = auth.onAuthStateChanged(fbUser => {
-      console.log('구독 실행', fbUser);
-      setUser(fbUser);
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) fetchAuth(user);
+      else fetchAuth(null);
+      fetchLoading(false);
     });
-    return subscribe;
-  }, []);
+    return () => unsubscribe();
+  }, [fetchAuth]);
 
-  return <AuthContext.Provider value={user}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={null}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;

@@ -6,6 +6,7 @@
 // 무한 스크롤?
 
 import { useEffect } from 'react';
+import { useAuthStore } from '../../stores/auth.store';
 import { useUserStore } from '../../stores/user.store';
 import { useShoeRackStore } from '../../stores/shoerack.store';
 import HeaderLayout from '../../layout/HeaderLayout';
@@ -14,16 +15,14 @@ import SRShoeRack from '../../components/contents/shoerack/SRShoeRack';
 import { plusCircleIcon, userIcon } from '../../assets/icons/icons';
 
 function ShoeRack() {
+  const { uid } = useAuthStore();
   const { user, fetchUserInfo } = useUserStore();
   const { shoeRack, fetchShoeRack } = useShoeRackStore();
 
   useEffect(() => {
-    // 임시 userInfo 업데이트 (다른 페이지에서 이루어져야 함)
-    const uid = 'qKnJXMMf4xd8KAn9UtGqegZFyjv2';
     fetchUserInfo(uid);
-
     fetchShoeRack(uid);
-  }, []);
+  }, [uid]);
 
   const editUserImg = () => {};
 
