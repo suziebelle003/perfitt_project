@@ -4,13 +4,13 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCeaZooQunkSwnQbhErTEqgyoog_UQ7kno',
-  authDomain: 'perfitt-footprint.firebaseapp.com',
-  projectId: 'perfitt-footprint',
-  storageBucket: 'perfitt-footprint.appspot.com',
-  messagingSenderId: '389195796117',
-  appId: '1:389195796117:web:3e48af4012e7c65d61959c',
-  measurementId: 'G-JJRTBFZ6BL',
+  apiKey: 'AIzaSyAiulosfSqhNa6yaUixcqcuDfCODNF7NUA',
+  authDomain: 'footprint-perfitt.firebaseapp.com',
+  projectId: 'footprint-perfitt',
+  storageBucket: 'footprint-perfitt.appspot.com',
+  messagingSenderId: '689606025465',
+  appId: '1:689606025465:web:c4ea29f994402302e18228',
+  measurementId: 'G-JP446EJVVV',
 };
 
 // Initialize Firebase
