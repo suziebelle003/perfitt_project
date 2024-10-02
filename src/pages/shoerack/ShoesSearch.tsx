@@ -31,7 +31,7 @@ function ShoesSearch() {
   const searchData = async (text: string) => {
     try {
       await updateHistory(uid, text);
-      const products = await postShoesFind(search);
+      const products = await postShoesFind(text);
       setShoeData(products);
     } catch (error) {
       console.error(error);
@@ -44,7 +44,7 @@ function ShoesSearch() {
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') searchData(search);
+    if (e.key === 'Enter' && e.nativeEvent.isComposing === false) searchData(search.trim());
   };
 
   const selectShoes = async () => {
@@ -71,7 +71,7 @@ function ShoesSearch() {
           {/* 검색창 */}
           <div
             className='flex justify-between items-center w-full h-10 pl-4 pr-5
-          border border-[#E4E4E7] rounded-full'
+              border border-[#E4E4E7] rounded-full'
           >
             <img
               src={searchIcon}
