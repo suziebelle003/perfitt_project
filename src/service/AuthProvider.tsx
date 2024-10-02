@@ -4,16 +4,16 @@ import { AuthContext } from './AuthContext';
 import { useAuthStore } from '../stores/auth.store';
 
 const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const { fetchAuth, fetchLoading } = useAuthStore();
+  const { setAuth, setLoading } = useAuthStore();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      if (user) fetchAuth(user);
-      else fetchAuth(null);
-      fetchLoading(false);
+      if (user) setAuth(user);
+      else setAuth(null);
+      setLoading(false);
     });
     return () => unsubscribe();
-  }, [fetchAuth]);
+  }, [setAuth]);
 
   return <AuthContext.Provider value={null}>{children}</AuthContext.Provider>;
 };

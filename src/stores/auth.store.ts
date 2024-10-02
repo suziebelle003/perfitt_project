@@ -5,8 +5,8 @@ export type TAuthStore = {
   uid: string;
   authData: User | null;
   isLoading: boolean;
-  fetchAuth: (data: User | null) => void;
-  fetchLoading: (loading: boolean) => void;
+  setAuth: (data: User | null) => void;
+  setLoading: (loading: boolean) => void;
 }
 
 export const useAuthStore = create<TAuthStore>((set) => ({
@@ -14,11 +14,11 @@ export const useAuthStore = create<TAuthStore>((set) => ({
   authData: null,
   isLoading: true,
 
-  fetchAuth: (data: User | null) => {
+  setAuth: (data: User | null) => {
     set({ uid: data ? data.uid : '', authData: data });
   },
 
-  fetchLoading: (loading: boolean) => {
+  setLoading: (loading: boolean) => {
     set({ isLoading: loading });
   }
 }))
