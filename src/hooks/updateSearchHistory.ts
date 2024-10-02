@@ -23,7 +23,7 @@ export const updateSearchHistory = async (uid: string, text: string, data: TSear
     }
 
     // 데이터 50개 초과 시, 가장 오래된 데이터 제거
-    if (updatedData.length > 50) updatedData.pop();
+    if (updatedData.length > 30) updatedData.pop();
 
     // Firestore에 데이터 업데이트
     await upsertSearchHistory(uid, updatedData);
