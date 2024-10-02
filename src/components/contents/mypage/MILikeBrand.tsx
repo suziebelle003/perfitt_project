@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { TBrand } from '../../../types/db';
+import { TLikeBrand } from '../../../types/db';
 import { heartFilledIcon } from '../../../assets/icons/icons';
 
 const MILikeBrand = () => {
-  const [brands, setBrands] = useState<TBrand[]>();
+  const [brands, setBrands] = useState<TLikeBrand[]>();
 
   useEffect(() => {
     setBrands([
