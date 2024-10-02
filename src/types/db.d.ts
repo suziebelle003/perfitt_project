@@ -23,10 +23,18 @@ export type TProduct = {
 };
 
 export type TBrand = {
-  brandId: string;
-  nameKor: string;
-  nameEn: string;
-  image: string;
+  brandId?: string;
+  brand: string;
+  description: string;
+  link: string;
+  thumbnail: string;
+}
+
+export type TLikeBrand = {
+  brandId?: string;
+  nameKor?: string;
+  nameEn?: string;
+  image?: string;
 }
 
 export type TShoeRackReview = {
@@ -46,15 +54,19 @@ export type TSearchHistory = {
   datetime: Date | firebase.firestore.Timestamp;
 }
 
+export type TChatMessage = {
+  id?: number;
+  sender?: string;
+  text?: string;
+  image?: string;
+  products?: TProduct[];
+  brands?: TBrand[];
+  dislike?: boolean;
+}
+
 export type TChat = {
   chatId: string;
   title?: string;
-  message?: {
-    sender: 'user' | 'AI';
-    message: string;
-    image?: string;
-    products?: TProduct[];
-    dislike?: boolean;
-  }
+  messages?: TChatMessage[];
   datetime: Date | firebase.firestore.Timestamp;
 }
