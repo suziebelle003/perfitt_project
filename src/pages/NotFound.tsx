@@ -1,3 +1,5 @@
+// 404 Not Found
+
 import { useNavigate } from 'react-router-dom';
 import { footprint404 } from '../assets/images/images';
 
