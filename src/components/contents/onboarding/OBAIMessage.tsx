@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react';
-import perfittCircleLogo from '../../../assets/images/perfitt-circle-logo.svg';
+import { perfittCircleLogo } from '../../../assets/images/images';
 
 const OBAIMessage = ({ text, imgSrc }: { text: ReactNode; imgSrc: string }) => {
   const [img, setImg] = useState(false);
