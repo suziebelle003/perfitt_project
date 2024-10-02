@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import menuIcon from '../../../assets/icons/menu-icon.svg';
 import SideMenu from '../sidemenu/SideMenu';
+import { menuIcon } from '../../../assets/icons/icons';
 
-function ChatHeader() {
+const ChatHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -13,7 +13,7 @@ function ChatHeader() {
     <>
       <header
         className='absolute top-0 left-0 w-full h-14 p-4 z-10
-          bg-gradient-to-b from-white to-transparent'
+          bg-gradient-to-b from-white via-[#FFFFFFAA] to-transparent'
       >
         <button
           className='w-6 h-6'
@@ -32,6 +32,6 @@ function ChatHeader() {
       />
     </>
   );
-}
+};
 
 export default ChatHeader;
