@@ -4,4 +4,9 @@
 
 /* Custom CSS */
 @layer components {
+  .scrollbar-hide {
+    ::-webkit-scrollbar { display: none; } /* WebKit 브라우저 */
+    -ms-overflow-style: none; /* IE와 Edge용 */
+    scrollbar-width: none; /* Firefox용 */
+  }
 }
