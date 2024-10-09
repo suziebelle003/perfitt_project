@@ -23,7 +23,7 @@ function NotFound() {
           <br />
           <button
             className='mt-8 text-xl text-[#CCCCCC] hover:text-[#333333]'
-            onClick={() => navigate('/chat?context=sign')}
+            onClick={() => navigate('/chat')}
           >
             Go To Home
           </button>

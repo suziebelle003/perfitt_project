@@ -55,7 +55,7 @@ export type TSearchHistory = {
 }
 
 export type TChatMessage = {
-  id?: number;
+  id?: number | string;
   sender?: string;
   text?: string;
   image?: string;

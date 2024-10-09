@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { TChatMessage } from '../../../types/db';
+import { usePLPStore } from '../../../stores/plp.store';
+import { useSignStore } from '../../../stores/sign.store';
 import { galleryIcon, upArrowIcon } from '../../../assets/icons/icons';
 
 type TChatInputProps = {
@@ -8,6 +10,8 @@ type TChatInputProps = {
 
 const ChatInput = ({ sendMessage }: TChatInputProps) => {
   const [text, setText] = useState('');
+  const { sheetOpen } = usePLPStore();
+  const { signSheetOpen } = useSignStore();
 
   // 채팅 전송
   const handleSend = async () => {
@@ -28,7 +32,11 @@ const ChatInput = ({ sendMessage }: TChatInputProps) => {
   const imageSearch = () => {};
 
   return (
-    <div className='flex items-center gap-2 p-4 bg-[#F5F5F5] cursor-pointer'>
+    <div
+      className={`flex items-center gap-2 p-4 z-30 bg-[#F5F5F5]
+        transform transition-transform duration-300
+        ${sheetOpen || signSheetOpen ? 'translate-y-full' : 'translate-y-0'}`}
+    >
       <button onClick={imageSearch}>
         <img
           src={galleryIcon}
