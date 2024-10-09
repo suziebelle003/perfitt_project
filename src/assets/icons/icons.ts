@@ -8,6 +8,7 @@ import galleryIcon from './gallery-Icon.svg';
 import heartFilledIcon from './heart-filled-icon.svg';
 import heartIcon from './heart-icon.svg';
 import heartLineIcon from './heart-line-icon.svg';
+import infoIcon from './info-icon.svg';
 import leftArrowIcon from './left-arrow-icon.svg';
 import menuIcon from './menu-icon.svg';
 import pencilIcon from './pencil-icon.svg';
@@ -42,6 +43,7 @@ export {
   heartFilledIcon,
   heartIcon,
   heartLineIcon,
+  infoIcon,
   leftArrowIcon,
   menuIcon,
   pencilIcon,
