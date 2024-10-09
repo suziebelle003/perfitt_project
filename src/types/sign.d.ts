@@ -36,3 +36,22 @@ export type TSideBarProps = {
   isBarOpen: boolean;
   toggleBar: () => void;
 };
+
+
+
+
+// 여기부터
+// 여기
+// 여기
+// 여기
+export type TUserInfo = {
+  email: string;
+  password: string;
+  name: string;
+  gender: string;
+  birthYear: string;
+  birthMonth: string;
+  birthDay: string;
+  size: string;
+  sizeType: string;
+}

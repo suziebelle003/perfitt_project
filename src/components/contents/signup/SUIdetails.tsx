@@ -1,9 +1,9 @@
 import { useState, useMemo } from 'react';
 import SUSelect from './SUSelect';
 import SUIbtn from './SUIbtn';
-import infoicon from '../../../assets/images/icon_info_blue400.png';
 import { Controller, useFormContext } from 'react-hook-form';
 import { FormValues } from '../../../types/sign';
+import { infoIcon } from '../../../assets/icons/icons';
 const SUIdetails = () => {
   const [selectedSizeType, setSelectedSizeType] = useState<string>('');
   const { control, setValue, getValues } = useFormContext<FormValues>();
@@ -102,7 +102,7 @@ const SUIdetails = () => {
         <div className='w-full h-[104px] rounded-lg p-4 bg-[#EFF6FF] flex items-start mb-10'>
           <img
             className='w-[24px] h-[24px] mr-2'
-            src={infoicon}
+            src={infoIcon}
             alt='infoicon'
           />
           <p className='text-base font-normal text-[#1D4ED8]'>

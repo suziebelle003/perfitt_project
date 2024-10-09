@@ -4,6 +4,7 @@ import downArrowIcon from './down-arrow-icon.svg';
 import footLoading from './foot-loading.gif';
 import footScanning from './foot-scanning.png';
 import footprint404 from './footprint-404.svg';
+import googleLogo from './google-logo.png';
 import kolonLogo from './kolon-logo.png';
 import obList1 from './ob-list1.png';
 import obList2 from './ob-list2.png';
@@ -22,6 +23,7 @@ export {
   footLoading,
   footScanning,
   footprint404,
+  googleLogo,
   kolonLogo,
   obList1,
   obList2,
