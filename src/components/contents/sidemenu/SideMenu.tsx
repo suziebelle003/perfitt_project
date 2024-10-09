@@ -71,8 +71,9 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
   return (
     <>
       <div
-        className={`absolute inset-0 transition-opacity duration-300 z-10
+        className={`absolute inset-0 transition-opacity duration-300 z-40
           ${isMenuOpen ? 'bg-gray-600 opacity-50' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => toggleMenu()}
       />
       <nav
         className={`absolute top-0 left-0 w-[280px] h-full p-4 flex flex-col z-50 rounded-r-lg bg-white
@@ -140,7 +141,7 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
         <button
           className='h-[62px] flex items-center
           text-[16px] leading-5 font-medium hover:text-[#A1A1AA]'
-          onClick={() => handleLink('/chat?context=sign')}
+          onClick={() => handleLink('/chat?mode=sign')}
         >
           로그인
           <span className='mx-1.5'>/</span>

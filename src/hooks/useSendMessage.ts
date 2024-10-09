@@ -48,7 +48,7 @@ const useSendMessage = ({uid, id, messageIdRef, setMessages}: TUseSendMessagePro
             } else {
               const chatId = await createChat([userMessage, aiMessage]);
               if (chatId) {
-                if (uid !== '') {
+                if (uid) {
                   const res = await upsertUserChat(uid, chatId);
                   if (res === 'success') navigate(`/chat?id=${chatId}`);
                 } else navigate(`/chat?id=${chatId}`);

@@ -7,7 +7,7 @@ function ProtectedLayout() {
   const { uid, isLoading } = useAuthStore();
 
   useEffect(() => {
-    if (!isLoading && !uid) navigate('/chat?context=sign');
+    if (!isLoading && !uid) navigate('/chat?mode=sign');
   }, [isLoading]);
 
   return <Outlet />;

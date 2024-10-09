@@ -1,8 +1,10 @@
 import ReactMarkdown from 'react-markdown';
 import { emphasize } from '../../../../config/markdown';
 import { TChatMessage } from '../../../../types/db';
-import { perfittCircleLogo } from '../../../../assets/images/images';
 import ChatCardContainer from '../card/ChatCardContainer';
+import SignCard from '../../sign/SignCard';
+import ChatRecommendCard from '../recommend/ChatRecommendCard';
+import { perfittCircleLogo } from '../../../../assets/images/images';
 
 const ChatAIMessage = (message: TChatMessage) => {
   return (
@@ -18,6 +20,8 @@ const ChatAIMessage = (message: TChatMessage) => {
         </div>
       </div>
       {(message.products || message.brands) && <ChatCardContainer {...message} />}
+      {message.id === 'sign' && <SignCard />}
+      {message.id === 'recommend' && <ChatRecommendCard />}
     </div>
   );
 };

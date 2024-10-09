@@ -1,17 +1,30 @@
-import React, { useEffect, useRef } from 'react';
+import React, { ReactNode, useEffect, useRef } from 'react';
 import { TChatMessage } from '../../../types/db';
+import { usePLPStore } from '../../../stores/plp.store';
 import ChatMyMessage from './message/ChatMyMessage';
 import ChatAIMessage from './message/ChatAIMessage';
 
-const ChatWindow = ({ messages }: { messages: TChatMessage[] }) => {
-  const endRef = useRef<HTMLDivElement>(null);
+type TChatWindow = {
+  messages: TChatMessage[];
+  children?: ReactNode;
+};
+
+const ChatWindow = ({ messages, children }: TChatWindow) => {
+  const chatWindowRef = useRef<HTMLDivElement>(null);
+  const { showBar } = usePLPStore();
 
   useEffect(() => {
-    if (endRef.current) endRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (chatWindowRef.current) {
+      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+    }
   }, [messages]);
 
   return (
-    <div className='flex flex-col gap-5'>
+    <div
+      ref={chatWindowRef}
+      className={`pt-14 flex-1 flex flex-col gap-5 overflow-y-auto scrollbar-hide
+        ${showBar ? 'pb-[41px]' : 'pb-4'}`}
+    >
       {messages.map(message => {
         return (
           <React.Fragment key={message.id}>
@@ -20,7 +33,7 @@ const ChatWindow = ({ messages }: { messages: TChatMessage[] }) => {
           </React.Fragment>
         );
       })}
-      <div ref={endRef} />
+      {children}
     </div>
   );
 };
