@@ -1,11 +1,9 @@
-type TButtonProps = React.ComponentPropsWithoutRef<'button'>;
-
-const Button = (props: TButtonProps) => {
+const Button = (props: React.ComponentPropsWithoutRef<'button'>) => {
   const { className, children, ...rest } = props;
 
   return (
     <button
-      className={`${className} w-full h-[56px] rounded bg-black text-base text-white font-semibold`}
+      className={`w-full h-[56px] rounded bg-black text-base text-white font-semibold ${className}`}
       {...rest}
     >
       {children}
