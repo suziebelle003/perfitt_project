@@ -1,37 +1,29 @@
-import { useEffect, useState } from 'react';
-import { auth } from './service/firebase';
-import SignUp from './pages/SignUp';
-import BottomSheet from './components/common/BottomSheet';
-
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isBarOpen, setIsBarOpen] = useState(false);
+  // const [isLoading, setIsLoading] = useState(true);
 
-  const init = async () => {
-    await auth.authStateReady();
-    setIsLoading(false);
-  };
+  // const init = async () => {
+  //   await auth.authStateReady();
+  //   setIsLoading(false);
+  // };
 
-  useEffect(() => {
-    init();
-  }, []);
+  // useEffect(() => {
+  //   init();
+  // }, []);
 
-  const toggleOpenBar = () => {
-    setIsBarOpen(prev => !prev);
-  };
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
-    <div className='relative h-full'>
-      <button onClick={toggleOpenBar}>회원가입</button> {/* 예시 버튼 */}
-      <BottomSheet
-        isBarOpen={isBarOpen}
-        toggleOpenBar={toggleOpenBar}
-        children={<SignUp />}
-      />
-    </div>
+    <></>
+
+    // <div className='w-full h-screen flex flex-col'>
+    //   <div className='flex-grow'></div>
+    //   <iframe
+    //     src='/sign/in'
+    //     className='w-full h-[326px] max-h-screen'
+    //     title='Sign in'
+    //   />
+    // </div>
   );
 }
