@@ -1,6 +1,6 @@
 import { TChatMessage } from '../types/db';
 import { createChat } from '../api/createChat';
-import { updateChat } from '../api/updateChat';
+import { upsertChat } from '../api/upsertChat';
 import { useChatResponseMutation } from '../hooks/useChatMutation';
 import { useNavigate } from 'react-router-dom';
 import { upsertUserChat } from '../api/upsertUserChat';
@@ -12,7 +12,7 @@ type TUseSendMessageProps = {
   setMessages: React.Dispatch<React.SetStateAction<TChatMessage[]>>;
 }
 
-const useSendMessage = ({uid, id, messageIdRef, setMessages}: TUseSendMessageProps) => {
+const useSendMessage = ({ uid, id, messageIdRef, setMessages }: TUseSendMessageProps) => {
   const navigate = useNavigate();
   const { mutate: AIResponse } = useChatResponseMutation();
 
@@ -25,7 +25,7 @@ const useSendMessage = ({uid, id, messageIdRef, setMessages}: TUseSendMessagePro
       };
 
       if (id) {
-        const res = await updateChat(id, userMessage);
+        const res = await upsertChat(id, userMessage);
         if (res === 'success') setMessages(prev => [...prev, userMessage]);
       }
 
@@ -43,7 +43,7 @@ const useSendMessage = ({uid, id, messageIdRef, setMessages}: TUseSendMessagePro
             };
 
             if (id) {
-              const res = await updateChat(id, aiMessage);
+              const res = await upsertChat(id, aiMessage);
               if (res === 'success') setMessages(prev => [...prev, aiMessage]);
             } else {
               const chatId = await createChat([userMessage, aiMessage]);

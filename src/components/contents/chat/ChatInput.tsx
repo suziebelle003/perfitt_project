@@ -55,7 +55,7 @@ const ChatInput = ({ sendMessage }: TChatInputProps) => {
           onKeyDown={handleKeyPress}
         />
         <button
-          className='w-10 h-10 m-1 flex justify-center items-center
+          className='w-10 h-10 m-1 ml-2.5 flex justify-center items-center
             rounded-full bg-black overflow-hidden'
           onClick={handleSend}
         >

@@ -1,20 +1,16 @@
-import React, { ReactNode, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { TChatMessage } from '../../../types/db';
 import { usePLPStore } from '../../../stores/plp.store';
 import ChatMyMessage from './message/ChatMyMessage';
 import ChatAIMessage from './message/ChatAIMessage';
 
-type TChatWindow = {
-  messages: TChatMessage[];
-  children?: ReactNode;
-};
-
-const ChatWindow = ({ messages, children }: TChatWindow) => {
+const ChatWindow = ({ messages }: { messages: TChatMessage[] }) => {
+  const isChat = window.location.pathname.startsWith('/chat');
   const chatWindowRef = useRef<HTMLDivElement>(null);
   const { showBar } = usePLPStore();
 
   useEffect(() => {
-    if (chatWindowRef.current) {
+    if (isChat && chatWindowRef.current) {
       chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
     }
   }, [messages]);
@@ -22,8 +18,9 @@ const ChatWindow = ({ messages, children }: TChatWindow) => {
   return (
     <div
       ref={chatWindowRef}
-      className={`pt-14 flex-1 flex flex-col gap-5 overflow-y-auto scrollbar-hide
-        ${showBar ? 'pb-[41px]' : 'pb-4'}`}
+      className={`flex-1 flex flex-col gap-5 scroll-smooth overflow-y-auto scrollbar-hide
+        ${showBar ? 'pb-[41px]' : 'pb-4'}
+        ${isChat ? 'pt-14' : 'py-5'}`}
     >
       {messages.map(message => {
         return (
@@ -33,7 +30,6 @@ const ChatWindow = ({ messages, children }: TChatWindow) => {
           </React.Fragment>
         );
       })}
-      {children}
     </div>
   );
 };

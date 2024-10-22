@@ -50,7 +50,7 @@ const ChatProductCard = (product: TProduct) => {
         {/* <div className='text-[13px] leading-[16px] font-semibold'>{product.price}</div> */}
         <div
           className='absolute top-[-15px] right-2 w-6 h-6
-              rounded-full overflow-hidden bg-white'
+            rounded-full overflow-hidden bg-white'
         >
           <img
             src={partner?.image}

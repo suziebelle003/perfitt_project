@@ -11,9 +11,12 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../../../service/firebase';
 import { TChat } from '../../../types/db';
+import { useAuthStore } from '../../../stores/auth.store';
 import { useUserStore } from '../../../stores/user.store';
 import SMChatList from './SMChatList';
 import { menuIcon, plusIcon, userIcon } from '../../../assets/icons/icons';
+import { getUserChat } from '../../../api/getUserChat';
+import { getChat } from '../../../api/getChat';
 
 type TSideMenuProps = {
   isMenuOpen: boolean;
@@ -22,41 +25,29 @@ type TSideMenuProps = {
 
 const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
   const navigate = useNavigate();
+  const { uid, isLoading } = useAuthStore();
   const { user, fetchUserInfo } = useUserStore();
   const [chatData, setChatData] = useState<TChat[]>();
 
   useEffect(() => {
-    const uid = 'qKnJXMMf4xd8KAn9UtGqegZFyjv2'; // uid 가져오기
-    fetchUserInfo(uid);
+    if (!isLoading && uid) {
+      fetchUserInfo(uid);
+      getChatList();
+    }
+  }, [isLoading]);
 
-    setChatData([
-      {
-        chatId: '00',
-        title: '최근 가장 인기있는 여성 운동화',
-        datetime: new Date('2024-09-10'),
-      },
-      {
-        chatId: '01',
-        title: '비 오는 날 신기 좋은 레인부츠 추천',
-        datetime: new Date('2024-09-19'),
-      },
-      {
-        chatId: '02',
-        title: '여름 슬리퍼 추천',
-        datetime: new Date('2024-09-17'),
-      },
-      {
-        chatId: '03',
-        title: '가벼운 러닝화',
-        datetime: new Date('2024-09-18'),
-      },
-      {
-        chatId: '04',
-        title: '20대 여성이 많이 찾는 브랜드',
-        datetime: new Date('2024-09-21'),
-      },
-    ]);
-  }, []);
+  // 채팅 리스트 가져오기
+  const getChatList = async () => {
+    const userChat = await getUserChat(uid);
+    if (userChat) {
+      const chatList = await Promise.all(
+        userChat.map(async (chatId: string) => {
+          return await getChat(chatId);
+        })
+      );
+      setChatData(chatList);
+    }
+  };
 
   const handleLink = (link: string) => {
     toggleMenu();
@@ -137,37 +128,42 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
           </button>
         </div>
 
-        {/* 로그인/회원가입 OR 마이페이지/로그아웃 */}
-        <button
-          className='h-[62px] flex items-center
-          text-[16px] leading-5 font-medium hover:text-[#A1A1AA]'
-          onClick={() => handleLink('/chat?mode=sign')}
-        >
-          로그인
-          <span className='mx-1.5'>/</span>
-          회원가입
-        </button>
-        <div className='flex justify-between items-center h-[62px]'>
+        {/* 로그인/회원가입 */}
+        {!uid && (
           <button
-            className='flex items-center gap-2 pr-5'
-            onClick={() => handleLink('/mypage')}
+            className='h-[62px] flex items-center text-[16px] leading-5 font-medium hover:text-[#A1A1AA]'
+            onClick={() => handleLink('/chat?mode=sign')}
           >
-            <div className='w-[30px] h-[30px] rounded-full overflow-hidden'>
-              <img
-                src={user?.profile ? user.profile : userIcon}
-                alt={`${user?.name} Profile`}
-                className='w-full h-full object-cover'
-              />
-            </div>
-            <div className='max-w-[150px] text-[16px] leading-5 font-semibold truncate text-left'>{user?.name}</div>
+            로그인
+            <span className='mx-1.5'>/</span>
+            회원가입
           </button>
-          <button
-            className='text-[14px] text-[#AAAAAA] underline hover:text-[#F87171]'
-            onClick={logout}
-          >
-            로그아웃
-          </button>
-        </div>
+        )}
+
+        {/* 마이페이지/로그아웃 */}
+        {uid && (
+          <div className='flex justify-between items-center h-[62px]'>
+            <button
+              className='flex items-center gap-2 pr-5'
+              onClick={() => handleLink('/mypage')}
+            >
+              <div className='w-[30px] h-[30px] rounded-full overflow-hidden'>
+                <img
+                  src={user?.profile ? user.profile : userIcon}
+                  alt={`${user?.name} Profile`}
+                  className='w-full h-full object-cover'
+                />
+              </div>
+              <div className='max-w-[150px] text-[16px] leading-5 font-semibold truncate text-left'>{user?.name}</div>
+            </button>
+            <button
+              className='text-[14px] text-[#AAAAAA] underline hover:text-[#F87171]'
+              onClick={logout}
+            >
+              로그아웃
+            </button>
+          </div>
+        )}
       </nav>
     </>
   );

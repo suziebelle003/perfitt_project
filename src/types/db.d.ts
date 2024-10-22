@@ -68,5 +68,11 @@ export type TChat = {
   chatId: string;
   title?: string;
   messages?: TChatMessage[];
-  datetime: Date | firebase.firestore.Timestamp;
+  datetime?: Date | firebase.firestore.Timestamp;
+}
+
+export type TSharedChat = {
+  title: string;
+  count?: number;
+  datetime?: firebase.firestore.Timestamp | string;
 }
