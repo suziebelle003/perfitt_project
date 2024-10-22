@@ -3,7 +3,7 @@ const Button = (props: React.ComponentPropsWithoutRef<'button'>) => {
 
   return (
     <button
-      className={`w-full h-[56px] rounded bg-black text-base text-white font-semibold ${className}`}
+      className={`w-full p-4 rounded bg-black text-base text-white font-semibold ${className}`}
       {...rest}
     >
       {children}
