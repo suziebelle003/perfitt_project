@@ -1,5 +1,5 @@
-import { motion, PanInfo, useAnimation, useDragControls } from 'framer-motion';
 import { ReactNode, useEffect } from 'react';
+import { motion, PanInfo, useAnimation, useDragControls } from 'framer-motion';
 
 type TBottomSheetProps = {
   children: ReactNode;
@@ -46,7 +46,7 @@ const BottomSheet = ({ children, showBar, isOpen, setIsOpen }: TBottomSheetProps
       <motion.div
         animate={controls}
         initial='hidden'
-        className='absolute left-0 w-full h-fit z-20 select-none
+        className='absolute left-0 w-full h-fit max-h-screen flex flex-col z-20 select-none
           rounded-t-3xl bg-white shadow-[0_-1px_4px_0_#00000026]'
         transition={{ type: 'spring', stiffness: 400, damping: 40 }}
         variants={{
@@ -66,7 +66,7 @@ const BottomSheet = ({ children, showBar, isOpen, setIsOpen }: TBottomSheetProps
         >
           <hr className='border-2 border-[#E4E4E7] rounded-full w-7' />
         </div>
-        {children}
+        <div className='flex-1 overflow-auto'>{children}</div>
       </motion.div>
     </>
   );

@@ -1,13 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import DefaultLayout from '../layout/DefaultLayout';
-import ProtectedLayout from '../layout/ProtectedLayout';
 import SplashScreen from '../pages/SplashScreen';
 import OnBoarding from '../pages/OnBoarding';
-import Chat from '../pages/Chat';
+import Chat from '../pages/chat/Chat';
+import SharedChat from '../pages/chat/SharedChat';
+import SignIn from '../pages/sign/SignIn';
+import SignUp from '../pages/sign/SignUp';
+import MyFootInfo from '../pages/MyFootInfo';
 import Bridge from '../pages/Bridge';
+import ProtectedLayout from '../layout/ProtectedLayout';
 import MyPage from '../pages/mypage/MyPage';
 import MyItem from '../pages/mypage/MyItem';
-import MyFootInfo from '../pages/MyFootInfo';
 import ShoeRack from '../pages/shoerack/ShoeRack';
 import ShoesReviewEdit from '../pages/shoerack/ShoesReviewEdit';
 import ShoesReviewDetail from '../pages/shoerack/ShoesReviewDetail';
@@ -29,6 +32,18 @@ const router = createBrowserRouter([
       {
         path: '/chat',
         element: <Chat />,
+      },
+      {
+        path: '/shared/:id',
+        element: <SharedChat />,
+      },
+      {
+        path: '/sign/in',
+        element: <SignIn />,
+      },
+      {
+        path: '/sign/up',
+        element: <SignUp />,
       },
       {
         path: '/myfoot',
