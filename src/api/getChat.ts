@@ -6,8 +6,8 @@ export const getChat = async (chatId: string) => {
     const chatDoc = await getDoc(doc(db, "chat", chatId));
     if (chatDoc.exists()) {
       return {
+        chatId: chatId,
         title: chatDoc.data().title,
-        messages: chatDoc.data().messages,
         datetime: chatDoc.data().datetime
       };
     } else {
