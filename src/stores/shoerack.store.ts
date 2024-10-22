@@ -54,4 +54,4 @@ export const useShoeRackStore = create<TShoeRackStore>((set, get) => ({
       return null;
     }
   }
-}));
+}))

@@ -28,7 +28,6 @@ export const updateSearchHistory = async (uid: string, text: string, data: TSear
     // Firestore에 데이터 업데이트
     await upsertSearchHistory(uid, updatedData);
   } catch (error) {
-    console.log('e', error);
     throw error;
   }
 };

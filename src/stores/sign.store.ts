@@ -17,5 +17,5 @@ export const useSignStore = create<TSignStore>((set) => ({
 
   setSignSheetBody: (body: React.ReactElement | undefined) => {
     set({ signSheetBody: body });
-  },
+  }
 }))
