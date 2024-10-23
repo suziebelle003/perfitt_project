@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { TProduct } from '../../types/db';
 import { useAuthStore } from '../../stores/auth.store';
 import { useSearchStore } from '../../stores/search.store';
-import { upsertProduct } from '../../api/upsertProduct';
+import { upsertProduct } from '../../api/firebase/upsertProduct';
 import { postShoesFind } from '../../api/perfitt/postShoesFind';
 import HeaderLayout from '../../layout/HeaderLayout';
 import SRSearchHistory from '../../components/contents/shoerack/SRSearchHistory';

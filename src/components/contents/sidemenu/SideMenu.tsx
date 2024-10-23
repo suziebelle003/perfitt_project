@@ -15,8 +15,8 @@ import { useAuthStore } from '../../../stores/auth.store';
 import { useUserStore } from '../../../stores/user.store';
 import SMChatList from './SMChatList';
 import { menuIcon, plusIcon, userIcon } from '../../../assets/icons/icons';
-import { getUserChat } from '../../../api/getUserChat';
-import { getChat } from '../../../api/getChat';
+import { getUserChat } from '../../../api/firebase/getUserChat';
+import { getChat } from '../../../api/firebase/getChat';
 
 type TSideMenuProps = {
   isMenuOpen: boolean;
@@ -34,7 +34,7 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
       fetchUserInfo(uid);
       getChatList();
     }
-  }, [isLoading]);
+  }, [isLoading, window.location.href]);
 
   // 채팅 리스트 가져오기
   const getChatList = async () => {

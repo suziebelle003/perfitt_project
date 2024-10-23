@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { TUser } from "../types/db";
-import { getUserInfo } from "../api/getUserInfo";
+import { getUserInfo } from "../api/firebase/getUserInfo";
 
 export type TUserStore = {
   user: TUser | null;

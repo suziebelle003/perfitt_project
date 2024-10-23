@@ -1,5 +1,5 @@
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../service/firebase";
+import { db } from "../../service/firebase";
 
 export const upsertChatShare = async (chatId: string, count: number) => {
   try {

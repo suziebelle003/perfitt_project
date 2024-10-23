@@ -9,7 +9,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { TProduct } from '../../types/db';
 import { useAuthStore } from '../../stores/auth.store';
 import { useShoeRackStore } from '../../stores/shoerack.store';
-import { getProduct } from '../../api/getProduct';
+import { getProduct } from '../../api/firebase/getProduct';
 import HeaderLayout from '../../layout/HeaderLayout';
 import SRShoeInfo from '../../components/contents/shoerack/SRShoeInfo';
 import SROptionSelector from '../../components/contents/shoerack/SROptionSelector';

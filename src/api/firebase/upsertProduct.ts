@@ -1,6 +1,6 @@
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../service/firebase';
-import { TProduct } from '../types/db';
+import { db } from '../../service/firebase';
+import { TProduct } from '../../types/db';
 
 export const upsertProduct = async (shoeData: TProduct) => {
   try {

@@ -1,5 +1,5 @@
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../service/firebase";
+import { db } from "../../service/firebase";
 
 export const getChatMessages = async (chatId: string) => {
   try {

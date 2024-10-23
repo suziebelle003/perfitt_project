@@ -1,5 +1,5 @@
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../service/firebase";
+import { db } from "../../service/firebase";
 import { getProduct } from "./getProduct";
 
 export const getShoeReview = async (uid: string, productId: string) => {

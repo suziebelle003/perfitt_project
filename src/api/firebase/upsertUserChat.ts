@@ -1,9 +1,9 @@
-import { arrayUnion, doc, setDoc } from "firebase/firestore";
-import { db } from "../service/firebase";
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { db } from "../../service/firebase";
 
 export const upsertUserChat = async (uid: string, chatId: string) => {
   try {
-    await setDoc(doc(db, 'userChat', uid), {
+    await updateDoc(doc(db, 'userChat', uid), {
       chat: arrayUnion(chatId)
     })
     return 'success';

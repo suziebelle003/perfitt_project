@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { TSearchHistory } from "../types/db";
-import { getSearchHistory } from "../api/getSearchHistory";
+import { getSearchHistory } from "../api/firebase/getSearchHistory";
 import { updateSearchHistory } from "../hooks/updateSearchHistory";
-import { upsertSearchHistory } from "../api/upsertSearchHistory";
-import { deleteSearchHistory } from "../api/deleteSearchHistory";
+import { upsertSearchHistory } from "../api/firebase/upsertSearchHistory";
+import { deleteSearchHistory } from "../api/firebase/deleteSearchHistory";
 
 export type TSearchStore = {
   searchHistory: TSearchHistory[];

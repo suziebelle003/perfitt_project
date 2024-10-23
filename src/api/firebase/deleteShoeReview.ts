@@ -1,5 +1,5 @@
 import { doc, deleteDoc } from 'firebase/firestore';
-import { db } from '../service/firebase';
+import { db } from '../../service/firebase';
 
 export const deleteShoeReview = async (uid: string, productId: string) => {
   try {

@@ -1,10 +1,10 @@
 import { create } from "zustand";
 import { TShoeRackReview } from "../types/db";
 import { TShoeRackItem } from "../types/shoerack";
-import { getShoeRack } from "../api/getShoeRack";
-import { getShoeReview } from "../api/getShoeReview";
-import { deleteShoeReview } from "../api/deleteShoeReview";
-import { upsertShoeReview } from "../api/upsertShoeReview";
+import { getShoeRack } from "../api/firebase/getShoeRack";
+import { getShoeReview } from "../api/firebase/getShoeReview";
+import { deleteShoeReview } from "../api/firebase/deleteShoeReview";
+import { upsertShoeReview } from "../api/firebase/upsertShoeReview";
 
 export type TShoeRackStore = {
   shoeRack: TShoeRackItem[] | null;

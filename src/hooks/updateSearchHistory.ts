@@ -1,6 +1,6 @@
 import { Timestamp } from 'firebase/firestore';
 import { TSearchHistory } from '../types/db';
-import { upsertSearchHistory } from '../api/upsertSearchHistory';
+import { upsertSearchHistory } from '../api/firebase/upsertSearchHistory';
 
 export const updateSearchHistory = async (uid: string, text: string, data: TSearchHistory[]) => {
   let updated = false;

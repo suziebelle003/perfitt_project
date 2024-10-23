@@ -1,6 +1,6 @@
 import { doc, getDoc, Timestamp } from 'firebase/firestore';
-import { db } from '../service/firebase';
-import { TSearchHistory } from '../types/db';
+import { db } from '../../service/firebase';
+import { TSearchHistory } from '../../types/db';
 
 export const getSearchHistory = async (uid: string) => {
   try {
