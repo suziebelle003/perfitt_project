@@ -1,4 +1,4 @@
-// 로그인
+// 이메일 로그인
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +25,7 @@ function SignIn() {
       const user = userCredential.user;
       if (user) {
         setSignSheetOpen(false);
-        navigate('chat?mode=start');
+        navigate('/chat?mode=start');
       }
     } catch (error: any) {
       console.log(error);
