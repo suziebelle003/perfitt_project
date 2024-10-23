@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getCountChatMessages } from "../api/getCountChatMessages";
+import { getCountChatMessages } from "../api/firebase/getCountChatMessages";
 
 export type TShareStore = {
   shareChatId: string;

@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { TChatMessage, TSharedChat } from '../../types/db';
-import { getChat } from '../../api/getChat';
-import { getSharedChat } from '../../api/getSharedChat';
-import { getChatMessages } from '../../api/getChatMessages';
+import { getChat } from '../../api/firebase/getChat';
+import { getSharedChat } from '../../api/firebase/getSharedChat';
+import { getChatMessages } from '../../api/firebase/getChatMessages';
 import ChatWindow from '../../components/contents/chat/ChatWindow';
 import Button from '../../components/common/Button';
 import { chatIcon } from '../../assets/icons/icons';

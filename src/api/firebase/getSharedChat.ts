@@ -1,6 +1,6 @@
 import firebase from "firebase/compat/app";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../service/firebase";
+import { db } from "../../service/firebase";
 
 const formatDate = (datetime: firebase.firestore.Timestamp) => {
   const date = datetime.toDate();

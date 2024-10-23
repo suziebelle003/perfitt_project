@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useShareStore } from '../../../../stores/share.store';
-import { upsertChatShare } from '../../../../api/upsertChatShare';
+import { upsertChatShare } from '../../../../api/firebase/upsertChatShare';
 import { chatIcon, copyIcon, linkAngledIcon, loadingIcon, planetIcon, xGrayIcon } from '../../../../assets/icons/icons';
 
 const ChatShareModal = () => {

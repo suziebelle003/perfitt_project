@@ -1,6 +1,6 @@
 import { addDoc, collection, doc, setDoc } from "firebase/firestore";
-import { db } from "../service/firebase";
-import { TChatMessage } from "../types/db";
+import { db } from "../../service/firebase";
+import { TChatMessage } from "../../types/db";
 
 export const createChat = async (messages: TChatMessage[], title?: string) => {
   try {

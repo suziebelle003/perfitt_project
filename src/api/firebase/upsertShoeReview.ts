@@ -1,6 +1,6 @@
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../service/firebase';
-import { TShoeRackReview } from '../types/db';
+import { db } from '../../service/firebase';
+import { TShoeRackReview } from '../../types/db';
 
 export const upsertShoeReview = async (uid: string, productId: string, data: TShoeRackReview) => {
   try {

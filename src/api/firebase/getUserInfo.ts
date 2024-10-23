@@ -1,5 +1,5 @@
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../service/firebase";
+import { db } from "../../service/firebase";
 
 export const getUserInfo = async (uid: string) => {
   try {

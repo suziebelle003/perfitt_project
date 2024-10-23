@@ -1,9 +1,9 @@
 import { TChatMessage } from '../types/db';
-import { createChat } from '../api/createChat';
-import { upsertChat } from '../api/upsertChat';
+import { createChat } from '../api/firebase/createChat';
+import { upsertChat } from '../api/firebase/upsertChat';
 import { useChatResponseMutation } from '../hooks/useChatMutation';
 import { useNavigate } from 'react-router-dom';
-import { upsertUserChat } from '../api/upsertUserChat';
+import { upsertUserChat } from '../api/firebase/upsertUserChat';
 
 type TUseSendMessageProps = {
   uid: string;

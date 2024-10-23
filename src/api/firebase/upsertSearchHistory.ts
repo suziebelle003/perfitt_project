@@ -1,6 +1,6 @@
 import { doc, setDoc } from 'firebase/firestore';
-import { db } from '../service/firebase';
-import { TSearchHistory } from '../types/db';
+import { db } from '../../service/firebase';
+import { TSearchHistory } from '../../types/db';
 
 export const upsertSearchHistory = async (uid: string, data: TSearchHistory[]) => {
   try {
