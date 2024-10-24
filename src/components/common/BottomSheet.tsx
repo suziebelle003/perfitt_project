@@ -20,6 +20,10 @@ const BottomSheet = ({ children, showBar, isOpen, setIsOpen }: TBottomSheetProps
     }
   }, [controls, isOpen]);
 
+  const startDrag = (event: React.PointerEvent) => {
+    dragControls.start(event, { snapToCursor: false });
+  };
+
   const handleDragEnd = (event: PointerEvent, { point, velocity }: PanInfo): void => {
     if (isOpen && (velocity.y > 20 || (velocity.y >= 0 && point.y > 45))) {
       controls.start('hidden');
@@ -32,8 +36,10 @@ const BottomSheet = ({ children, showBar, isOpen, setIsOpen }: TBottomSheetProps
     }
   };
 
-  const startDrag = (event: React.PointerEvent) => {
-    dragControls.start(event, { snapToCursor: false });
+  const handleBackClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+    controls.start('hidden');
+    setIsOpen(false);
   };
 
   return (
@@ -41,7 +47,7 @@ const BottomSheet = ({ children, showBar, isOpen, setIsOpen }: TBottomSheetProps
       <div
         className={`absolute inset-0 z-10 transition-opacity duration-300
           ${isOpen ? 'bg-[#00000055]' : 'opacity-0 pointer-events-none'}`}
-        onClick={e => e.stopPropagation()}
+        onClick={handleBackClick}
       />
       <motion.div
         animate={controls}
