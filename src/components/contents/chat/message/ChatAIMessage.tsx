@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown';
-import { emphasize } from '../../../../config/markdown';
 import { TChatMessage } from '../../../../types/db';
+import { emphasize } from '../../../../styles/markdown';
 import ChatCardContainer from '../card/ChatCardContainer';
 import SignCard from '../../sign/SignCard';
 import ChatRecommendCard from '../recommend/ChatRecommendCard';
