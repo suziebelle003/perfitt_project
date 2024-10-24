@@ -20,4 +20,4 @@ export const createChat = async (messages: TChatMessage[], title?: string) => {
   } catch (error) {
     throw error;
   }
-}
+};

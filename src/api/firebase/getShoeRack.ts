@@ -19,4 +19,4 @@ export const getShoeRack = async (uid: string) => {
   } catch (error) {
     throw error;
   }
-}
+};

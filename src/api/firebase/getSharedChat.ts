@@ -10,7 +10,7 @@ const formatDate = (datetime: firebase.firestore.Timestamp) => {
   const day = String(date.getDate()).padStart(2, '0');
 
   return `${year}년 ${month}월 ${day}일`;
-}
+};
 
 export const getSharedChat = async (chatId: string, sharedId: string) => {
   try {
