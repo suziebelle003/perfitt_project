@@ -24,7 +24,6 @@ type TSideMenuProps = {
 };
 
 const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
-  const navigate = useNavigate();
   const { uid, isLoading } = useAuthStore();
   const { user, fetchUserInfo } = useUserStore();
   const [chatData, setChatData] = useState<TChat[]>();
@@ -51,12 +50,12 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
 
   const handleLink = (link: string) => {
     toggleMenu();
-    navigate(`${link}`);
+    window.location.href = link;
   };
 
   const logout = () => {
     auth.signOut();
-    handleLink('/chat');
+    handleLink('/chat?mode=sign');
   };
 
   return (
