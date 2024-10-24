@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../service/firebase';
 import { useSignStore } from '../../stores/sign.store';
 import SignContainer from '../../components/contents/sign/SignContainer';
 import SignInputField from '../../components/contents/sign/SignInputField';
@@ -19,7 +20,6 @@ function SignIn() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const auth = getAuth();
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;

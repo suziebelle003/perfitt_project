@@ -2,6 +2,7 @@ import { ReactNode } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../../common/Header';
 import Button from '../../common/Button';
+import SignErrorMessage from './SignErrorMessage';
 
 type TSignContainerProps = {
   title: string;
@@ -29,7 +30,10 @@ const SignContainer = (props: TSignContainerProps) => {
       >
         <div className={`flex-grow flex flex-col gap-4 overflow-auto scrollbar-hide ${formClassName}`}>{children}</div>
         <div className='px-1'>
-          <div className='h-6 text-[13px] leading-4 text-[#EF4444] text-center'>{errorMessage}</div>
+          <SignErrorMessage
+            className='h-6 text-center'
+            message={errorMessage}
+          />
           <Button type='submit'>{btnText}</Button>
         </div>
       </form>
