@@ -20,7 +20,7 @@ function SUInfo() {
   }));
 
   return (
-    <div className='p-4'>
+    <>
       <form onSubmit={e => e.preventDefault()}>
         <div className='flex flex-col gap-4 mb-10'>
           {/* 이메일 입력 */}
@@ -166,7 +166,7 @@ function SUInfo() {
           </div>
         </div>
       </form>
-    </div>
+    </>
   );
 }
 
