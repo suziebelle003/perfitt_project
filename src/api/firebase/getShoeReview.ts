@@ -21,4 +21,4 @@ export const getShoeReview = async (uid: string, productId: string) => {
   } catch (error) {
     throw error;
   }
-}
+};

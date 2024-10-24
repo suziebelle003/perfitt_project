@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { TUser } from "../types/db";
-import { getUserInfo } from "../api/firebase/getUserInfo";
+import { getUser } from "../api/firebase/getUser";
 
 export type TUserStore = {
   user: TUser | null;
@@ -11,7 +11,7 @@ export const useUserStore = create<TUserStore>((set) => ({
   user: null,
 
   fetchUserInfo: async (uid: string) => {
-    const data = await getUserInfo(uid);
+    const data = await getUser(uid);
     set({ user: data });
   }
 }))

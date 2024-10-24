@@ -1,7 +1,7 @@
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../service/firebase";
 
-export const getUserInfo = async (uid: string) => {
+export const getUser = async (uid: string) => {
   try {
     const userDoc = await getDoc(doc(db, "user", uid));
     if (userDoc.exists()) {
