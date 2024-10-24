@@ -4,16 +4,15 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAiulosfSqhNa6yaUixcqcuDfCODNF7NUA',
-  authDomain: 'footprint-perfitt.firebaseapp.com',
-  projectId: 'footprint-perfitt',
-  storageBucket: 'footprint-perfitt.appspot.com',
-  messagingSenderId: '689606025465',
-  appId: '1:689606025465:web:c4ea29f994402302e18228',
-  measurementId: 'G-JP446EJVVV',
+  apiKey: 'AIzaSyCFEOXNvNOZ04zMxr5ewwzWfREfXJ_MTa0',
+  authDomain: 'perfitt-project.firebaseapp.com',
+  projectId: 'perfitt-project',
+  storageBucket: 'perfitt-project.appspot.com',
+  messagingSenderId: '31544047716',
+  appId: '1:31544047716:web:d8373be651f8dec93fc771',
+  measurementId: 'G-57ZNE5Y5TD',
 };
 
-// Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
