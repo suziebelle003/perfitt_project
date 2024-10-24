@@ -7,10 +7,11 @@ export type TUserInfo = {
   birthMonth: string;
   birthDay: string;
   size: string;
-}
+};
 
 export type TGoogleUser = {
   uid: string;
   email: string;
   name: string;
-}
+  profile: string;
+};

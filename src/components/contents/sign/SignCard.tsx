@@ -35,6 +35,7 @@ const SignCard = () => {
         uid: user.uid,
         email: user.email || '',
         name: user.displayName || '',
+        profile: user.photoURL || '',
       });
 
       const userData = await getUser(user.uid);
