@@ -13,4 +13,6 @@ const SignInput = ({ className, ...rest }: TSignInputProps) => {
   );
 };
 
+// SignInput.displayName = 'SignInput';
+
 export default SignInput;
