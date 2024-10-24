@@ -16,6 +16,9 @@ import ShoesReviewEdit from '../pages/shoerack/ShoesReviewEdit';
 import ShoesReviewDetail from '../pages/shoerack/ShoesReviewDetail';
 import ShoesSearch from '../pages/shoerack/ShoesSearch';
 import NotFound from '../pages/NotFound';
+import UUInfo from '../pages/mypage/UUInfo';
+import UUPassword from '../pages/mypage/UUPassword';
+import DeleteUser from '../pages/mypage/DeleteUser';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +66,18 @@ const router = createBrowserRouter([
           {
             path: '/mypage/item',
             element: <MyItem />,
+          },
+          {
+            path: '/mypage/updateinfo',
+            element: <UUInfo />,
+          },
+          {
+            path: '/mypage/updatepassword',
+            element: <UUPassword />,
+          },
+          {
+            path: '/mypage/deleteuser',
+            element: <DeleteUser />,
           },
           {
             path: '/shoerack',

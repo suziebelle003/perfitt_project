@@ -6,8 +6,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../service/firebase';
 import { useSignStore } from '../../stores/sign.store';
 import SignContainer from '../../components/contents/sign/SignContainer';
-import SignInputField from '../../components/contents/sign/SignInputField';
-import SignInput from '../../components/contents/sign/SignInput';
+import SUInput from '../../components/contents/signup/SUInput';
 
 function SignIn() {
   const navigate = useNavigate();
@@ -57,32 +56,23 @@ function SignIn() {
       errorMessage={errorMessage}
       btnText='로그인'
     >
-      <SignInputField
-        title='아이디'
-        htmlFor='email'
-      >
-        <SignInput
-          type='text'
-          id='email'
-          value={email}
-          placeholder='이메일을 입력해 주세요'
-          onChange={e => setEmail(e.target.value)}
-          autoComplete='email'
-        />
-      </SignInputField>
-      <SignInputField
-        title='비밀번호'
-        htmlFor='password'
-      >
-        <SignInput
-          type='password'
-          id='password'
-          value={password}
-          placeholder='비밀번호을 입력해 주세요'
-          onChange={e => setPassword(e.target.value)}
-          autoComplete='current-password'
-        />
-      </SignInputField>
+      <SUInput
+        label='아이디'
+        className='px-4 py-3.5'
+        id='email'
+        placeholder='이메일을 입력해 주세요'
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+      />
+      <SUInput
+        label='비밀번호'
+        className='px-4 py-3.5'
+        type='password'
+        id='password'
+        placeholder='비밀번호를 입력해 주세요'
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+      />
     </SignContainer>
   );
 }
