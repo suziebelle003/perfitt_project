@@ -8,7 +8,6 @@
 // 로그인/회원가입 링크 변경
 
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { auth } from '../../../service/firebase';
 import { TChat } from '../../../types/db';
 import { useAuthStore } from '../../../stores/auth.store';
@@ -24,7 +23,6 @@ type TSideMenuProps = {
 };
 
 const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
-  const navigate = useNavigate();
   const { uid, isLoading } = useAuthStore();
   const { user, fetchUserInfo } = useUserStore();
   const [chatData, setChatData] = useState<TChat[]>();
@@ -51,12 +49,12 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
 
   const handleLink = (link: string) => {
     toggleMenu();
-    navigate(`${link}`);
+    window.location.href = link;
   };
 
   const logout = () => {
     auth.signOut();
-    handleLink('/chat');
+    handleLink('/chat?mode=sign');
   };
 
   return (
