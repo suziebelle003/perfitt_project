@@ -8,7 +8,6 @@
 // 로그인/회원가입 링크 변경
 
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { auth } from '../../../service/firebase';
 import { TChat } from '../../../types/db';
 import { useAuthStore } from '../../../stores/auth.store';
