@@ -34,7 +34,9 @@ function SRShoeRack({ shoesList }: { shoesList: TShoeRackItem[] }) {
           className='flex gap-[6px] items-center'
           onClick={handleSort}
         >
-          <span className='text-[14px] leading-[17px] font-medium text-[#808080]'>최신순</span>
+          <span className='text-[14px] leading-[17px] font-medium text-[#808080]'>
+            {sort === 'newest' ? '최신순' : '오래된순'}
+          </span>
           <span className={sort === 'newest' ? '' : 'transform scale-y-[-1]'}>
             <img
               src={polygonIcon}
