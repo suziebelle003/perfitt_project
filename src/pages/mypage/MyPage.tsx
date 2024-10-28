@@ -1,11 +1,5 @@
 // 마이 페이지
-
 // 로그인 안 했을 때 로그인 link
-// 프로필 사진 변경
-// 내 정보 수정 link 변경
-// 비밀번호 변경 link 변경
-// 고객센터 link 변경
-// 회원탈퇴
 
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
