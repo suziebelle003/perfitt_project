@@ -4,19 +4,38 @@ import { TProduct } from '../../../../types/db';
 import { TPartner } from '../../../../types/like';
 import { getPartnerBrand } from '../../../../hooks/getPartnerBrand';
 import { heartFilledIcon, heartIcon } from '../../../../assets/icons/icons';
+import { useAuthStore } from '../../../../stores/auth.store';
+import { useProductLikeStore } from '../../../../stores/productlike.store';
 
 const ChatProductCard = (product: TProduct) => {
   const navigate = useNavigate();
-  const [like, setLike] = useState<TProduct[]>();
+  const { uid } = useAuthStore();
+  const { addProductToLikeList, removeProductFromLikeList, getProductById } = useProductLikeStore();
+  const [liked, setLiked] = useState(false);
   const [partner, setPartner] = useState<TPartner>();
 
   useEffect(() => {
-    setLike([{ productId: '1010087307' }, { productId: '10100002' }]);
-    if (product.link) setPartner(getPartnerBrand(product.link));
-  }, []);
+    // 초기 좋아요 상태를 확인
+    const likedProduct = getProductById(uid, product.productId);
+    setLiked(Boolean(likedProduct));
+
+    if (product.link) {
+      setPartner(getPartnerBrand(product.link));
+    }
+  }, [uid, product, getProductById]);
 
   const handleLike = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
+
+    if (liked) {
+      // 좋아요 취소
+      removeProductFromLikeList(uid, product.productId);
+      setLiked(false);
+    } else {
+      // 좋아요 추가
+      addProductToLikeList(uid, product);
+      setLiked(true);
+    }
   };
 
   return (
@@ -36,7 +55,7 @@ const ChatProductCard = (product: TProduct) => {
           onClick={handleLike}
         >
           <img
-            src={like?.some(item => item.productId === product.productId) ? heartFilledIcon : heartIcon}
+            src={liked ? heartFilledIcon : heartIcon}
             alt='like'
             className='w-full h-full object-fill'
           />
