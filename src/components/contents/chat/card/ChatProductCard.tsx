@@ -15,7 +15,6 @@ const ChatProductCard = (product: TProduct) => {
   const [partner, setPartner] = useState<TPartner>();
 
   useEffect(() => {
-    // 초기 좋아요 상태를 확인
     const likedProduct = getProductById(uid, product.productId);
     setLiked(Boolean(likedProduct));
 
@@ -28,11 +27,9 @@ const ChatProductCard = (product: TProduct) => {
     event.stopPropagation();
 
     if (liked) {
-      // 좋아요 취소
       removeProductFromLikeList(uid, product.productId);
       setLiked(false);
     } else {
-      // 좋아요 추가
       addProductToLikeList(uid, product);
       setLiked(true);
     }
