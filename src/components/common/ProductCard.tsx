@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { TLikeProduct, TPartner } from '../../types/like';
 import { getPartnerBrand } from '../../hooks/getPartnerBrand';
 import { aiBalloonIcon, heartFilledIcon, heartIcon } from '../../assets/icons/icons';
+import { useAuthStore } from '../../stores/auth.store';
+import { useProductLikeStore } from '../../stores/productlike.store';
 
 const ProductCard = ({ product }: { product: TLikeProduct }) => {
   const navigate = useNavigate();
   const [partner, setPartner] = useState<TPartner>();
+  const { uid } = useAuthStore();
+  const { addProductToLikeList, removeProductFromLikeList, getProductById } = useProductLikeStore();
+  const liked = !!getProductById(uid, product.productId);
 
   useEffect(() => {
     if (product.link) setPartner(getPartnerBrand(product.link));
@@ -14,6 +19,14 @@ const ProductCard = ({ product }: { product: TLikeProduct }) => {
 
   const handleLike = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
+
+    if (liked) {
+      // 좋아요 취소
+      removeProductFromLikeList(uid, product.productId);
+    } else {
+      // 좋아요 추가
+      addProductToLikeList(uid, product);
+    }
   };
 
   const moreShoesAI = () => {};
@@ -47,7 +60,7 @@ const ProductCard = ({ product }: { product: TLikeProduct }) => {
             onClick={handleLike}
           >
             <img
-              src={product.like ? heartFilledIcon : heartIcon}
+              src={liked ? heartFilledIcon : heartIcon}
               alt='like'
               className='w-full h-full object-fill'
             />
