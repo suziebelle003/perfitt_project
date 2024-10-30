@@ -10,18 +10,23 @@ import { useProductLikeStore } from '../../../../stores/productlike.store';
 const ChatProductCard = (product: TProduct) => {
   const navigate = useNavigate();
   const { uid } = useAuthStore();
-  const { addProductToLikeList, removeProductFromLikeList, getProductById } = useProductLikeStore();
+  const { getProductById, fetchProductLike, addProductToLikeList, removeProductFromLikeList } = useProductLikeStore();
   const [liked, setLiked] = useState(false);
   const [partner, setPartner] = useState<TPartner>();
 
   useEffect(() => {
-    const likedProduct = getProductById(uid, product.productId);
-    setLiked(Boolean(likedProduct));
+    const loadLikedStatus = async () => {
+      await fetchProductLike(uid);
+      const isLiked = !!getProductById(uid, product.productId);
+      setLiked(isLiked);
+    };
+
+    loadLikedStatus();
 
     if (product.link) {
       setPartner(getPartnerBrand(product.link));
     }
-  }, [uid, product, getProductById]);
+  }, [uid, product, setLiked]);
 
   const handleLike = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
@@ -37,8 +42,7 @@ const ChatProductCard = (product: TProduct) => {
 
   return (
     <article
-      className='w-[162px] flex-shrink-0 flex flex-col
-        bg-white border border-[#F5F5F5] rounded-md overflow-hidden cursor-pointer'
+      className='w-[162px] flex-shrink-0 flex flex-col bg-white border border-[#F5F5F5] rounded-md overflow-hidden cursor-pointer'
       onClick={() => navigate('/bridge', { state: { product, partner } })}
     >
       <div className='relative w-full h-[152px] bg-[#F5F5F5]'>
@@ -63,14 +67,10 @@ const ChatProductCard = (product: TProduct) => {
           <div className='text-xs/[18px] truncate'>{product.brand}</div>
           <div className='text-sm/[17px] font-semibold truncate'>{product.modelName}</div>
         </div>
-        {/* <div className='text-[13px] leading-[16px] font-semibold'>{product.price}</div> */}
-        <div
-          className='absolute top-[-15px] right-2 w-6 h-6
-            rounded-full overflow-hidden bg-white'
-        >
+        <div className='absolute top-[-15px] right-2 w-6 h-6 rounded-full overflow-hidden bg-white'>
           <img
             src={partner?.image}
-            alt='like'
+            alt='partner'
             className='w-full h-full object-cover'
           />
         </div>

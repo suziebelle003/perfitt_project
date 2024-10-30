@@ -5,12 +5,14 @@ import { getPartnerBrand } from '../../hooks/getPartnerBrand';
 import { aiBalloonIcon, heartFilledIcon, heartIcon } from '../../assets/icons/icons';
 import { useAuthStore } from '../../stores/auth.store';
 import { useProductLikeStore } from '../../stores/productlike.store';
+import { useLastItemStore } from '../../stores/lastItem.store';
 
 const ProductCard = ({ product }: { product: TLikeProduct }) => {
   const navigate = useNavigate();
   const [partner, setPartner] = useState<TPartner>();
   const { uid } = useAuthStore();
   const { addProductToLikeList, removeProductFromLikeList, getProductById } = useProductLikeStore();
+  const { fetchLatestItem } = useLastItemStore();
   const liked = !!getProductById(uid, product.productId);
 
   useEffect(() => {
@@ -28,6 +30,12 @@ const ProductCard = ({ product }: { product: TLikeProduct }) => {
       addProductToLikeList(uid, product);
     }
   };
+  const handleNavigate = () => {
+    // 제품을 최근 본 목록에 추가
+    fetchLatestItem(uid);
+    // bridge 페이지로 이동
+    navigate('/bridge', { state: { product, partner } });
+  };
 
   const moreShoesAI = () => {};
 
@@ -35,7 +43,7 @@ const ProductCard = ({ product }: { product: TLikeProduct }) => {
     <article className='w-[166px] bg-white'>
       <div
         className='cursor-pointer'
-        onClick={() => navigate('/bridge', { state: { product, partner } })}
+        onClick={handleNavigate}
       >
         {/* image */}
         <div className='relative w-[166px] h-[156px] rounded-md bg-[#F5F5F5] overflow-hidden'>
