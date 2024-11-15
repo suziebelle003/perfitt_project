@@ -1,7 +1,7 @@
 import { TProduct } from './db';
 
 export type TLikeProduct = {
-  like: boolean;
+  like?: boolean;
   datetime?: string;
 } & TProduct;
 

@@ -1,7 +1,7 @@
-import { collection, getCountFromServer } from "firebase/firestore"
-import { db } from "../../service/firebase"
+import { collection, getCountFromServer } from 'firebase/firestore';
+import { db } from '../../service/firebase';
 
 export const getCountChatMessages = async (chatId: string) => {
-  const chatMessageCount = await getCountFromServer(collection(db, "chat", chatId, "messages"));
+  const chatMessageCount = await getCountFromServer(collection(db, 'chat', chatId, 'messages'));
   return chatMessageCount.data().count;
 };
