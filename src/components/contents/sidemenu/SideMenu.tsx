@@ -1,49 +1,122 @@
 // 사이드 메뉴
 
-// 리스트 날짜별 분류
-// 데이터 가져올 때 지난 7일까지만 가져오기
-// 로그안 안되어있을 때 로그인 페이지 link
-// 채팅 리스트 드래그 / 공유하기, 삭제하기
-// 로그아웃
-// 로그인/회원가입 링크 변경
-
 import { useEffect, useState } from 'react';
 import { auth } from '../../../service/firebase';
 import { TChat } from '../../../types/db';
 import { useAuthStore } from '../../../stores/auth.store';
 import { useUserStore } from '../../../stores/user.store';
-import SMChatList from './SMChatList';
-import { menuIcon, plusIcon, userIcon } from '../../../assets/icons/icons';
 import { getUserChat } from '../../../api/firebase/getUserChat';
 import { getChat } from '../../../api/firebase/getChat';
+import { deleteUserChat } from '../../../api/firebase/deleteUserChat';
+import SMChatList from './SMChatList';
+import { menuIcon, plusIcon, userIcon } from '../../../assets/icons/icons';
 
 type TSideMenuProps = {
   isMenuOpen: boolean;
   toggleMenu: () => void;
 };
 
+type TChatData = {
+  id: string;
+  dateCategory: string;
+  chatList: TChat[];
+};
+
 const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
   const { uid, isLoading } = useAuthStore();
   const { user, fetchUserInfo } = useUserStore();
-  const [chatData, setChatData] = useState<TChat[]>();
+  const [chatData, setChatData] = useState<TChatData[]>();
 
   useEffect(() => {
     if (!isLoading && uid) {
-      fetchUserInfo(uid);
+      if (!user) fetchUserInfo(uid);
       getChatList();
     }
-  }, [isLoading, window.location.href]);
+  }, [window.location.href, isLoading, user]);
 
+  // 채팅 리스트 가져오기
   // 채팅 리스트 가져오기
   const getChatList = async () => {
     const userChat = await getUserChat(uid);
     if (userChat) {
       const chatList = await Promise.all(
         userChat.map(async (chatId: string) => {
-          return await getChat(chatId);
+          const chat = await getChat(chatId);
+          return chat?.datetime ? chat : null; // datetime이 유효한 경우에만 반환
         })
       );
-      setChatData(chatList);
+      groupChatByDate(chatList.filter(chat => chat !== null) as TChat[]);
+    }
+  };
+
+  // 날짜별 채팅 분류
+  const groupChatByDate = (chatList: TChat[]) => {
+    const sortedChatList = chatList
+      .filter(chat => chat.datetime) // datetime이 유효한 항목만 필터링
+      .sort((a, b) => new Date(b.datetime!).getTime() - new Date(a.datetime!).getTime());
+
+    const today = new Date(new Date().toDateString());
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+    const sevenDaysAgo = new Date(today);
+    sevenDaysAgo.setDate(today.getDate() - 7);
+    const thirtyDaysAgo = new Date(today);
+    thirtyDaysAgo.setDate(today.getDate() - 30);
+
+    const categorizedChats = [
+      {
+        id: 'today',
+        dateCategory: '오늘',
+        chatList: sortedChatList.filter(chat => new Date(chat.datetime!) >= today),
+      },
+      {
+        id: 'yesterday',
+        dateCategory: '어제',
+        chatList: sortedChatList.filter(
+          chat => new Date(chat.datetime!) < today && new Date(chat.datetime!) >= yesterday
+        ),
+      },
+      {
+        id: 'last7days',
+        dateCategory: '지난 7일',
+        chatList: sortedChatList.filter(
+          chat => new Date(chat.datetime!) < yesterday && new Date(chat.datetime!) >= sevenDaysAgo
+        ),
+      },
+      {
+        id: 'last30days',
+        dateCategory: '지난 30일',
+        chatList: sortedChatList.filter(
+          chat => new Date(chat.datetime!) < sevenDaysAgo && new Date(chat.datetime!) >= thirtyDaysAgo
+        ),
+      },
+    ];
+
+    setChatData(categorizedChats);
+  };
+
+  // 채팅 삭제
+  const deleteChat = async (dateCategory: string, chatId: string) => {
+    const confirmDelete = window.confirm('채팅을 삭제하시겠습니까?');
+    if (confirmDelete) {
+      try {
+        await deleteUserChat(uid, chatId);
+        setChatData(prevChatData =>
+          prevChatData?.map(chatGroup => {
+            if (chatGroup.dateCategory === dateCategory) {
+              return {
+                ...chatGroup,
+                chatList: chatGroup.chatList.filter(chat => chat.chatId !== chatId),
+              };
+            }
+            return chatGroup;
+          })
+        );
+        alert('삭제되었습니다.');
+      } catch (error) {
+        alert('채팅 삭제 실패');
+        console.log('채팅 삭제 실패: ', error);
+      }
     }
   };
 
@@ -95,12 +168,17 @@ const SideMenu = ({ isMenuOpen, toggleMenu }: TSideMenuProps) => {
 
         {/* 채팅 리스트 */}
         <div className='flex-1 overflow-scroll scrollbar-hide'>
-          {chatData !== undefined && chatData.length > 0 && (
-            <SMChatList
-              date={'오늘'}
-              chatlist={chatData}
-              handleLink={handleLink}
-            />
+          {chatData?.map(
+            chatGroup =>
+              chatGroup.chatList.length > 0 && (
+                <SMChatList
+                  key={chatGroup.id}
+                  dateCategory={chatGroup.dateCategory}
+                  chatList={chatGroup.chatList}
+                  handleLink={handleLink}
+                  handleDelete={deleteChat}
+                />
+              )
           )}
         </div>
 

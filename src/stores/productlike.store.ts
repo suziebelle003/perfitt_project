@@ -30,21 +30,15 @@ export const useProductLikeStore = create<TProductLikeStore>((set, get) => ({
     set(state => {
       const userIndex = state.productLike?.findIndex(user => user.uid === uid);
       if (userIndex !== undefined && userIndex >= 0 && state.productLike) {
-        // 기존 유저의 찜 목록에 상품 추가
         const updatedProducts = [...state.productLike[userIndex].products, product];
-
-        // Firebase에 productId를 저장
         upsertProductLike(uid, product.productId);
-
         return {
           productLike: state.productLike.map((user, index) =>
             index === userIndex ? { ...user, products: updatedProducts } : user
           ),
         };
       } else {
-        // 새로운 유저 추가
         upsertProductLike(uid, product.productId);
-
         return {
           productLike: [...(state.productLike || []), { uid, products: [product] }],
         };
@@ -59,10 +53,7 @@ export const useProductLikeStore = create<TProductLikeStore>((set, get) => ({
         const updatedProducts = state.productLike[userIndex].products.filter(
           product => product.productId !== productId
         );
-
-        // Firebase에서 해당 productId 제거
-        deleteProductLike(uid, productId); // Firebase에서 삭제 호출
-
+        deleteProductLike(uid, productId);
         return {
           productLike: state.productLike.map((user, index) =>
             index === userIndex ? { ...user, products: updatedProducts } : user

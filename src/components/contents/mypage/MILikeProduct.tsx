@@ -11,17 +11,16 @@ const MILikeProduct = () => {
 
   useEffect(() => {
     const loadLikedProducts = async () => {
-      await fetchProductLike(uid); // 사용자의 찜 목록을 가져옵니다.
+      await fetchProductLike(uid);
 
-      // productLike 상태에서 상품 ID 목록 가져오기
       const productIds = productLike?.find(user => user.uid === uid)?.products.map(product => product.productId) || [];
 
-      const fetchedProducts = productIds.map(productId => getProductById(uid, productId)); // 각 productId에 대해 getProductById 호출
-      setProducts(fetchedProducts.filter(product => product !== null)); // null이 아닌 상품만 설정
+      const fetchedProducts = productIds.map(productId => getProductById(uid, productId));
+      setProducts(fetchedProducts.filter(product => product !== null));
     };
 
-    loadLikedProducts(); // 비동기 함수 호출
-  }, [uid, fetchProductLike, productLike, getProductById]); // 의존성 배열에 필요한 값 추가
+    loadLikedProducts();
+  }, [uid, fetchProductLike, productLike, getProductById]);
 
   return (
     <>
@@ -30,7 +29,7 @@ const MILikeProduct = () => {
         {products.map(product => (
           <ProductCard
             key={product.productId}
-            product={{ ...product, like: true }} // like 속성을 true로 설정
+            product={{ ...product, like: true }}
           />
         ))}
       </div>
