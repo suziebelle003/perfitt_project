@@ -1,4 +1,4 @@
-# 👟 LLM 기반 신발사이즈 추천앱 README
+# 👟 LLM 기반 신발사이즈 추천 웹 앱 어플리케이션 README
 
 ![readme_mokupPage_](https://github.com/user-attachments/assets/269d1c71-d329-4238-8c95-fdfa137148c3)
 
