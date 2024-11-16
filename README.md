@@ -1,7 +1,7 @@
 # 📖 LLM 기반 신발사이즈 추천앱 README
 
-![readme_mockup2](![제목을-입력해주세요_](https://github.com/user-attachments/assets/898271af-c780-4291-85f6-b868fdef2d5a)
-)
+![readme_mokupPage_](https://github.com/user-attachments/assets/269d1c71-d329-4238-8c95-fdfa137148c3)
+
 
 - 배포 URL : 
 
