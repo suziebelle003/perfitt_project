@@ -1,11 +1,10 @@
-# React + TypeScript + Vite
+# 📖 LLM 기반 신발사이즈 추천앱 README
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![readme_mockup2](![제목을-입력해주세요_](https://github.com/user-attachments/assets/898271af-c780-4291-85f6-b868fdef2d5a)
+)
 
-Currently, two official plugins are available:
+- 배포 URL : 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 ## Expanding the ESLint configuration
 
