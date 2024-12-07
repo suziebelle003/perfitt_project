@@ -6,6 +6,7 @@ import { getPartnerBrand } from '../../../../hooks/getPartnerBrand';
 import { heartFilledIcon, heartIcon } from '../../../../assets/icons/icons';
 import { useAuthStore } from '../../../../stores/auth.store';
 import { useProductLikeStore } from '../../../../stores/productlike.store';
+import { useItemStore } from '../../../../stores/lastItem.store';
 
 const ChatProductCard = (product: TProduct) => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const ChatProductCard = (product: TProduct) => {
   const { getProductById, fetchProductLike, addProductToLikeList, removeProductFromLikeList } = useProductLikeStore();
   const [liked, setLiked] = useState(false);
   const [partner, setPartner] = useState<TPartner>();
+  const { fetchItems, addToViewed } = useItemStore();
 
   useEffect(() => {
     const loadLikedStatus = async () => {
@@ -39,11 +41,19 @@ const ChatProductCard = (product: TProduct) => {
       setLiked(true);
     }
   };
-
+  const handleNavigate = async () => {
+    await fetchItems(uid);
+    try {
+      addToViewed(uid, product);
+      navigate('/bridge', { state: { product, partner } });
+    } catch (error) {
+      console.error('Error adding to viewed items:', error);
+    }
+  };
   return (
     <article
       className='w-[162px] flex-shrink-0 flex flex-col bg-white border border-[#F5F5F5] rounded-md overflow-hidden cursor-pointer'
-      onClick={() => navigate('/bridge', { state: { product, partner } })}
+      onClick={handleNavigate}
     >
       <div className='relative w-full h-[152px] bg-[#F5F5F5]'>
         <img
