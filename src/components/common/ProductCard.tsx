@@ -5,14 +5,14 @@ import { getPartnerBrand } from '../../hooks/getPartnerBrand';
 import { aiBalloonIcon, heartFilledIcon, heartIcon } from '../../assets/icons/icons';
 import { useAuthStore } from '../../stores/auth.store';
 import { useProductLikeStore } from '../../stores/productlike.store';
-import { useLastItemStore } from '../../stores/lastItem.store';
+import { useItemStore } from '../../stores/lastItem.store';
 
 const ProductCard = ({ product }: { product: TLikeProduct }) => {
   const navigate = useNavigate();
   const [partner, setPartner] = useState<TPartner>();
   const { uid } = useAuthStore();
   const { addProductToLikeList, removeProductFromLikeList, getProductById } = useProductLikeStore();
-  const { fetchLatestItem } = useLastItemStore();
+  const { fetchItems } = useItemStore();
   const liked = !!getProductById(uid, product.productId);
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const ProductCard = ({ product }: { product: TLikeProduct }) => {
   };
   const handleNavigate = () => {
     // 제품을 최근 본 목록에 추가
-    fetchLatestItem(uid);
+    fetchItems(uid);
     // bridge 페이지로 이동
     navigate('/bridge', { state: { product, partner } });
   };

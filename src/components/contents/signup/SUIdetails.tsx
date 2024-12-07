@@ -100,7 +100,7 @@ const SUIdetails = () => {
             )}
           />
         </div>
-        <div className='w-full h-[104px] rounded-lg p-4 bg-[#EFF6FF] flex items-start mb-10'>
+        <div className='px-4 py-4 rounded-lg p-4 bg-[#EFF6FF] flex items-start mb-10'>
           <img
             className='w-[24px] h-[24px] mr-2'
             src={infoicon}

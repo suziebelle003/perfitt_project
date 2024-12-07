@@ -9,6 +9,7 @@ import Button from '../../components/common/Button';
 import HeaderLayout from '../../layout/HeaderLayout';
 import { useAuthStore } from '../../stores/auth.store';
 import { useUserStore } from '../../stores/user.store';
+import { infoIcon } from '../../assets/icons/icons';
 
 const DeleteUser = () => {
   const navigate = useNavigate();
@@ -51,63 +52,65 @@ const DeleteUser = () => {
   };
 
   return (
-    <HeaderLayout
-      title='회원 탈퇴'
-      back
-    >
-      <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='flex flex-col gap-2 p-4'>
-            <Controller
-              name='email'
-              control={control}
-              rules={{
-                required: '이메일을 입력해 주세요',
-                pattern: {
-                  value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
-                  message: '이메일 형식이 아닙니다.',
-                },
-              }}
-              render={({ field, fieldState }) => (
-                <SUInput
-                  label='아이디'
-                  className='px-4 py-3.5'
-                  id='email'
-                  {...field}
-                  readOnly
-                  isError={!!fieldState.error}
-                  helperText={fieldState.error?.message}
-                />
-              )}
-            />
+    <>
+      <HeaderLayout
+        title='회원 탈퇴'
+        back
+      >
+        <FormProvider {...methods}>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='flex flex-col gap-2 p-4'>
+              <Controller
+                name='email'
+                control={control}
+                rules={{
+                  required: '이메일을 입력해 주세요',
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+                    message: '이메일 형식이 아닙니다.',
+                  },
+                }}
+                render={({ field, fieldState }) => (
+                  <SUInput
+                    label='아이디'
+                    className='px-4 py-3.5'
+                    id='email'
+                    {...field}
+                    readOnly
+                    isError={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                  />
+                )}
+              />
 
-            <Controller
-              name='password'
-              control={control}
-              rules={{
-                required: { value: true, message: '비밀번호를 입력해주세요' },
-                minLength: { value: 6, message: '비밀번호는 최소 6자 이상이어야 합니다' },
-              }}
-              render={({ field, fieldState }) => (
-                <SUInput
-                  label='비밀번호'
-                  className='px-4 py-3.5'
-                  type='password'
-                  {...field}
-                  placeholder='비밀번호를 입력해 주세요'
-                  isError={!!fieldState.error}
-                  helperText={fieldState.error?.message}
-                />
-              )}
-            />
+              <Controller
+                name='password'
+                control={control}
+                rules={{
+                  required: { value: true, message: '비밀번호를 입력해주세요' },
+                  minLength: { value: 6, message: '비밀번호는 최소 6자 이상이어야 합니다' },
+                }}
+                render={({ field, fieldState }) => (
+                  <SUInput
+                    label='비밀번호'
+                    className='px-4 py-3.5'
+                    type='password'
+                    {...field}
+                    placeholder='비밀번호를 입력해 주세요'
+                    isError={!!fieldState.error}
+                    helperText={fieldState.error?.message}
+                  />
+                )}
+              />
 
-            <div className='mt-[34px]'>
-              <Button type='submit'>계정 삭제</Button>
+              <div className='mt-[34px]'>
+                <Button type='submit'>계정 삭제</Button>
+              </div>
             </div>
-          </div>
-        </form>
-      </FormProvider>
-    </HeaderLayout>
+          </form>
+        </FormProvider>
+      </HeaderLayout>
+    </>
   );
 };
 
