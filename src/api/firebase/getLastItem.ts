@@ -1,26 +1,27 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { doc, DocumentData, getDoc } from 'firebase/firestore';
+import { TLikeProduct } from '../../types/like';
 import { db } from '../../service/firebase';
-import { getProduct } from './getProduct';
-import { TLikeProduct } from '../../types/like'; // 제품 타입 정의
 
-export const getLastItem = async (uid: string): Promise<TLikeProduct[]> => {
+export const getLastItem = async (uid: string): Promise<TLikeProduct[] | null> => {
   try {
-    const productsSnapshot = await getDocs(collection(db, 'latestProduct', uid, 'products'));
+    // if (!uid) {
+    //   throw new Error('UID is missing or invalid');
+    // }
 
-    // Promise.all을 사용해 모든 제품 정보를 병렬로 가져옴
-    const LatestProductData = await Promise.all(
-      productsSnapshot.docs.map(async product => {
-        const shoeInfo = await getProduct(product.id);
-        return {
-          ...product.data(),
-          ...shoeInfo,
-          productId: product.id,
-          datetime: product.data().datetime.toDate(),
-        } as TLikeProduct;
-      })
-    );
+    // 'latestProduct/{uid}' 경로의 도큐먼트를 가져옵니다.
+    const lastItemDocRef = doc(db, 'latestProduct', uid);
+    const lastItemDoc = await getDoc(lastItemDocRef);
 
-    return LatestProductData;
+    if (lastItemDoc.exists()) {
+      const data: DocumentData = lastItemDoc.data();
+
+      // Firebase DocumentData 형식을 TLikeProduct[]로 변환
+      const products: TLikeProduct[] = data.products || []; // data.products가 존재할 때만
+      return products;
+    } else {
+      console.error('No such document!');
+      return null;
+    }
   } catch (error) {
     console.error('Failed to fetch last item:', error);
     throw error;

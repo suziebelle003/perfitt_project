@@ -1,31 +1,44 @@
 import { useEffect, useState } from 'react';
 import ProductCard from '../../common/ProductCard';
-import { useLastItemStore } from '../../../stores/lastItem.store';
+import { useItemStore } from '../../../stores/lastItem.store';
 import { TLikeProduct } from '../../../types/like';
 import { useAuthStore } from '../../../stores/auth.store';
+import { getProduct } from '../../../api/firebase/getProduct';
 
 const MILatestItem = () => {
   const { uid } = useAuthStore();
   const [products, setProducts] = useState<TLikeProduct[]>([]);
-  const { latestItem, fetchLatestItem, getLastItemById } = useLastItemStore();
+  const { items, fetchItems } = useItemStore();
 
   useEffect(() => {
     const loadLikedProducts = async () => {
-      await fetchLatestItem(uid); // 최신 제품을 가져옵니다.
+      if (uid) {
+        await fetchItems(uid); // Fetch items for the specific uid
 
-      // 사용자의 좋아요 제품 ID를 가져옵니다.
-      const productIds = latestItem?.find(user => user.uid === uid)?.products.map(product => product.productId) || [];
+        const userItems = items.find(user => user.uid === uid);
+        if (!userItems) return; // userItems이 없다면 종료
 
-      // 각 제품 ID에 대해 getLastItemById를 사용하여 제품 정보를 가져옵니다.
-      const fetchedProducts = productIds
-        .map(productId => getLastItemById(uid, productId))
-        .filter(product => product !== null) as TLikeProduct[];
+        // products 배열에서 productId를 추출
+        const productIds = userItems.products.map(product => product.productId);
 
-      setProducts(fetchedProducts); // 상태를 업데이트합니다.
+        // Firebase에서 제품 정보를 가져와서 상태에 저장
+        const fetchedProducts = await Promise.all(
+          productIds.map(async productId => {
+            const product = await getProduct(productId); // getProduct로 제품 정보 가져오기
+            if (product) {
+              return { ...product, productId }; // 반환된 제품 정보에 productId를 포함시켜 반환
+            }
+            return null; // null이 반환되면 필터링
+          })
+        );
+
+        // null이 아닌 제품만 필터링 후 상태 업데이트
+        setProducts(fetchedProducts.filter(product => product !== null) as TLikeProduct[]);
+      }
     };
 
-    loadLikedProducts();
-  }, [uid, fetchLatestItem, latestItem, getLastItemById]);
+    loadLikedProducts(); // useEffect가 실행될 때 한 번만 호출
+  }, [uid, fetchItems, items]); // dependencies: uid, fetchItems, items
 
   return (
     <>
@@ -33,8 +46,8 @@ const MILatestItem = () => {
       <div className='flex-1 flex flex-wrap gap-[11px] overflow-scroll scrollbar-hide'>
         {products.map(product => (
           <ProductCard
-            key={product.productId} // 각 제품의 ID를 키로 사용
-            product={product} // 각 제품을 전달
+            key={product.productId} // Use each product ID as a key
+            product={product} // Pass each product to the ProductCard component
           />
         ))}
       </div>
