@@ -11,12 +11,31 @@ const MILikeProduct = () => {
 
   useEffect(() => {
     const loadLikedProducts = async () => {
-      await fetchProductLike(uid);
+      if (!uid) return; // uid가 없을 경우 로직 실행 방지
 
-      const productIds = productLike?.find(user => user.uid === uid)?.products.map(product => product.productId) || [];
+      try {
+        // 좋아요 데이터를 불러오기
+        await fetchProductLike(uid);
 
-      const fetchedProducts = productIds.map(productId => getProductById(uid, productId));
-      setProducts(fetchedProducts.filter(product => product !== null));
+        // productLike가 업데이트되었는지 확인
+        const likedUser = productLike?.find(user => user.uid === uid);
+        if (!likedUser) return;
+
+        const productIds = likedUser.products.map(product => product.productId);
+
+        // 제품 정보를 병렬로 가져오기
+        const fetchedProducts = await Promise.all(
+          productIds.map(async productId => {
+            const product = await getProductById(uid, productId);
+            return product || null;
+          })
+        );
+
+        // 유효한 데이터만 필터링 후 상태 업데이트
+        setProducts(fetchedProducts.filter(product => product !== null));
+      } catch (error) {
+        console.error('Error loading liked products:', error);
+      }
     };
 
     loadLikedProducts();
