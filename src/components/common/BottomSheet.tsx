@@ -24,7 +24,7 @@ const BottomSheet = ({ children, showBar, isOpen, setIsOpen }: TBottomSheetProps
     dragControls.start(event, { snapToCursor: false });
   };
 
-  const handleDragEnd = (event: PointerEvent, { point, velocity }: PanInfo): void => {
+  const handleDragEnd = (_event: PointerEvent, { point, velocity }: PanInfo): void => {
     if (isOpen && (velocity.y > 20 || (velocity.y >= 0 && point.y > 45))) {
       controls.start('hidden');
       setIsOpen(false);

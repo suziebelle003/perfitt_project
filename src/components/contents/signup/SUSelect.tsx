@@ -18,7 +18,7 @@ type TSelectProps = {
 
 // forwardRef로 SUSelect 컴포넌트 정의
 const SUSelect = forwardRef<HTMLDivElement, TSelectProps>(
-  ({ optionData, className, value, onChange, placeholder, label, helperText, styles, onSubmit }, ref) => {
+  ({ optionData, className, value, onChange, placeholder, label, helperText, styles, onSubmit }) => {
     // react-select에서 사용하는 형식으로 optionData 변환
     const options: OptionType[] = optionData.map(option => ({
       value: option.value,
