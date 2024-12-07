@@ -132,7 +132,7 @@ function ShoesReviewEdit() {
           <div className='flex-1 mb-6 overflow-y-scroll scrollbar-hide'>
             {/* 신발 선택 */}
             <div className='mt-[5px] py-[1px]'>
-              {shoeInfo?.productId !== ('' || undefined) ? (
+              {shoeInfo?.productId !== '' && shoeInfo?.productId !== undefined ? (
                 <SRShoeInfo {...shoeInfo} />
               ) : (
                 <div className='flex flex-col gap-[11px]'>

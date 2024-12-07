@@ -9,7 +9,6 @@ import Button from '../../components/common/Button';
 import HeaderLayout from '../../layout/HeaderLayout';
 import { useAuthStore } from '../../stores/auth.store';
 import { useUserStore } from '../../stores/user.store';
-import { infoIcon } from '../../assets/icons/icons';
 
 const DeleteUser = () => {
   const navigate = useNavigate();
