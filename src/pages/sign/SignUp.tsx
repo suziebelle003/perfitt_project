@@ -11,8 +11,8 @@ import { TUserInfo } from '../../types/sign';
 import { useSignStore } from '../../stores/sign.store';
 import { createUser } from '../../api/firebase/createUser';
 import SignContainer from '../../components/contents/sign/SignContainer';
-import SUInfoBasic from '../../components/contents/sign/signup/SUInfoBasic';
-import SUInfoSize from '../../components/contents/sign/signup/SUInfoSize';
+import SUInfo from '../../components/contents/signup/SUInfo';
+import SUIdetails from '../../components/contents/signup/SUIdetails';
 
 function SignUp() {
   const navigate = useNavigate();
@@ -26,9 +26,9 @@ function SignUp() {
       password: '',
       name: '',
       gender: '',
-      birthYear: '',
-      birthMonth: '',
-      birthDay: '',
+      year: '',
+      month: '',
+      day: '',
       size: '',
     },
   });
@@ -91,8 +91,8 @@ function SignUp() {
         formClassName={step === 'size' ? 'gap-6' : ''}
         errorMessage={step === 'size' ? (errors.size?.message as string) : undefined}
       >
-        {step === 'basic' && <SUInfoBasic />}
-        {step === 'size' && <SUInfoSize />}
+        {step === 'basic' && <SUInfo />}
+        {step === 'size' && <SUIdetails />}
       </SignContainer>
     </FormProvider>
   );

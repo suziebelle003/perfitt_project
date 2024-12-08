@@ -4,26 +4,56 @@ import { TProduct } from '../../../../types/db';
 import { TPartner } from '../../../../types/like';
 import { getPartnerBrand } from '../../../../hooks/getPartnerBrand';
 import { heartFilledIcon, heartIcon } from '../../../../assets/icons/icons';
+import { useAuthStore } from '../../../../stores/auth.store';
+import { useProductLikeStore } from '../../../../stores/productlike.store';
+import { useItemStore } from '../../../../stores/lastItem.store';
 
 const ChatProductCard = (product: TProduct) => {
   const navigate = useNavigate();
-  const [like, setLike] = useState<TProduct[]>();
+  const { uid } = useAuthStore();
+  const { getProductById, fetchProductLike, addProductToLikeList, removeProductFromLikeList } = useProductLikeStore();
+  const [liked, setLiked] = useState(false);
   const [partner, setPartner] = useState<TPartner>();
+  const { fetchItems, addToViewed } = useItemStore();
 
   useEffect(() => {
-    setLike([{ productId: '1010087307' }, { productId: '10100002' }]);
-    if (product.link) setPartner(getPartnerBrand(product.link));
-  }, []);
+    const loadLikedStatus = async () => {
+      await fetchProductLike(uid);
+      const isLiked = !!getProductById(uid, product.productId);
+      setLiked(isLiked);
+    };
+
+    loadLikedStatus();
+
+    if (product.link) {
+      setPartner(getPartnerBrand(product.link));
+    }
+  }, [uid, product, setLiked]);
 
   const handleLike = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     event.stopPropagation();
-  };
 
+    if (liked) {
+      removeProductFromLikeList(uid, product.productId);
+      setLiked(false);
+    } else {
+      addProductToLikeList(uid, product);
+      setLiked(true);
+    }
+  };
+  const handleNavigate = async () => {
+    await fetchItems(uid);
+    try {
+      addToViewed(uid, product);
+      navigate('/bridge', { state: { product, partner } });
+    } catch (error) {
+      console.error('Error adding to viewed items:', error);
+    }
+  };
   return (
     <article
-      className='w-[162px] flex-shrink-0 flex flex-col
-        bg-white border border-[#F5F5F5] rounded-md overflow-hidden cursor-pointer'
-      onClick={() => navigate('/bridge', { state: { product, partner } })}
+      className='w-[162px] flex-shrink-0 flex flex-col bg-white border border-[#F5F5F5] rounded-md overflow-hidden cursor-pointer'
+      onClick={handleNavigate}
     >
       <div className='relative w-full h-[152px] bg-[#F5F5F5]'>
         <img
@@ -36,7 +66,7 @@ const ChatProductCard = (product: TProduct) => {
           onClick={handleLike}
         >
           <img
-            src={like?.some(item => item.productId === product.productId) ? heartFilledIcon : heartIcon}
+            src={liked ? heartFilledIcon : heartIcon}
             alt='like'
             className='w-full h-full object-fill'
           />
@@ -47,14 +77,10 @@ const ChatProductCard = (product: TProduct) => {
           <div className='text-xs/[18px] truncate'>{product.brand}</div>
           <div className='text-sm/[17px] font-semibold truncate'>{product.modelName}</div>
         </div>
-        {/* <div className='text-[13px] leading-[16px] font-semibold'>{product.price}</div> */}
-        <div
-          className='absolute top-[-15px] right-2 w-6 h-6
-            rounded-full overflow-hidden bg-white'
-        >
+        <div className='absolute top-[-15px] right-2 w-6 h-6 rounded-full overflow-hidden bg-white'>
           <img
             src={partner?.image}
-            alt='like'
+            alt='partner'
             className='w-full h-full object-cover'
           />
         </div>

@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { getCountChatMessages } from "../api/firebase/getCountChatMessages";
+import { create } from 'zustand';
+import { getCountChatMessages } from '../api/firebase/getCountChatMessages';
 
 export type TShareStore = {
   shareChatId: string;
@@ -8,9 +8,9 @@ export type TShareStore = {
   shareModalOpen: boolean;
   setShareOpen: (chatId: string, title: string | undefined) => void;
   setShareClose: () => void;
-}
+};
 
-export const useShareStore = create<TShareStore>((set) => ({
+export const useShareStore = create<TShareStore>(set => ({
   shareChatId: '',
   shareChatTitle: undefined,
   shareChatMessageId: 0,
@@ -22,8 +22,8 @@ export const useShareStore = create<TShareStore>((set) => ({
       shareChatId: chatId,
       shareChatTitle: title,
       shareChatMessageId: count,
-      shareModalOpen: true
-    })
+      shareModalOpen: true,
+    });
   },
 
   setShareClose: () => {
@@ -31,7 +31,7 @@ export const useShareStore = create<TShareStore>((set) => ({
       shareChatId: '',
       shareChatTitle: undefined,
       shareChatMessageId: 0,
-      shareModalOpen: false
+      shareModalOpen: false,
     });
-  }
-}))
+  },
+}));
