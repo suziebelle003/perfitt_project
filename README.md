@@ -3,7 +3,7 @@
 ![readme_mokupPage_](https://github.com/user-attachments/assets/269d1c71-d329-4238-8c95-fdfa137148c3)
 
 
-- 배포 URL :
+- 배포 URL : https://perfitt-projectfinal.vercel.app
 <h1 align="middle">perfitt X footprint</h1>
 <p align="middle">LLM 기반의 AI기술 활용한 신발추천 웹 앱 어플리케이션</p>
 <p align="center">
